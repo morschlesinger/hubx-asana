@@ -12,12 +12,15 @@ export function transform(accountData, items) : Promise<Object[]> {
         }
         else {
             items.forEach(function (item) {
-                let newItem = {Id: null, IsDeleted: null, MasterRecordId: null, Name: null, Type: null, 
-                    ParentId: null, BillingStreet: null, BillingCity: null, BillingState: null, BillingPostalCode: null, BillingCountry: null, 
-                    BillingLatitude: null, BillingLongitude: null, BillingGeocodeAccuracy: null, ShippingStreet: null, ShippingCity: null, 
-                    ShippingState: null, ShippingPostalCode: null, ShippingCountry: null, ShippingLatitude: null, ShippingLongitude: null,
-                    ShippingGeocodeAccuracy: null, Phone: null, Website: null, PhotoUrl: null, Industry: null, NumberOfEmployees: null,
-                    Description: null, OwnerId: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null,
+                let newItem = {Id: null, Username: null, LastName: null, FirstName: null, MiddleName: null, Suffix: null, Name: null, 
+                    CompanyName: null, Division: null, Department: null, Title: null, Street: null, City: null, State: null, PostalCode: null,
+                    Country: null, Latitude: null, Longitude: null, GeocodeAccuracy: null, Email: null, EmailPreferencesAutoBcc: null,
+                    EmailPreferencesAutoBccStayInTouch: null, EmailPreferencesStayInTouchReminder: null, SenderEmail: null, SenderName: null,
+                    Signature: null, StayInTouchSubject: null, StayInTouchSignature: null, StayInTouchNote: null, Phone: null, Fax: null,
+                    MobilePhone: null, Alias: null, CommunityNickname: null, BadgeText: null, IsActive: null, TimeZoneSidKey: null, 
+                    UserRoleId: null, LocaleSidKey: null, ReceivesInfoEmails: null, ReceivesAdminInfoEmails: null, EmailEncodingKey: null,
+                    ProfileId: null, UserType: null, LanguageLocaleKey: null, EmployeeNumber: null, ManagerId: null, LastLoginDate: null,
+                    LastPasswordChangeDate: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null,
                     SystemModstamp: null, LastActivityDate: null, LastViewedDate: null, LastReferenceDate: null, Jigsaw: null, 
                     JigsawCompanyID: null, AccountSource: null, DunsNumber: null, Tradestyle: null, NaicsCode: null, NaicsDesc: null,
                     YearStarted: null, SicDesc: null, VendorUrl: ''};
