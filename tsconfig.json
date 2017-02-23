@@ -1,0 +1,43 @@
+{
+  "version": "1.0.1-alpha",
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "noLib": false,
+    "preserveConstEnums": true,
+    "declaration": false,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "filesGlob": [
+    "./**/*.ts",
+    "!./node_modules/**/*.ts",
+    "!./node_modules/@types/**/*.ts"
+  ],
+  "files": [
+    "./server.ts",
+    "./src/utils/utils.ts",
+    "./src/singletons/config/config.ts",
+    "./src/singletons/contentQueue/contentQueue.ts",
+    "./src/salesforce/data model/categories.ts",
+    "./src/salesforce/data model/sections.ts",
+    "./src/salesforce/data model/groups.ts",
+    "./src/salesforce/data model/articles.ts",
+    "./src/salesforce/data model/users.ts",
+    "./src/salesforce/data model/ticketSatisfactionRatings.ts",
+    "./src/salesforce/data model/ticketComments.ts",
+    "./src/salesforce/data model/ticketAudits.ts",
+    "./src/salesforce/data model/tickets.ts",
+    "./src/cloudElements/cloudElements.ts",
+    "./src/protocols/index.ts",
+    "./src/protocols/oauth/oauth.ts",
+    "./src/services/hubx2.ts",
+    "./src/services/restful.ts",
+    "./src/salesforce/apiSalesForce.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  },  
+  "buildOnSave": true  
+}
