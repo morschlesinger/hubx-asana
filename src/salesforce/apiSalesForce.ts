@@ -25,7 +25,7 @@ import * as idea from "./data model/idea";
 import * as lead from "./data model/lead";
 import * as macro from "./data model/macro";
 import * as note from "./data model/note";
-//import * as open_activity from "./data model/open_activity";
+import * as open_activity from "./data model/open_activity";
 import * as order from "./data model/order";
 import * as product from "./data model/product";
 import * as report from "./data model/report";
@@ -33,7 +33,7 @@ import * as solution from "./data model/solution";
 import * as task from "./data model/task";
 import * as contact from "./data model/contact";
 import * as opportunity from "./data model/opportunity";
-//import * as pipeline from "./data model/pipeline";
+import * as pipeline from "./data model/pipeline";
 import * as user from "./data model/user";
 
 import {contentQueue} from "../singletons/contentQueue/contentQueue";
@@ -80,12 +80,12 @@ export class apiSalesForce {
     constructor(QContent: contentQueue) {
         this.QContent = QContent;
         this.NerveCenter = new nerveCenter;
-        this.users = users; // new users(this.QContent);
-        this.articles = articles
-        this.categories = categories;
-        this.sections = sections;
-        this.groups = groups;
-        this.tickets = tickets;
+        // this.users = users; // new users(this.QContent);
+        // this.articles = articles
+        // this.categories = categories;
+        // this.sections = sections;
+        // this.groups = groups;
+        // this.tickets = tickets;
         //this.apiClient = apiClient || m_ApiClient.getNewInstance();
         //console.log("apiSalesForce constructed");
     };
@@ -200,48 +200,48 @@ export class apiSalesForce {
     private transformEntities(changedDataObjectType, accountData, whChangedItems) {
         return new Promise((resolve, reject) => {
             switch (changedDataObjectType) {
-                case enumDO.USERS: {
-                    users.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
-                        resolve(finalItemsToWrite);
-                    }).catch(reject);
-                    break;
-                }            
-                case enumDO.TICKETS: {
-                    tickets.transform(accountData,whChangedItems).then((args) => {
-                        resolve(args);
-                    }).catch(reject);
-                    break;
-                }
-                case enumDO.CATEGORIES: {
-                    categories.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
-                        resolve(finalItemsToWrite);
-                    }).catch(reject);
-                    break;
-                }
-                case enumDO.GROUPS: {
-                    groups.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
-                        resolve(finalItemsToWrite);
-                    }).catch(reject);
-                    break;
-                }
-                case enumDO.SECTIONS: {
-                    sections.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
-                        resolve(finalItemsToWrite);
-                    }).catch(reject);
-                    break;
-                }
-                case enumDO.TICKETRATINGS: {
-                    ticketSatisfactionRatings.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
-                        resolve(finalItemsToWrite);
-                    }).catch(reject);
-                    break;
-                }
-                case enumDO.ARTICLES: {
-                    articles.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
-                        resolve(finalItemsToWrite);
-                    }).catch(reject);
-                    break;
-                }
+                // case enumDO.USERS: {
+                //     users.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                //         resolve(finalItemsToWrite);
+                //     }).catch(reject);
+                //     break;
+                // }            
+                // case enumDO.TICKETS: {
+                //     tickets.transform(accountData,whChangedItems).then((args) => {
+                //         resolve(args);
+                //     }).catch(reject);
+                //     break;
+                // }
+                // case enumDO.CATEGORIES: {
+                //     categories.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                //         resolve(finalItemsToWrite);
+                //     }).catch(reject);
+                //     break;
+                // }
+                // case enumDO.GROUPS: {
+                //     groups.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                //         resolve(finalItemsToWrite);
+                //     }).catch(reject);
+                //     break;
+                // }
+                // case enumDO.SECTIONS: {
+                //     sections.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                //         resolve(finalItemsToWrite);
+                //     }).catch(reject);
+                //     break;
+                // }
+                // case enumDO.TICKETRATINGS: {
+                //     ticketSatisfactionRatings.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                //         resolve(finalItemsToWrite);
+                //     }).catch(reject);
+                //     break;
+                // }
+                // case enumDO.ARTICLES: {
+                //     articles.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                //         resolve(finalItemsToWrite);
+                //     }).catch(reject);
+                //     break;
+                // }
                 default: reject(new Error("unknown object to transform"));
             }
         });
@@ -310,64 +310,64 @@ export class apiSalesForce {
         return new Promise((resolve, reject) => {
             var _this=this;
             switch (elementObjectName) {
-                case enumDO.USERS: {
-                    let currentPage = 1;
-                    users.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
-                        if (finished)
-                            resolve();
-                    }).catch(reject);
-                    break;
-                }            
-                case enumDO.TICKETS: {
-                    let currentPage = 1;
-                    tickets.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
-                        if (finished)
-                            resolve();
-                    }).catch(reject);
-                    break;
-                }
-                case enumDO.CATEGORIES: {
-                    let currentPage = 1;
-                    categories.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
-                        if (finished) 
-                            resolve();
-                    }).catch(reject);
-                    break;
-                }
-                case enumDO.GROUPS: {
-                    let currentPage = 1;
-                    groups.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
-                        if (finished)
-                            resolve();
-                    }).catch(reject);
-                    break;
-                }
-                case enumDO.SECTIONS: {
-                    let currentPage = 1;
-                    sections.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
-                        if (finished)
-                            resolve();
-                    }).catch(reject);
-                    break;
-                }
-                case enumDO.ARTICLES: {
-                    let currentPage = 1;
-                    articles.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
-                        if (finished) 
-                            resolve();
-                    }).catch(reject);
-                    break;
-                }
-                case enumDO.TICKETRATINGS: {
-                    //let currentPage = 1;
-                    //this.MapCE SectionsToEntities(accountData, currentPage).then((finished) => {
-                        //if (finished)
-                        resolve();
-                    //}).catch(reject);
-                    //break;
-                    console.log("not implemented for SalesForce yet, do for other drivers");
-                    break;
-                }
+                // case enumDO.USERS: {
+                //     let currentPage = 1;
+                //     users.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                //         if (finished)
+                //             resolve();
+                //     }).catch(reject);
+                //     break;
+                // }            
+                // case enumDO.TICKETS: {
+                //     let currentPage = 1;
+                //     tickets.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                //         if (finished)
+                //             resolve();
+                //     }).catch(reject);
+                //     break;
+                // }
+                // case enumDO.CATEGORIES: {
+                //     let currentPage = 1;
+                //     categories.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                //         if (finished) 
+                //             resolve();
+                //     }).catch(reject);
+                //     break;
+                // }
+                // case enumDO.GROUPS: {
+                //     let currentPage = 1;
+                //     groups.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                //         if (finished)
+                //             resolve();
+                //     }).catch(reject);
+                //     break;
+                // }
+                // case enumDO.SECTIONS: {
+                //     let currentPage = 1;
+                //     sections.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                //         if (finished)
+                //             resolve();
+                //     }).catch(reject);
+                //     break;
+                // }
+                // case enumDO.ARTICLES: {
+                //     let currentPage = 1;
+                //     articles.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                //         if (finished) 
+                //             resolve();
+                //     }).catch(reject);
+                //     break;
+                // }
+                // case enumDO.TICKETRATINGS: {
+                //     //let currentPage = 1;
+                //     //this.MapCE SectionsToEntities(accountData, currentPage).then((finished) => {
+                //         //if (finished)
+                //         resolve();
+                //     //}).catch(reject);
+                //     //break;
+                //     console.log("not implemented for SalesForce yet, do for other drivers");
+                //     break;
+                // }
                 default: reject(new Error('apiSalesForce-MapElementsToEntities-unknown object to map-' + elementObjectName));
             }
         });        

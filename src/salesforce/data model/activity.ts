@@ -57,9 +57,10 @@ export function transform(accountData, items): Promise<Object[]> {
                 if (item.vote_sum)
                     newItem.vote_sum = item.vote_sum;
 
-                // "outdated_locales": [], TODO
+                 "outdated_locales": [], TODO
+                 */
                 newArray.push(newItem);
-                */
+                
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});
         }
