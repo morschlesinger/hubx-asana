@@ -16,7 +16,7 @@ export function transform(accountData, items): Promise<Object[]> {
                     LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, LastViewedDate: null, LastReferencedDate: null,
                     CommunityId: null, Body: null, NumComments: null, VoteScore: null, VoteTotal: null, Categories: null, Status: null,
                     LastCommentDate: null, LastCommentId: null, ParentIdeaId: null, IsHtml: null, IsMerged: null, CreatorFullPhotoUrl: null,
-                    CreatorSmallPhotoUrl: null, CreatorName: null, VendorUrl: ''};
+                    CreatorSmallPhotoUrl: null, CreatorName: null};
                 newItem.Id = item.Id;       // Idea id, string
                 newItem.IsDeleted = item.IsDeleted;     // Deleted, boolean
                 newItem.Title = item.Title;     // string
@@ -43,7 +43,6 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.CreatorFullPhotoUrl = item.CreatorFullPhotoUrl;       // URL of Creator's Profile Photo, string
                 newItem.CreatorSmallPhotoUrl = item.CreatorSmallPhotoUrl;       // URL of Creator's Thumbnail Photo, string
                 newItem.CreatorName = item.CreatorName;       // Name of Creator, string
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/idea";
            /*     newItem.body = item.body;
                 newItem.draft = item.draft;
                 newItem.comments_disabled = item.comments_disabled;

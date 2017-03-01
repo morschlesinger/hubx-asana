@@ -19,7 +19,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                     ShippingState: null, ShippingPostalCode: null, ShippingCountry: null, ShippingLatitude: null, ShippingLongitude: null,
                     ShippingGeocodeAccuracy: null, ActivatedDate: null, ActivatedById: null, StatusCode: null, OrderNumber: null,
                     TotalAmount: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, IsDeleted: null,
-                    SystemModstamp: null, LastViewedDate: null, LastReferencedDate: null, VendorUrl: ''};
+                    SystemModstamp: null, LastViewedDate: null, LastReferencedDate: null};
                 newItem.Id=item.Id;     // Order ID, string
                 newItem.OwnerId=item.OwnerId;       // string
                 newItem.ContractId=item.ContractId;     // string
@@ -61,7 +61,6 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.SystemModstamp=item.SystemModstamp;     // date
                 newItem.LastViewedDate=item.LastViewedDate;     // date
                 newItem.LastReferencedDate=item.LastReferencedDate;       // Last Referenced Date, date
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/order";
                 newArray.push(newItem);
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});

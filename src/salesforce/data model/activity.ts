@@ -16,7 +16,7 @@ export function transform(accountData, items): Promise<Object[]> {
                     durationInMinutes: null, endDateTime: null, id: null, isAllDayEvent: null, isArchived: null, isChild: null, 
                     isDeleted: null, isGroupEvent: null, isPrivate: null, isRecurrence: null, isReminderSet: null, 
                     lastModifiedByID: null, lastModifiedDate: null, location: null, ownerID: null, showAs: null, 
-                    startDateTime: null, systemModstamp: null, whoId: null, VendorUrl: ''};
+                    startDateTime: null, systemModstamp: null, whoId: null};
                 newItem.accountID = item.accountID;
                 newItem.activityDate = item.activityDate;
                 newItem.activityDateTime = item.activityDateTime;
@@ -40,9 +40,7 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.showAs = item.showAs;
                 newItem.startDateTime = item.startDateTime;
                 newItem.systemModstamp = item.systemModstamp;     
-                newItem.whoId = item.whoId;   
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/accounts/" +  accountData.identifier + "/activities";                 
-                
+                newItem.whoId = item.whoId;                  
        /*         newItem.section_id = accountData.identifier + '.' + item.section_id;
                 newItem.locale = item.locale;
                 newItem.vendorUrl=item.html_url;

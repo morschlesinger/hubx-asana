@@ -18,7 +18,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                     OwnerId: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null,
                     LastActivityDate: null, FiscalQuarter: null, FiscalYear: null, Fiscal: null, LastViewedDate: null, LastReferencedDate: null,
                     SyncedQuoteId: null, HasOpenActivity: null, HasOverdueTask: null, Budget_Confirmed__c: null, Discovery_Completed__c: null,
-                    ROI_Analysis_Completed__c: null, Loss_Reason__c: null, VendorUrl: ''};
+                    ROI_Analysis_Completed__c: null, Loss_Reason__c: null};
                 newItem.Id=item.Id;     // Opportunity ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
                 newItem.AccountId=item.AccountId;     // string
@@ -57,7 +57,6 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.Discovery_Completed__c=item.Discovery_Completed__c;     // Discovery Completed, boolean
                 newItem.ROI_Analysis_Completed__c=item.ROI_Analysis_Completed__c;     // ROI Analysis Completed, boolean
                 newItem.Loss_Reason__c=item.Loss_Reason__c;     // Loss Reason, string
-                newItem.VendorUrl = 'https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/opportunity';
                 newArray.push(newItem);
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});

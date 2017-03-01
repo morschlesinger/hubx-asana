@@ -14,7 +14,7 @@ export function transform(accountData, items): Promise<Object[]> {
             items.forEach(function (item) {
                 let newItem = {Id: null, Name: null, DeveloperName: null, RelatedId: null, Type: null, Email: null, OwnerId: null, 
                     DoesSendEmailToMembers: null, DoesIncludeBosses: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null,
-                    LastModifiedById: null, SystemModstamp: null, VendorUrl: ''};
+                    LastModifiedById: null, SystemModstamp: null};
                 newItem.Id = item.Id;       // Group ID, string
                 newItem.Name = item.Name;       // string
                 newItem.DeveloperName = item.DeveloperName;     // string
@@ -29,7 +29,6 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.LastModifiedDate = item.LastModifiedDate;       // date
                 newItem.LastModifiedById = item.LastModifiedById;       // string
                 newItem.SystemModstamp = item.SystemModstamp;       // date
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/group";
                 newArray.push(newItem);
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});

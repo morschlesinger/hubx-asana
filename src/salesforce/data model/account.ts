@@ -1,4 +1,4 @@
-const C_DATAOBJECTNAME = "account";
+const C_DATAOBJECTNAME = "Account";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_ACCOUNT";
 var cloudElements = require("../../cloudElements/cloudElements");
 import {contentQueue} from "../../singletons/contentQueue/contentQueue";
@@ -20,7 +20,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                     Description: null, OwnerId: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null,
                     SystemModstamp: null, LastActivityDate: null, LastViewedDate: null, LastReferenceDate: null, Jigsaw: null, 
                     JigsawCompanyID: null, AccountSource: null, DunsNumber: null, Tradestyle: null, NaicsCode: null, NaicsDesc: null,
-                    YearStarted: null, SicDesc: null, VendorUrl: ''};
+                    YearStarted: null, SicDesc: null};
                 newItem.Id=item.Id;     // Account ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
                 newItem.MasterRecordId=item.MasterRecordId;     // string
@@ -67,7 +67,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.NaicsDesc=item.NaicsDesc;       // NAICS Description, string
                 newItem.YearStarted=item.YearStarted;       // string
                 newItem.SicDesc=item.SicDesc;       // SIC Description, string
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/accounts";
+                
                 newArray.push(newItem);
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});

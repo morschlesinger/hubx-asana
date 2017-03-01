@@ -15,7 +15,7 @@ export function transform(accountData, items): Promise<Object[]> {
                 let newItem = {Id: null, FolderId: null, IsDeleted: null, Name: null, DeveloperName: null, NamespacePrefix: null, ContentType: null, 
                     Type: null, IsPublic: null, BodyLength: null, Body: null, Url: null, Description: null, Keywords: null, IsInternalUseOnly: null,
                     AuthorId: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, 
-                    IsBodySearchable: null, LastViewedDate: null, LastReferencedDate: null, VendorUrl: ''};
+                    IsBodySearchable: null, LastViewedDate: null, LastReferencedDate: null};
                 newItem.Id = item.Id;       // Document ID, string
                 newItem.FolderId = item.FolderId;     // string
                 newItem.IsDeleted = item.IsDeleted;       // boolean
@@ -40,7 +40,6 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.IsBodySearchable = item.IsBodySearchable;     // Document Content Searchable, boolean
                 newItem.LastViewedDate = item.LastViewedDate;       // date
                 newItem.LastReferencedDate = item.LastReferencedDate;     // date
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/document";
            /*     newItem.body = item.body;
                 newItem.draft = item.draft;
                 newItem.comments_disabled = item.comments_disabled;

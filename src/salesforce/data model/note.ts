@@ -13,7 +13,7 @@ export function transform(accountData, items): Promise<Object[]> {
         else {
             items.forEach(function (item) {                    
                 let newItem = {Id: null, IsDeleted: null, ParentId: null, Title: null, IsPrivate: null, Body: null, OwnerId: null,
-                    CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, VendorUrl: ''};
+                    CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null};
                 newItem.Id = item.Id;       // Note ID, string
                 newItem.IsDeleted = item.IsDeleted;     // boolean
                 newItem.ParentId = item.ParentId;       // string
@@ -26,7 +26,6 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.LastModifiedDate = item.LastModifiedDate;       // date
                 newItem.LastModifiedById = item.LastModifiedById;       // string
                 newItem.SystemModstamp = item.SystemModstamp;     // date
-                newItem.VendorUrl = 'https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/note';
            /*     newItem.body = item.body;
                 newItem.draft = item.draft;
                 newItem.comments_disabled = item.comments_disabled;

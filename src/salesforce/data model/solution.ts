@@ -15,7 +15,7 @@ export function transform(accountData, items): Promise<Object[]> {
                 let newItem = {Id: null, IsDeleted: null, SolutionNumber: null, SolutionName: null, IsPublished: null,
                     IsPublishedInPublicKb: null, Status: null, IsReviewed: null, SolutionNote: null, OwnerId: null, CreatedDate: null,
                     CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, TimesUsed: null, LastViewedDate: null, 
-                    LastReferencedDate: null, IsHtml: null, VendorUrl: ''};
+                    LastReferencedDate: null, IsHtml: null};
                 newItem.Id = item.Id;       // Solution ID, string
                 newItem.IsDeleted = item.IsDeleted;     // Deleted, boolean
                 newItem.SolutionNumber = item.SolutionNumber;       // string
@@ -35,7 +35,6 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.LastViewedDate = item.LastViewedDate;       // date
                 newItem.LastReferencedDate = item.LastReferencedDate;     // date
                 newItem.IsHtml = item.IsHtml;       // boolean
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/solution";
            /*     newItem.body = item.body;
                 newItem.draft = item.draft;
                 newItem.comments_disabled = item.comments_disabled;

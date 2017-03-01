@@ -17,7 +17,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                     Status: null, Reason: null, Origin: null, Subject: null, Priority: null, Description: null, IsClosed: null, 
                     ClosedDate: null, IsEscalated: null, OwnerId: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, 
                     LastModifiedById: null, SystemModstamp: null, ContactPhone: null, ContactMobile: null, ContactEmail: null, 
-                    ContactFax: null, LastViewedDate: null, LastReferencedDate: null, VendorUrl: ''};
+                    ContactFax: null, LastViewedDate: null, LastReferencedDate: null};
                 newItem.Id=item.Id;     // Case ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
                 newItem.CaseNumber=item.CaseNumber;     // string
@@ -50,7 +50,6 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.ContactFax=item.ContactFax;       // string
                 newItem.LastViewedDate=item.LastViewedDate;       // date
                 newItem.LastReferencedDate=item.LastReferencedDate;     // date
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/case";
                 newArray.push(newItem);
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});

@@ -20,7 +20,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                     ConvertedContactId: null, ConvertedOpportunityId: null, IsUnreadByOwner: null, CreatedDate: null, CreatedById: null,
                     LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, LastActivityDate: null, LastViewedDate: null, 
                     LastReferencedDate: null, Jigsaw: null, JigsawContactId: null, CompanyDunsNumber: null, EmailBouncedReason: null, 
-                    EmailBouncedDate: null, VendorUrl: ''};
+                    EmailBouncedDate: null};
                 newItem.Id=item.Id;     // Lead ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
                 newItem.MasterRecordId=item.MasterRecordId;     // string
@@ -29,7 +29,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.Salutation=item.Salutation;     // string
                 newItem.MiddleName=item.MiddleName;       // string
                 newItem.Suffix=item.Suffix;       // string
-                newItem.Name= item.Name;     // Full name, string
+                newItem.Name= item.FirstName + " " + item.MiddleName + " " + item.LastName;     // Full name, string
                 newItem.Title=item.Title;     // string     
                 newItem.Company=item.Company;     // string
                 newItem.Street=item.Street;       // string
@@ -70,7 +70,6 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.CompanyDunsNumber=item.CompanyDunsNumber;       // Company D-U-N-S Number, string
                 newItem.EmailBouncedReason=item.EmailBouncedReason;       // Email Bounced Reason, string
                 newItem.EmailBouncedDate=item.EmailBouncedDate;       // Email Bounced Date, date
-                newItem.VendorUrl = 'https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/lead';
                 newArray.push(newItem);
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});

@@ -16,7 +16,7 @@ export function transform(accountData, items): Promise<Object[]> {
                     Product2Id: null, IsCompetitorProduct: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null,
                     LastModifiedById: null, SystemModstamp: null, IsDeleted: null, Name: null, SerialNumber: null, InstallDate: null,
                     PurchaseDate: null, UsageEndDate: null, Status: null, Price: null, Quantity: null, Description: null, OwnerId: null,
-                    LastViewedDate: null, LastReferenceDate: null, VendorUrl: ''};
+                    LastViewedDate: null, LastReferenceDate: null};
                 newItem.Id = item.Id;       // asset id, string
                 newItem.ContactId = item.ContactId;     // string
                 newItem.AccountId = item.AccountId;     // string
@@ -42,7 +42,6 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.OwnerId = item.OwnerId;     // string
                 newItem.LastViewedDate = item.LastViewedDate;       // date
                 newItem.LastReferenceDate = item.LastReferenceDate;     // date
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/asset";
            /*     newItem.body = item.body;
                 newItem.draft = item.draft;
                 newItem.comments_disabled = item.comments_disabled;

@@ -13,7 +13,7 @@ export function transform(accountData, items): Promise<Object[]> {
         else {
             items.forEach(function (item) {                    
                 let newItem = {Id: null, OwnerId: null, IsDeleted: null, Name: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, 
-                    LastModifiedById: null, SystemModstamp: null, LastViewedDate: null, LastReferencedDate: null, Description: null, VendorUrl: ''};
+                    LastModifiedById: null, SystemModstamp: null, LastViewedDate: null, LastReferencedDate: null, Description: null};
                 newItem.Id = item.Id;       // Macro ID, string
                 newItem.OwnerId = item.OwnerId;     // string
                 newItem.IsDeleted = item.IsDeleted;       // boolean
@@ -26,7 +26,6 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.LastViewedDate = item.LastViewedDate;       // date
                 newItem.LastReferencedDate = item.LastReferencedDate;     // date
                 newItem.Description = item.Description;       // string
-                newItem.VendorUrl = 'https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/macro';
            /*     newItem.body = item.body;
                 newItem.draft = item.draft;
                 newItem.comments_disabled = item.comments_disabled;

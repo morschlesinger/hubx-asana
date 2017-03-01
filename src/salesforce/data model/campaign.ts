@@ -18,7 +18,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                     NumberOfContacts: null, NumberOfResponses: null, NumberOfOpportunities: null, NumberOfWonOpportunities: null, 
                     AmountAllOpportunities: null, AmountWonOpportunities: null, OwnerId: null, CreatedDate: null, CreatedById: null,
                     LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, LastActivityDate: null, LastViewedDate: null,
-                    LastReferencedDate: null, CampaignMemberRecordTypeId: null, VendorUrl: ''};
+                    LastReferencedDate: null, CampaignMemberRecordTypeId: null};
                 newItem.Id=item.Id;     // Campaign ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
                 newItem.Name=item.Name;     // string
@@ -51,7 +51,6 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.LastViewedDate=item.LastViewedDate;     // date
                 newItem.LastReferencedDate=item.LastReferencedDate;     // Last Referenced Date, date
                 newItem.CampaignMemberRecordTypeId=item.CampaignMemberRecordTypeId;     // Record Type ID, string
-                newItem.VendorUrl= "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/campaign";
                 newArray.push(newItem);
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});

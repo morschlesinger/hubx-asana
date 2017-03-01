@@ -19,7 +19,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                     ReminderDateTime: null, IsReminderSet: null, RecurrenceActivityId: null, IsRecurrence: null, RecurrenceStartDateOnly: null,
                     RecurrenceEndDateOnly: null, RecurrenceTimeZoneSidKey: null, RecurrenceType: null, RecurrenceInterval: null,
                     RecurrenceDayOfWeekMask: null, RecurrenceDayOfMonth: null, RecurrenceInstance: null, RecurrenceMonthOfYear: null,
-                    RecurrenceRegeneratedType: null, TaskSubtype: null, VendorUrl: ''};
+                    RecurrenceRegeneratedType: null, TaskSubtype: null};
                 newItem.Id=item.Id;     // Activity ID, string
                 newItem.WhoId=item.WhoId;       // Name ID, string
                 newItem.WhatId=item.WhatId;     // Related to ID, string
@@ -61,7 +61,6 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.ReminderDateTime=item.ReminderDateTime;     // Reminder Date/Time, date
                 newItem.RecurrenceRegeneratedType=item.RecurrenceRegeneratedType;     // Repeat This Task, string
                 newItem.TaskSubtype=item.TaskSubtype;     // string
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/task";
                 newArray.push(newItem);
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});

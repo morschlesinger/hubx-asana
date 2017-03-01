@@ -18,8 +18,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                     Phone: null, Fax: null,  MobilePhone: null, ReportsToId: null, Email: null, Title: null, Department: null, OwnerId: null, 
                     CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null,
                     LastActivityDate: null, LastCURequestDate: null, LastCUUpdateDate: null, LastViewedDate: null, LastReferencedDate: null,
-                    EmailBouncedReason: null, EmailBouncedDate: null, IsEmailBounced: null, PhotoUrl: null, Jigsaw: null, JigsawContactId: null,
-                    VendorUrl: ''};
+                    EmailBouncedReason: null, EmailBouncedDate: null, IsEmailBounced: null, PhotoUrl: null, Jigsaw: null, JigsawContactId: null};
                 newItem.Id=item.Id;     // Contact ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
                 newItem.MasterRecordId=item.MasterRecordId;     // string
@@ -29,7 +28,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.Salutation=item.Salutation;     // string
                 newItem.MiddleName=item.MiddleName;       // string
                 newItem.Suffix=item.Suffix;       // string
-                newItem.Name= item.Name;     // Full name, string
+                newItem.Name= item.FirstName + " " + item.MiddleName + " " + item.LastName;     // Full name, string
                 newItem.MailingStreet=item.MailingStreet;       // Mailing Street, string
                 newItem.MailingCity=item.MailingCity;     // Mailing City, string       
                 newItem.MailingState=item.MailingState;     // Mailing State/Province, string
@@ -62,7 +61,6 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.PhotoUrl=item.PhotoUrl;     // string
                 newItem.Jigsaw=item.Jigsaw;       // Date.com Key, string
                 newItem.JigsawContactId=item.JigsawContactId;       // Jigsaw Contact ID, string
-                newItem.VendorUrl = 'https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/contact';
                 newArray.push(newItem);
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});

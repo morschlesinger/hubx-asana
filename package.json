@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/AVAILOTECH/hubx-salesforce#readme",
   "dependencies": {
-    "@startx/hubx-core": "^0.2.3",
-    "@startx/probot-memory": "^0.8.7",
+    "@startx/hubx-core": "^0.3.0",
+    "@startx/probot-memory": "^0.9.7",
     "@types/express": "^4.0.34",
     "@types/node": "^6.0.55",
     "@types/should": "^8.1.30",

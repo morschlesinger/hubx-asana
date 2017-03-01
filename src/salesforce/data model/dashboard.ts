@@ -17,7 +17,7 @@ export function transform(accountData, items): Promise<Object[]> {
                     RightSize: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null,
                     RunningUserId: null, TitleColor: null, TitleSize: null, TextColor: null, BackgroundStart: null, BackgroundEnd: null, 
                     BackgroundDirection: null, Type: null, LastViewedDate: null, LastReferencedDate: null, DashboardResultRefreshedDate: null,
-                    DashboardResultRunningUser: null, VendorUrl: ''};
+                    DashboardResultRunningUser: null};
                 newItem.Id = item.Id;       // Dashboard ID, string
                 newItem.IsDeleted = item.IsDeleted;     // boolean
                 newItem.FolderId = item.FolderId;     // string
@@ -46,7 +46,6 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.LastReferencedDate = item.LastReferencedDate;     // date
                 newItem.DashboardResultRefreshedDate = item.DashboardResultRefreshedDate;     // Last Refreshed For This User, string
                 newItem.DashboardResultRunningUser = item.DashboardResultRunningUser;     // Running As, string
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/dashboard";
            /*     newItem.body = item.body;
                 newItem.draft = item.draft;
                 newItem.comments_disabled = item.comments_disabled;

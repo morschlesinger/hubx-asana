@@ -14,7 +14,7 @@ export function transform(accountData, items): Promise<Object[]> {
             items.forEach(function (item) {                    
                 let newItem = {Id: null, Name: null, DeveloperName: null, AccessType: null, IsReadonly: null, 
                     Type: null, NamespacePrefix: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null,
-                    LastModifiedById: null, SystemModstamp: null, VendorUrl: ''};
+                    LastModifiedById: null, SystemModstamp: null};
                 newItem.Id = item.Id;       // Folder id, string
                 newItem.Name = item.Name;     // string
                 newItem.DeveloperName = item.DeveloperName;     // Folder Unique Name, string
@@ -27,7 +27,6 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.LastModifiedDate = item.LastModifiedDate;       // date
                 newItem.LastModifiedById = item.LastModifiedById;       // string
                 newItem.SystemModstamp = item.SystemModstamp;       // date
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/folder";
            /*     newItem.body = item.body;
                 newItem.draft = item.draft;
                 newItem.comments_disabled = item.comments_disabled;

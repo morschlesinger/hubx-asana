@@ -15,7 +15,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                 let newItem = {Id: null, Name: null, ProductCode: null, Description: null, IsActive: null, CreatedDate: null, 
                     CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, Family: null,
                     ExternalDataSourceId: null, ExternalId: null, DisplayUrl: null, QuantityUnitOfMeasure: null, IsDeleted: null,
-                    LastViewedDate: null, LastReferencedDate: null, VendorUrl: ''};
+                    LastViewedDate: null, LastReferencedDate: null};
                 newItem.Id=item.Id;     // Product ID, string
                 newItem.Name=item.Name;       // Product Name, string
                 newItem.ProductCode=item.ProductCode;     // string
@@ -34,7 +34,6 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.IsDeleted=item.IsDeleted;       // Deleted, boolean
                 newItem.LastViewedDate=item.LastViewedDate;     // date
                 newItem.LastReferencedDate=item.LastReferencedDate;       // Last Referenced Date, date
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/product2";
                 newArray.push(newItem);
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});

@@ -14,7 +14,7 @@ export function transform(accountData, items): Promise<Object[]> {
             items.forEach(function (item) {                    
                 let newItem = {Id: null, OwnerId: null, FolderName: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, 
                     LastModifiedById: null, IsDeleted: null, Name: null, Description: null, DeveloperName: null, NamespacePrefix: null,
-                    LastRunDate: null, SystemModstamp: null, Format: null, LastViewedDate: null, LastReferencedDate: null, VendorUrl: ''};
+                    LastRunDate: null, SystemModstamp: null, Format: null, LastViewedDate: null, LastReferencedDate: null};
                 newItem.Id = item.Id;       // Report ID, string
                 newItem.OwnerId = item.OwnerId;     // string
                 newItem.FolderName = item.FolderName;       // string
@@ -32,7 +32,6 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.Format = item.Format;       // string
                 newItem.LastViewedDate = item.LastViewedDate;       // date
                 newItem.LastReferencedDate = item.LastReferencedDate;     // date
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/report";
            /*     newItem.body = item.body;
                 newItem.draft = item.draft;
                 newItem.comments_disabled = item.comments_disabled;

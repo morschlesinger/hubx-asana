@@ -20,7 +20,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                     CustomerSignedId: null, CustomerSignedTitle: null, CustomerSignedDate: null, SpecialTerms: null, ActivatedById: null, 
                     ActivatedDate: null, StatusCode: null, Description: null, IsDeleted: null, ContractNumber: null, LastApprovedDate: null, 
                     CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, 
-                    LastActivityDate: null, LastViewedDate: null, LastReferencedDate: null, VendorUrl: ''};
+                    LastActivityDate: null, LastViewedDate: null, LastReferencedDate: null};
                 newItem.Id=item.Id;     // Contract ID, string
                 newItem.AccountId=item.AccountId;       // string
                 newItem.Pricebook2Id=item.Pricebook2Id;     // Price Book ID, string
@@ -67,7 +67,6 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.LastActivityDate=item.LastActivityDate;       // date
                 newItem.LastViewedDate=item.LastViewedDate;       // date
                 newItem.LastReferencedDate=item.LastReferencedDate;       // date
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/objects/contract";
                 newArray.push(newItem);
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});

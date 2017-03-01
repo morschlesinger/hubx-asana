@@ -1,4 +1,4 @@
-const C_DATAOBJECTNAME = "OpenActivity";
+const C_DATAOBJECTNAME = "openactivity";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_OPENACTIVITY";
 var cloudElements = require("../../cloudElements/cloudElements");
 import {contentQueue} from "../../singletons/contentQueue/contentQueue";

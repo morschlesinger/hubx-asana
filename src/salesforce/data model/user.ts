@@ -56,14 +56,14 @@ export function transform(accountData, items) : Promise<Object[]> {
                     ContactId: null, AccountId: null, CallCenterId: null, Extension: null, FederationIdentifier: null, AboutMe: null,
                     FullPhotoUrl: null, SmallPhotoUrl: null, MediumPhotoUrl: null, DigestFrequency: null, DefaultGroupNotificationFrequency: null,
                     LastViewedDate: null, LastReferencedDate: null, BannerPhotoUrl: null, SmallBannerPhotoUrl: null, MediumBannerPhotoUrl: null,
-                    IsProfilePhotoActive: null, VendorUrl: ''};
+                    IsProfilePhotoActive: null};
                 newItem.Id=item.Id;     // User ID, string
                 newItem.Username=item.Username;       // string
                 newItem.LastName=item.LastName;       // string
                 newItem.FirstName=item.FirstName;       // string
                 newItem.MiddleName=item.MiddleName;       // string
                 newItem.Suffix=item.Suffix;       // string
-                newItem.Name=item.Name;       // Full Name, string
+                newItem.Name= item.FirstName + " " + item.MiddleName + " " + item.LastName;     // Full name, string
                 newItem.CompanyName=item.CompanyName;       // string
                 newItem.Division=item.Division;       // string
                 newItem.Department=item.Department;       // string
@@ -199,7 +199,6 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.SmallBannerPhotoUrl=item.SmallBannerPhotoUrl;       // URL For IOS Banner Photo, string
                 newItem.MediumBannerPhotoUrl=item.MediumBannerPhotoUrl;       // URL For Android Banner Photo, string
                 newItem.IsProfilePhotoActive=item.IsProfilePhotoActive;       // Has Profile Photo, boolean
-                newItem.VendorUrl = "https://console.cloud-elements.com/elements/api-v2/hubs/crm/accounts";
                 newArray.push(newItem);
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});
