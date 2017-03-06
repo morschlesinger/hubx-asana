@@ -39,7 +39,32 @@ export class contentQueue {
         return result;
     }
 
-    public mapNameEntities(accountId, entityName, nameEntities) {
+        public mapNameEntities(accountId, entityName, nameEntities) {
+ return new Promise((resolve, reject) => {
+/*                        console.log("checking difference...");
+                hubx2.memory.findNameEntitiesDifference(EntitiesGroup.QentityName,accountEntities.QaccountId,differenceItemsMap).then((resultDifference) => {
+                    console.log("mapping to memory...");*/
+                    console.log("calling mapNameEntities, hubXConfiguration.accountType=" + hubXConfiguration.accountType + ", accountId=" + accountId + ", entityName= " + entityName + ", nameEntities=" + nameEntities);
+                    hubx2.memory.mapNameEntities(hubXConfiguration.accountType , accountId, entityName, nameEntities).then((result) => {
+                        console.log("mapped to memory, notifying Nerve Center..." + result);
+                        resolve();
+/*                        let resultDifferenceItem;
+                        for (resultDifferenceItem in resultDifference) {
+                            if (Object.keys(resultDifference[resultDifferenceItem]).length>0) {
+                                contentQueue.NerveCenter.notifyOne(EVENT_TYPES.ENTITY_UPDATED, EntitiesGroup.QentityName, accountEntities.QaccountId, accountEntities.QaccountId + "." + resultDifferenceItem , resultDifference[resultDifferenceItem])
+                            }
+                        }
+                        //returnCallback(null,true);                    
+                    }).catch(exception => {
+                        console.log("error");
+                        console.dir(exception);
+                        //returnCallback(exception,null);
+                    });*/
+                }).catch(reject);
+        });
+    }
+
+    public omapNameEntities(accountId, entityName, nameEntities) {
         console.log("queuing " + nameEntities.length + " entities...")
         var wantedDelay;
         return new Promise((resolve, reject) => {

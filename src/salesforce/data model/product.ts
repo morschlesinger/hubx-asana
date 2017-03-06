@@ -16,15 +16,16 @@ export function transform(accountData, items) : Promise<Object[]> {
                     CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, Family: null,
                     ExternalDataSourceId: null, ExternalId: null, DisplayUrl: null, QuantityUnitOfMeasure: null, IsDeleted: null,
                     LastViewedDate: null, LastReferencedDate: null};
+                newItem["_id"] = accountData.identifier + "." + item.Id;
                 newItem.Id=item.Id;     // Product ID, string
                 newItem.Name=item.Name;       // Product Name, string
                 newItem.ProductCode=item.ProductCode;     // string
                 newItem.Description=item.Description;     // Product Description, string
                 newItem.IsActive=item.IsActive;     // Active, boolean
                 newItem.CreatedDate=item.CreatedDate;       // Created Date, date
-                newItem.CreatedById=item.CreatedById;       // string
+                newItem.CreatedById=accountData.identifier + "." + item.CreatedById;       // string
                 newItem.LastModifiedDate=item.LastModifiedDate;     // date
-                newItem.LastModifiedById=item.LastModifiedById;     // string
+                newItem.LastModifiedById=accountData.identifier + "." + item.LastModifiedById;     // string
                 newItem.SystemModstamp=item.SystemModstamp;     // date
                 newItem.Family=item.Family;       // Product Family, string
                 newItem.ExternalDataSourceId=item.ExternalDataSourceId;       // External Data Source ID, string
@@ -43,7 +44,8 @@ export function transform(accountData, items) : Promise<Object[]> {
 
 export function mapAll(QContent: contentQueue, accountData, currentPage): Promise<boolean> {
     return new Promise((resolve, reject) => {
-        cloudElements.GetElementObjectPage(accountData.CEelementInstanceToken, C_DATAOBJECTNAME, currentPage).then((elementsReturned: any) => {
+        // the "2" in the next line is because for some reason they call the object product2 in the returned api
+        cloudElements.GetElementObjectPage(accountData.CEelementInstanceToken, C_DATAOBJECTNAME + "2", currentPage).then((elementsReturned: any) => {
             if (!elementsReturned || !elementsReturned.length) {
                 resolve(true);
             }

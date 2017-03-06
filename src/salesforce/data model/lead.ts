@@ -21,15 +21,18 @@ export function transform(accountData, items) : Promise<Object[]> {
                     LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, LastActivityDate: null, LastViewedDate: null, 
                     LastReferencedDate: null, Jigsaw: null, JigsawContactId: null, CompanyDunsNumber: null, EmailBouncedReason: null, 
                     EmailBouncedDate: null};
+                newItem["_id"] = accountData.identifier + "." + item.Id;
                 newItem.Id=item.Id;     // Lead ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
-                newItem.MasterRecordId=item.MasterRecordId;     // string
+                if (item.MasterRecordId) {
+                    newItem.MasterRecordId=accountData.identifier + "." + item.MasterRecordId;     // Parent Case ID, string
+                } else newItem.MasterRecordId=null;                
                 newItem.LastName=item.LastName;     // string
                 newItem.FirstName=item.FirstName;     // string
                 newItem.Salutation=item.Salutation;     // string
                 newItem.MiddleName=item.MiddleName;       // string
                 newItem.Suffix=item.Suffix;       // string
-                newItem.Name= item.FirstName + " " + item.MiddleName + " " + item.LastName;     // Full name, string
+                newItem.Name= item.Name; //item.FirstName + " " + item.MiddleName + " " + item.LastName;     // Full name, string
                 newItem.Title=item.Title;     // string     
                 newItem.Company=item.Company;     // string
                 newItem.Street=item.Street;       // string
@@ -50,7 +53,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.Industry=item.Industry;       // string
                 newItem.Rating=item.Rating;       // string
                 newItem.NumberOfEmployees=item.NumberOfEmployees;       // Number of Employees, number
-                newItem.OwnerId=item.OwnerId;       // string
+                newItem.OwnerId=accountData.identifier + "." + item.OwnerId;       // string
                 newItem.IsConverted=item.IsConverted;       // Converted, boolean
                 newItem.ConvertedDate=item.ConvertedDate;     // date
                 newItem.ConvertedAccountId=item.ConvertedAccountId;     // string
@@ -58,9 +61,9 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.ConvertedOpportunityId=item.ConvertedOpportunityId;     // string
                 newItem.IsUnreadByOwner=item.IsUnreadByOwner;     // Unread By Owner, boolean
                 newItem.CreatedDate=item.CreatedDate;       // date
-                newItem.CreatedById=item.CreatedById;     // string
+                newItem.CreatedById=accountData.identifier + "." + item.CreatedById;     // string
                 newItem.LastModifiedDate=item.LastModifiedDate;       // date
-                newItem.LastModifiedById=item.LastModifiedById;       // string
+                newItem.LastModifiedById=accountData.identifier + "." + item.LastModifiedById;       // string
                 newItem.SystemModstamp=item.SystemModstamp;     // date
                 newItem.LastActivityDate=item.LastActivityDate;     // date
                 newItem.LastViewedDate=item.LastViewedDate;       // date

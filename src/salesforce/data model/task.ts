@@ -20,9 +20,10 @@ export function transform(accountData, items) : Promise<Object[]> {
                     RecurrenceEndDateOnly: null, RecurrenceTimeZoneSidKey: null, RecurrenceType: null, RecurrenceInterval: null,
                     RecurrenceDayOfWeekMask: null, RecurrenceDayOfMonth: null, RecurrenceInstance: null, RecurrenceMonthOfYear: null,
                     RecurrenceRegeneratedType: null, TaskSubtype: null};
+                newItem["_id"] = accountData.identifier + "." + item.Id;
                 newItem.Id=item.Id;     // Activity ID, string
-                newItem.WhoId=item.WhoId;       // Name ID, string
-                newItem.WhatId=item.WhatId;     // Related to ID, string
+                newItem.WhoId=accountData.identifier + "." + item.WhoId;       // Name ID, string
+                newItem.WhatId=accountData.identifier + "." + item.WhatId;     // Related to ID, string
                 newItem.WhoCount=item.WhoCount;     // Relation Count, number
                 newItem.WhatCount=item.WhatCount;     // Related to Count, number
                 newItem.Subject=item.Subject;     // unknown
@@ -30,15 +31,15 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.Status=item.Status;     // string
                 newItem.Priority=item.Priority;     // string
                 newItem.IsHighPriority=item.IsHighPriority;     // High Priority, boolean
-                newItem.OwnerId=item.OwnerId;     // Assigned to ID, string
+                newItem.OwnerId=accountData.identifier + "." + item.OwnerId;     // Assigned to ID, string
                 newItem.Description=item.Description;     // string
                 newItem.IsDeleted=item.IsDeleted;     // boolean
-                newItem.AccountId=item.AccountId;     // string
+                newItem.AccountId=accountData.identifier + "." + item.AccountId;     // string
                 newItem.IsClosed=item.IsClosed;     // Closed, boolean
                 newItem.CreatedDate=item.CreatedDate;       // date
-                newItem.CreatedById=item.CreatedById;     // string
+                newItem.CreatedById=accountData.identifier + "." + item.CreatedById;     // string
                 newItem.LastModifiedDate=item.LastModifiedDate;     // date
-                newItem.LastModifiedById=item.LastModifiedById;       // string
+                newItem.LastModifiedById=accountData.identifier + "." + item.LastModifiedById;       // string
                 newItem.SystemModstamp=item.SystemModstamp;       // date
                 newItem.IsArchived=item.IsArchived;       // Archived, boolean
                 newItem.CallDurationInSeconds=item.CallDurationInSeconds;     // Call Duration, number
@@ -47,7 +48,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.CallObject=item.CallObject;     // Call Object Identifier, string
                 newItem.ReminderDateTime=item.ReminderDateTime;     // Reminder Date/Time, date
                 newItem.IsReminderSet=item.IsReminderSet;     // Reminder Set, boolean
-                newItem.RecurrenceActivityId=item.RecurrenceActivityId;       // string
+                newItem.RecurrenceActivityId=accountData.identifier + "." + item.RecurrenceActivityId;       // string
                 newItem.IsRecurrence=item.IsRecurrence;       // Create Recurring Series of Events, boolean
                 newItem.RecurrenceStartDateOnly=item.RecurrenceStartDateOnly;     // Recurrence Start, date
                 newItem.RecurrenceEndDateOnly=item.RecurrenceEndDateOnly;     // Recurrence End, date

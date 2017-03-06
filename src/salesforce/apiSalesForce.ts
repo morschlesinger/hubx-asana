@@ -6,15 +6,14 @@ var hubXConfiguration = config.get("Core");
 var hubx2 = require("@startx/hubx-core")(hubXConfiguration);
 var request = require("request");
 var utils = require("../utils/utils");
-var cloudElements = require("../cloudElements/cloudElements");
-
+import * as cloudElements from "../cloudElements/cloudElements";
 import {EVENT_TYPES,nerveCenter} from "../services/nerveCenter";
 //import {users} from "./data model/users";
 import * as account from "./data model/account";
-import * as activity from "./data model/activity";
+//import * as activity from "./data model/activity";
 import * as asset from "./data model/asset";
 import * as campaign from "./data model/campaign";
-import * as case from "./data model/case";
+import * as cases from "./data model/case";
 import * as group from "./data model/group";
 import * as contract from "./data model/contract";
 import * as dashboard from "./data model/dashboard";
@@ -25,7 +24,7 @@ import * as idea from "./data model/idea";
 import * as lead from "./data model/lead";
 import * as macro from "./data model/macro";
 import * as note from "./data model/note";
-import * as open_activity from "./data model/open_activity";
+import * as open_activity from "./data model/OpenActivity";
 import * as order from "./data model/order";
 import * as product from "./data model/product";
 import * as report from "./data model/report";
@@ -33,7 +32,7 @@ import * as solution from "./data model/solution";
 import * as task from "./data model/task";
 import * as contact from "./data model/contact";
 import * as opportunity from "./data model/opportunity";
-import * as pipeline from "./data model/pipeline";
+//import * as pipeline from "./data model/pipeline";
 import * as user from "./data model/user";
 
 import {contentQueue} from "../singletons/contentQueue/contentQueue";
@@ -70,24 +69,66 @@ var enumDO = { //Data Objects
 export class apiSalesForce {
     private QContent: contentQueue;
     private NerveCenter: nerveCenter;
-    public users: any;
-    public articles: any;
-    public categories: any;
-    public sections: any;
-    public groups: any;
-    public tickets: any;    
+
+    public account: any;
+    //public activity: any;
+    public asset: any;
+    public campaign: any;
+    public cases: any;
+    public group: any;
+    public contract: any;
+    public dashboard: any;
+    public document: any;
+    public event: any;
+    public folder: any;
+    public idea: any;
+    public lead: any;
+    public macro: any;
+    public note: any;
+    public open_activity: any;
+    public order: any;
+    public product: any;
+    public report: any;
+    public solution: any;
+    public task: any;
+    public contact: any;
+    public opportunity: any;
+    //public pipeline: any;
+    public user: any;
+
     //private apiClient: any;
     constructor(QContent: contentQueue) {
         this.QContent = QContent;
         this.NerveCenter = new nerveCenter;
-        // this.users = users; // new users(this.QContent);
-        // this.articles = articles
-        // this.categories = categories;
-        // this.sections = sections;
-        // this.groups = groups;
-        // this.tickets = tickets;
-        //this.apiClient = apiClient || m_ApiClient.getNewInstance();
-        //console.log("apiSalesForce constructed");
+
+        this.account = account;
+        //this.activity = activity;
+        this.asset = asset;
+        this.campaign = campaign;
+        this.cases = cases;
+        this.group = group;
+        this.contract = contract;
+        this.dashboard = dashboard;
+        this.document = document;
+        this.event = event;
+        this.folder = folder;
+        this.idea = idea;
+        this.lead = lead;
+        this.macro = macro;
+        this.note = note;
+        this.open_activity = open_activity;
+        this.order = order;
+        this.product = product;
+        this.report = report;
+        this.solution = solution;
+        this.task = task;
+        this.contact = contact;
+        this.opportunity = opportunity;
+        //this.pipeline = pipeline;
+        this.user = user;
+
+       //this.apiClient = apiClient || m_ApiClient.getNewInstance();
+        console.log("apiSalesForce constructed");
     };
 
     public getUrl(SalesForceDomainPrefix) {
@@ -112,36 +153,36 @@ export class apiSalesForce {
     public processMapEntitiesFromAccountData(accountData) {
         return new Promise((resolve, reject) => {
             var _this = this;
-            this.MapElementsToEntities(accountData, enumDO.ACCOUNT).then(() => {
-                 _this.MapElementsToEntities(accountData, enumDO.USER).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.CONTACT).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.DASHBOARD).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.ACTIVITY).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.OPEN_ACTIVITY).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.ASSET).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.EVENT).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.FOLDER).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.DOCUMENT).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.GROUP).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.TASK).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.NOTE).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.CASE).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.SOLUTION).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.IDEA).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.MACRO).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.CONTRACT).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.LEAD).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.CAMPAIGN).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.OPPORTUNITY).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.PRODUCT).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.ORDER).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.PIPELINE).then(() => {
-                _this.MapElementsToEntities(accountData, enumDO.REPORT).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.USER).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.ACCOUNT).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.CONTACT).then(() => {
+                //this.MapElementsToEntities(accountData, enumDO.DASHBOARD).then(() => {
+                //this.MapElementsToEntities(accountData, enumDO.ACTIVITY).then(() => {
+                //this.MapElementsToEntities(accountData, enumDO.OPEN_ACTIVITY).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.ASSET).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.EVENT).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.FOLDER).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.DOCUMENT).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.GROUP).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.TASK).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.NOTE).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.CASE).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.SOLUTION).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.IDEA).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.MACRO).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.CONTRACT).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.LEAD).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.CAMPAIGN).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.OPPORTUNITY).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.PRODUCT).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.ORDER).then(() => {
+                //this.MapElementsToEntities(accountData, enumDO.PIPELINE).then(() => {
+                this.MapElementsToEntities(accountData, enumDO.REPORT).then(() => {
                 resolve();
-                }).catch(reject);
-                }).catch(reject);
-                }).catch(reject);
-                }).catch(reject);
+                //}).catch(reject);
+                //}).catch(reject);
+                //}).catch(reject);
+                //}).catch(reject);
                 }).catch(reject);
                 }).catch(reject);
                 }).catch(reject);
@@ -200,48 +241,156 @@ export class apiSalesForce {
     private transformEntities(changedDataObjectType, accountData, whChangedItems) {
         return new Promise((resolve, reject) => {
             switch (changedDataObjectType) {
-                // case enumDO.USERS: {
-                //     users.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
-                //         resolve(finalItemsToWrite);
-                //     }).catch(reject);
-                //     break;
-                // }            
-                // case enumDO.TICKETS: {
-                //     tickets.transform(accountData,whChangedItems).then((args) => {
-                //         resolve(args);
-                //     }).catch(reject);
-                //     break;
-                // }
-                // case enumDO.CATEGORIES: {
-                //     categories.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
-                //         resolve(finalItemsToWrite);
-                //     }).catch(reject);
-                //     break;
-                // }
-                // case enumDO.GROUPS: {
-                //     groups.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
-                //         resolve(finalItemsToWrite);
-                //     }).catch(reject);
-                //     break;
-                // }
-                // case enumDO.SECTIONS: {
-                //     sections.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
-                //         resolve(finalItemsToWrite);
-                //     }).catch(reject);
-                //     break;
-                // }
-                // case enumDO.TICKETRATINGS: {
-                //     ticketSatisfactionRatings.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
-                //         resolve(finalItemsToWrite);
-                //     }).catch(reject);
-                //     break;
-                // }
-                // case enumDO.ARTICLES: {
-                //     articles.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
-                //         resolve(finalItemsToWrite);
-                //     }).catch(reject);
-                //     break;
-                // }
+                case enumDO.ACCOUNT: {
+                     account.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+/*                case enumDO.ACTIVITY: {
+                     acticity.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }*/
+                case enumDO.ASSET: {
+                     asset.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.CAMPAIGN: {
+                     campaign.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.CASE: {
+                     cases.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.GROUP: {
+                     group.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.CONTRACT: {
+                     contract.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.DASHBOARD: {
+                     dashboard.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.DOCUMENT: {
+                     document.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.EVENT: {
+                     event.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.FOLDER: {
+                     folder.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.IDEA: {
+                     idea.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.LEAD: {
+                     lead.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.MACRO: {
+                     macro.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.NOTE: {
+                     note.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.OPEN_ACTIVITY: {
+                     open_activity.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.ORDER: {
+                     order.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.PRODUCT: {
+                     product.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.REPORT: {
+                     report.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.SOLUTION: {
+                     solution.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.TASK: {
+                     task.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.CONTACT: {
+                     contact.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                case enumDO.OPPORTUNITY: {
+                     opportunity.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
+                /*case enumDO.PIPELINE: {
+                     pipeline.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }*/
+                case enumDO.USER: {
+                     user.transform(accountData,whChangedItems).then((finalItemsToWrite) => {
+                         resolve(finalItemsToWrite);
+                     }).catch(reject);
+                     break;                    
+                }
                 default: reject(new Error("unknown object to transform"));
             }
         });
@@ -272,10 +421,6 @@ export class apiSalesForce {
         console.dir(whEvents);
 
 
-/* Event    {elementKey:"zendesk",
-            eventType:"UPDATED",
-            objectId:"7952451365",
-            objectType:"users"}*/
         if (whEvents && whEvents.length>0) {
             hubx2.memory.createAccount(hubXConfiguration.accountType, this.decodeHtmlEntity(whMessage.instanceName), "oAuth2",null, null).then((accountResult) => {
                 let accountData = JSON.parse(accountResult.account.data);
@@ -310,64 +455,225 @@ export class apiSalesForce {
         return new Promise((resolve, reject) => {
             var _this=this;
             switch (elementObjectName) {
-                // case enumDO.USERS: {
-                //     let currentPage = 1;
-                //     users.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
-                //         if (finished)
-                //             resolve();
-                //     }).catch(reject);
-                //     break;
-                // }            
-                // case enumDO.TICKETS: {
-                //     let currentPage = 1;
-                //     tickets.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
-                //         if (finished)
-                //             resolve();
-                //     }).catch(reject);
-                //     break;
-                // }
-                // case enumDO.CATEGORIES: {
-                //     let currentPage = 1;
-                //     categories.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
-                //         if (finished) 
-                //             resolve();
-                //     }).catch(reject);
-                //     break;
-                // }
-                // case enumDO.GROUPS: {
-                //     let currentPage = 1;
-                //     groups.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
-                //         if (finished)
-                //             resolve();
-                //     }).catch(reject);
-                //     break;
-                // }
-                // case enumDO.SECTIONS: {
-                //     let currentPage = 1;
-                //     sections.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
-                //         if (finished)
-                //             resolve();
-                //     }).catch(reject);
-                //     break;
-                // }
-                // case enumDO.ARTICLES: {
-                //     let currentPage = 1;
-                //     articles.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
-                //         if (finished) 
-                //             resolve();
-                //     }).catch(reject);
-                //     break;
-                // }
-                // case enumDO.TICKETRATINGS: {
-                //     //let currentPage = 1;
-                //     //this.MapCE SectionsToEntities(accountData, currentPage).then((finished) => {
-                //         //if (finished)
-                //         resolve();
-                //     //}).catch(reject);
-                //     //break;
-                //     console.log("not implemented for SalesForce yet, do for other drivers");
-                //     break;
-                // }
+                 case enumDO.CONTACT: {
+                     let currentPage = 1;
+                     contact.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+;
+                 }
+                case enumDO.ACCOUNT: {
+                     let currentPage = 1;
+                     account.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;                   
+                }
+/*                case enumDO.ACTIVITY: {
+                     let currentPage = 1;
+                     activity.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                  
+                }*/
+                case enumDO.ASSET: {
+                     let currentPage = 1;
+                     asset.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;                 
+                }
+                case enumDO.CAMPAIGN: {
+                     let currentPage = 1;
+                     campaign.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;                  
+                }
+                case enumDO.CASE: {
+                     let currentPage = 1;
+                     cases.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                 
+                }
+                case enumDO.GROUP: {
+                     let currentPage = 1;
+                     group.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                  
+                }
+                case enumDO.CONTRACT: {
+                     let currentPage = 1;
+                     contract.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                 
+                }
+                case enumDO.DASHBOARD: {
+                     let currentPage = 1;
+                     dashboard.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                  
+                }
+                case enumDO.DOCUMENT: {
+                     let currentPage = 1;
+                     document.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                   
+                }
+                case enumDO.EVENT: {
+                     let currentPage = 1;
+                     event.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                  
+                }
+                case enumDO.FOLDER: {
+                     let currentPage = 1;
+                     folder.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                   
+                }
+                case enumDO.IDEA: {
+                     let currentPage = 1;
+                     idea.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                   
+                }
+                case enumDO.LEAD: {
+                     let currentPage = 1;
+                     lead.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                   
+                }
+                case enumDO.MACRO: {
+                     let currentPage = 1;
+                     macro.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+               
+                }
+                case enumDO.NOTE: {
+                     let currentPage = 1;
+                     note.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                 
+                }
+                case enumDO.OPEN_ACTIVITY: {
+                     let currentPage = 1;
+                     open_activity.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                  
+                }
+                case enumDO.ORDER: {
+                      let currentPage = 1;
+                     order.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                   
+                }
+                case enumDO.PRODUCT: {
+                     let currentPage = 1;
+                     product.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                  
+                }
+                case enumDO.REPORT: {
+                     let currentPage = 1;
+                     report.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                 
+                }
+                case enumDO.SOLUTION: {
+                     let currentPage = 1;
+                     solution.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                  
+                }
+                case enumDO.TASK: {
+                     let currentPage = 1;
+                     task.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                   
+                }                
+                case enumDO.OPPORTUNITY: {
+                     let currentPage = 1;
+                     opportunity.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                }
+                /*case enumDO.PIPELINE: {
+                     let currentPage = 1;
+                     pipeline.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                }*/
+                case enumDO.USER: {
+                     let currentPage = 1;
+                     user.mapAll(_this.QContent, accountData, currentPage).then((finished) => {
+                         if (finished)
+                             resolve();
+                     }).catch(reject);
+                     break;
+                }
                 default: reject(new Error('apiSalesForce-MapElementsToEntities-unknown object to map-' + elementObjectName));
             }
         });        
@@ -383,35 +689,35 @@ export class apiSalesForce {
                 let elementToken = result.token;
                 let instanceElement = result.element;
                 let accountData = {CEelementInstanceId: result.id, CEelementInstanceToken: result.token, identifier: '', siteAddress: '', organizationId: '', email: '', userId: '', apiKey: result.configuration['oauth.api.key'], apiSecret: result.configuration['oauth.api.secret'], authorizationUrl: result.configuration['oauth.authorization.url'], callbackUrl: result.configuration['oauth.callback.url'], scope: result.configuration['oauth.scope'], userToken: result.configuration['oauth.user.token'], tokenUrl: result.configuration['oauth.token.url'], userRefreshInterval: result.configuration['oauth.user.refresh_interval'], userRefreshTime: result.configuration['oauth.user.refresh_time'], userRefreshToken: result.configuration['oauth.user.refresh_token']};
-                cloudElements.getUserOfElementByToken(result.token).then((user: any) => { 
-                    accountData.userId=user.id;
-                    accountData.organizationId=user.organization_id;
-                    accountData.siteAddress=SalesForceDomainPrefix;
-                    accountData.email=user.email;
-                    let userIdentifier: String = accountData.userId;   //user.email;                          
-                    hubx2.memory.createAccount(hubXConfiguration.accountType, userIdentifier, "oAuth2", accountData, accountData.organizationId).then((accountResult) => {
-                        accountData.identifier = accountResult.account.identifier;
-                        if (!accountResult.created) {
-                            let previousData = JSON.parse(accountResult.account.data);
-                            if(!(accountData.CEelementInstanceId==previousData.CEelementInstanceId)) {
-                                hubx2.memory.updateAccount(userIdentifier, hubXConfiguration.accountType, {data: accountData}).then(() => {
-                                    console.log("account updated with new instance");
-                                    cloudElements.deleteCEInstance(previousData.CEelementInstanceToken, previousData.CEelementInstanceId).then(() => { //delete old instance, keep new and update hubx account data
-                                        console.log("old instance deleted");
-                                    }).catch(reject);
+                var userId: String = result.configuration['sfdc.user.id.url'];
+                accountData.userId=userId.substr(userId.lastIndexOf("/")+1)
+                //cloudElements.getUserOfElementByToken(result.token).then((user: any) => { 
+                //accountData.organizationId=user.organization_id;
+                accountData.siteAddress= result.configuration['base.url'];
+                let userIdentifier: String = accountData.userId;   //user.email;                          
+                hubx2.memory.createAccount(hubXConfiguration.accountType, userIdentifier, "oAuth2", accountData, accountData.organizationId).then((accountResult) => {
+                    accountData.identifier = accountResult.account.identifier;
+                    if (!accountResult.created) {
+                        let previousData = JSON.parse(accountResult.account.data);
+                        if(!(accountData.CEelementInstanceId==previousData.CEelementInstanceId)) {
+                            hubx2.memory.updateAccount(userIdentifier, hubXConfiguration.accountType, {data: accountData}).then(() => {
+                                console.log("account updated with new instance");
+                                cloudElements.deleteCEInstance(previousData.CEelementInstanceToken, previousData.CEelementInstanceId).then(() => { //delete old instance, keep new and update hubx account data
+                                    console.log("old instance deleted");
                                 }).catch(reject);
-                            }
-                        }                            
-                        cloudElements.SetInstanceName(accountData.CEelementInstanceToken, accountData.CEelementInstanceId, accountData.identifier).then(() => {
-                            res.writeHead(200, {"Content-Type": "application/json"});
-                            res.end('{userIdentifier: ' + JSON.stringify(userIdentifier) + '}');
-                            _this.processMapEntitiesFromAccountData(accountData).then(() => {
-                                console.log("Mapping Completed Successfully");
-                                //Notify nerve center
                             }).catch(reject);
+                        }
+                    }                            
+                    cloudElements.SetInstanceName(accountData.CEelementInstanceToken, accountData.CEelementInstanceId, accountData.identifier).then(() => {
+                        res.writeHead(200, {"Content-Type": "application/json"});
+                        res.end('{userIdentifier: ' + JSON.stringify(userIdentifier) + '}');
+                        _this.processMapEntitiesFromAccountData(accountData).then(() => {
+                            console.log("Mapping Completed Successfully");
+                            //Notify nerve center
                         }).catch(reject);
                     }).catch(reject);
                 }).catch(reject);
+                //}).catch(reject);
             }).catch(reject);
         });        
     }    

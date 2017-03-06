@@ -18,14 +18,15 @@ export function transform(accountData, items): Promise<Object[]> {
                     CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, CallDurationInSeconds: null,
                     CallType: null, CallDisposition: null, CallObject: null, ReminderDateTime: null, IsReminderSet: null, EndDateTime: null,
                     StartDateTime: null, PrimaryWhoId: null, PrimaryAccountId: null, ActivitySubtype: null, AlternateDetailId: null};
+                newItem["_id"] = accountData.identifier + "." + item.Id;
                 newItem.Id = item.Id;       // ActivityId, string
-                newItem.AccountID = item.AccountID;     // string
-                newItem.WhoId = item.WhoId;     // Name ID, string
-                newItem.WhatId = item.WhatId;       // Related to ID, string
+                newItem.AccountID = accountData.identifier + "." + item.AccountID;     // string
+                newItem.WhoId = accountData.identifier + "." + item.WhoId;     // Name ID, string
+                newItem.WhatId = accountData.identifier + "." + item.WhatId;       // Related to ID, string
                 newItem.Subject = item.Subject;     // unknown
                 newItem.IsTask = item.IsTask;       // Task, boolean
                 newItem.ActivityDate = item.ActivityDate;       // date
-                newItem.OwnerId = item.OwnerId;     // Assigned to ID, string
+                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;     // Assigned to ID, string
                 newItem.Status = item.Status;       // string
                 newItem.Priority = item.Priority;       // String
                 newItem.IsHighPriority = item.IsHighPriority;       // High Priority, boolean
@@ -38,9 +39,9 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.Description = item.Description;     // Comments, string
                 newItem.IsDeleted = item.IsDeleted;     // Deleted, boolean
                 newItem.CreatedDate = item.CreatedDate;     // date   
-                newItem.CreatedById = item.CreatedById;     // string
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;     // string
                 newItem.LastModifiedDate = item.LastModifiedDate;       // date
-                newItem.LastModifiedById = item.LastModifiedById;      // string
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;      // string
                 newItem.SystemModstamp = item.SystemModstamp;      // date
                 newItem.CallDurationInSeconds = item.CallDurationInSeconds;     // number
                 newItem.CallType = item.CallType;       // string
@@ -50,8 +51,8 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.IsReminderSet = item.IsReminderSet;     // Reminder Set, boolean
                 newItem.EndDateTime = item.EndDateTime;     // End, date
                 newItem.StartDateTime = item.StartDateTime;     // Start, date
-                newItem.PrimaryWhoId = item.PrimaryWhoId;       // Primary Name ID, string
-                newItem.PrimaryAccountId = item.PrimaryAccountId;       // string
+                newItem.PrimaryWhoId = accountData.identifier + "." + item.PrimaryWhoId;       // Primary Name ID, string
+                newItem.PrimaryAccountId = accountData.identifier + "." + item.PrimaryAccountId;       // string
                 newItem.ActivitySubtype = item.ActivitySubtype;     // string
                 newItem.AlternateDetailId = item.AlternateDetailId;     // Email Message ID, string
        /*         newItem.section_id = accountData.identifier + '.' + item.section_id;
@@ -80,7 +81,7 @@ export function transform(accountData, items): Promise<Object[]> {
 
 export function mapAll(QContent: contentQueue, accountData, currentPage): Promise<boolean> {
     return new Promise((resolve, reject) => {
-        cloudElements.GetElementObjectPageWhere(accountData.CEelementInstanceToken, "resources/" + C_DATAOBJECTNAME, currentPage, "category IS NOT NULL").then((elementsReturned: any) => {
+        cloudElements.GetElementObjectPageWhere(accountData.CEelementInstanceToken, "/" + C_DATAOBJECTNAME, currentPage).then((elementsReturned: any) => {
             if (!elementsReturned || !elementsReturned.length) {
                 resolve(true);
             }

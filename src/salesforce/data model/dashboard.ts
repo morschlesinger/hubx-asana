@@ -18,9 +18,10 @@ export function transform(accountData, items): Promise<Object[]> {
                     RunningUserId: null, TitleColor: null, TitleSize: null, TextColor: null, BackgroundStart: null, BackgroundEnd: null, 
                     BackgroundDirection: null, Type: null, LastViewedDate: null, LastReferencedDate: null, DashboardResultRefreshedDate: null,
                     DashboardResultRunningUser: null};
+                newItem["_id"] = accountData.identifier + "." + item.Id;
                 newItem.Id = item.Id;       // Dashboard ID, string
                 newItem.IsDeleted = item.IsDeleted;     // boolean
-                newItem.FolderId = item.FolderId;     // string
+                newItem.FolderId = accountData.identifier + "." + item.FolderId;     // string
                 newItem.FolderName = item.FolderName;       // string
                 newItem.Title = item.Title; // string
                 newItem.DeveloperName = item.DeveloperName;   // Dashboard Unique Name, string               
@@ -30,11 +31,11 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.MiddleSize = item.MiddleSize;       // Middle Size, string
                 newItem.RightSize = item.RightSize;       // Right Size, string
                 newItem.CreatedDate = item.CreatedDate;       // date
-                newItem.CreatedById = item.CreatedById;     // string
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;     // string
                 newItem.LastModifiedDate = item.LastModifiedDate;       // date
-                newItem.LastModifiedById = item.LastModifiedById;       // string
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;       // string
                 newItem.SystemModstamp = item.SystemModstamp;     // date
-                newItem.RunningUserId = item.RunningUserId;       // Running User ID, string
+                newItem.RunningUserId = accountData.identifier + "." + item.RunningUserId;       // Running User ID, string
                 newItem.TitleColor = item.TitleColor;       // Title Color, number
                 newItem.TitleSize = item.TitleSize;       // Title Size, number
                 newItem.TextColor = item.TextColor;     // Text Color, number
@@ -64,7 +65,7 @@ export function transform(accountData, items): Promise<Object[]> {
 
 export function mapAll(QContent: contentQueue, accountData, currentPage): Promise<boolean> {
     return new Promise((resolve, reject) => {
-        cloudElements.GetElementObjectPageWhere(accountData.CEelementInstanceToken, "resources/" + C_DATAOBJECTNAME, currentPage, "category IS NOT NULL").then((elementsReturned: any) => {
+        cloudElements.GetElementObjectPage(accountData.CEelementInstanceToken, "/" + C_DATAOBJECTNAME, currentPage).then((elementsReturned: any) => {
             if (!elementsReturned || !elementsReturned.length) {
                 resolve(true);
             }

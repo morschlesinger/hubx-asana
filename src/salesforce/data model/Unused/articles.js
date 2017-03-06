@@ -38,7 +38,7 @@ function transform(accountData, items) {
 exports.transform = transform;
 function mapAll(QContent, accountData, currentPage) {
     return new Promise((resolve, reject) => {
-        cloudElements.GetElementObjectPageWhere(accountData.CEelementInstanceToken, "resources/" + C_DATAOBJECTNAME, currentPage, "category IS NOT NULL").then((elementsReturned) => {
+        cloudElements.GetElementObjectPageWhere(accountData.CEelementInstanceToken, "/" + C_DATAOBJECTNAME, currentPage).then((elementsReturned) => {
             if (!elementsReturned || !elementsReturned.length) {
                 resolve(true);
             }

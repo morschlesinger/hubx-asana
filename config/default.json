@@ -1,10 +1,10 @@
 {
 	"Core": {
 		"accountType": "SALESFORCE",
-		"nerveCenterUrl": "https://probot-staging-nervecenter.appspot-preview.com/process"
+		"nerveCenterUrl": "https://probot-staging-nervecenter.azurewebsites.net/process"
 	},
 	"CloudElements": {
-		"elementKey": "salesforce",
+		"elementKey": "sfdc",
 		"apiBaseURL": "https://api.cloud-elements.com/elements/api-v2",
 		"GetOAuthURLpath": "/elements/%s/oauth/url",
 		// ran - "organizationSecret": "11cb169e154b59a8971cd394e4e0ea6b", // FFU process.env.CE_ORGANIZATION
@@ -12,15 +12,17 @@
 		// ran - "userSecret": "S5XAP18QvLx6XY6NvBHS4hCksevaJitei9shnneWnoM=", // FFU process.env.CE_USER
 		"userSecret": "1YGQlBvYjsJjxx+dXW158FqfddAMBoQW+lIWLldoPFI=", // FFU process.env.CE_USER		
 		"defaultPageSize": 20,
-		"webhooksUrl": "https://hubx-staging-zendesk-158914.appspot-preview.com/webhooks",
-		//"webhooksUrl": "https://secure.taosdc.com/webhooks",
+		//"webhooksUrl": "https://hubx-salesforce-staging.azurewebsites.net/webhooks",
+		"webhooksUrl": "https://secure.taosdc.com/webhooks",
 		"webhooksSignatureKey": "ThisIsTheSignatureKeyForHashingThePayload"
 	},
-	"Zendesk": {
-		"apiKey": "hubx-salesforce", //Salesforce Unique identifier
+	"SalesForce": {
+		"apiName": "hubx_salesforce", //Salesforce Unique identifier
+		"apiKey": "3MVG9HxRZv05HarQ9aanWpxG5.AnkByIKcYGw9V9heS5YML3RFXp8Nc71pXJQekGXbqIPbfz8DLYOQBtZSDYl",
+		"apiSecret": "2158717762596818145",
 		//"apiSecret": "a17b66039fa2e5581f6173fa9a568fc3fc9d321a0ca0f3c1c3d29fea2c884db4",
-		"apiSecret": "a9877090fd46dcd31574a9345b974c2882533462b1583da29efe6529d50d8446",
-		"callbackUrl": "https://hubx-staging-zendesk-158914.appspot-preview.com/oauth"
-		//"callbackUrl": "https://secure.taosdc.com/oauth"
+		//"apiSecret": "a9877090fd46dcd31574a9345b974c2882533462b1583da29efe6529d50d8446",
+		//"callbackUrl": "https://hubx-salesforce-staging.azurewebsites.net/oauth"
+		"callbackUrl": "https://secure.taosdc.com/oauth"
 	}	
 }

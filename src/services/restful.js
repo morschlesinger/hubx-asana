@@ -8,9 +8,15 @@ var config = require("config");
 const apiSalesForce_1 = require("../salesforce/apiSalesForce");
 const contentQueue_1 = require("../../src/singletons/contentQueue/contentQueue");
 var QContent;
-var http = require("http");
+var https = require("https");
+var fs = require('fs');
+var HTTPSoptions = {
+    key: fs.readFileSync('ssl/secure_taosdc_com.key', 'utf8'),
+    cert: fs.readFileSync('ssl/secure_taosdc_com.crt', 'utf8'),
+    ca: fs.readFileSync('ssl/ca_bundle_secure_taosdc_com.crt', 'utf8')
+};
 exports.app = express();
-var server = http.Server(exports.app);
+var server = https.Server(exports.app);
 var PORT = process.env.PORT || 443;
 function boot() {
     var _this = this;
@@ -19,12 +25,12 @@ function boot() {
     exports.app.use(bodyParser.urlencoded({ extended: false }));
     exports.app.use(bodyParser.json());
     exports.app.get('/', function (req, res) {
-        res.send("HubX 2.0 Zendesk is up");
+        res.send("HubX 2.0 SalesForce is up");
         res.end();
     });
     exports.app.get('/url', function (req, res) {
-        let m_apiZendesk = new apiSalesForce_1.apiSalesForce(_this.QContent);
-        m_apiZendesk.getUrl(req.query.siteAddress).then((url) => {
+        let m_apiSalesForce = new apiSalesForce_1.apiSalesForce(_this.QContent);
+        m_apiSalesForce.getUrl(req.query.vendorParameter).then((url) => {
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end('{url: ' + JSON.stringify(url) + '}');
         }).catch(exception => {
@@ -32,18 +38,18 @@ function boot() {
         });
     });
     exports.app.get('/oauth', function (req, res) {
-        let m_apiZendesk = new apiSalesForce_1.apiSalesForce(_this.QContent);
-        m_apiZendesk.handleOAuthRedirect(req.query.state, req, res).catch((ex) => {
+        let m_apiSalesForce = new apiSalesForce_1.apiSalesForce(_this.QContent);
+        m_apiSalesForce.handleOAuthRedirect(req.query.state, req, res).catch((ex) => {
             console.log(ex);
         });
     });
     exports.app.post('/webhooks', function (req, res) {
-        let m_apiZendesk = new apiSalesForce_1.apiSalesForce(_this.QContent);
-        m_apiZendesk.processWebhooks(req, res);
+        let m_apiSalesForce = new apiSalesForce_1.apiSalesForce(_this.QContent);
+        m_apiSalesForce.processWebhooks(req, res);
     });
     exports.app.get('/remap', function (req, res) {
-        let m_apiZendesk = new apiSalesForce_1.apiSalesForce(_this.QContent);
-        m_apiZendesk.processMapEntitiesFromAccountIdentifier(req.query.userIdentifier).then(() => {
+        let m_apiSalesForce = new apiSalesForce_1.apiSalesForce(_this.QContent);
+        m_apiSalesForce.processMapEntitiesFromAccountIdentifier(req.query.userIdentifier).then(() => {
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end('{userIdentifier: ' + JSON.stringify(req.query.userIdentifier) + '}');
         }).catch((ex) => {
@@ -52,7 +58,7 @@ function boot() {
             res.end(ex);
         });
     });
-    http.createServer(exports.app).listen(PORT, function () {
+    https.createServer(HTTPSoptions, exports.app).listen(PORT, "10.0.0.7", function () {
         console.log('[Restful] listening with HTTPS on *:{port}'.replace("{port}", PORT));
     });
 }

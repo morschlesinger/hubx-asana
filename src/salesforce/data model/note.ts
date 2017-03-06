@@ -14,17 +14,18 @@ export function transform(accountData, items): Promise<Object[]> {
             items.forEach(function (item) {                    
                 let newItem = {Id: null, IsDeleted: null, ParentId: null, Title: null, IsPrivate: null, Body: null, OwnerId: null,
                     CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null};
+                newItem["_id"] = accountData.identifier + "." + item.Id;
                 newItem.Id = item.Id;       // Note ID, string
                 newItem.IsDeleted = item.IsDeleted;     // boolean
-                newItem.ParentId = item.ParentId;       // string
+                newItem.ParentId = accountData.identifier + "." + item.ParentId;       // string
                 newItem.Title = item.Title; // string
                 newItem.IsPrivate = item.IsPrivate;       // Private, boolean
                 newItem.Body = item.Body;       // string
-                newItem.OwnerId = item.OwnerId;     // string
+                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;     // string
                 newItem.CreatedDate = item.CreatedDate;       // date
-                newItem.CreatedById = item.CreatedById;       // string
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;       // string
                 newItem.LastModifiedDate = item.LastModifiedDate;       // date
-                newItem.LastModifiedById = item.LastModifiedById;       // string
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;       // string
                 newItem.SystemModstamp = item.SystemModstamp;     // date
            /*     newItem.body = item.body;
                 newItem.draft = item.draft;
@@ -44,7 +45,7 @@ export function transform(accountData, items): Promise<Object[]> {
 
 export function mapAll(QContent: contentQueue, accountData, currentPage): Promise<boolean> {
     return new Promise((resolve, reject) => {
-        cloudElements.GetElementObjectPageWhere(accountData.CEelementInstanceToken, "resources/" + C_DATAOBJECTNAME, currentPage, "category IS NOT NULL").then((elementsReturned: any) => {
+        cloudElements.GetElementObjectPage(accountData.CEelementInstanceToken, "/" + C_DATAOBJECTNAME, currentPage).then((elementsReturned: any) => {
             if (!elementsReturned || !elementsReturned.length) {
                 resolve(true);
             }

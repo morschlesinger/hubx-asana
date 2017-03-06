@@ -5,35 +5,30 @@ var url = require("url");
 var qs = require("querystring");
 var bodyParser = require("body-parser");
 var config = require("config");
-//var OAuth = require("../protocols/oauth/oAuth");
 
 import {apiSalesForce} from "../salesforce/apiSalesForce";
 import {contentQueue} from "../../src/singletons/contentQueue/contentQueue";
 
 var QContent: contentQueue;
 
-var http = require("http");
+//var http = require("http");
 
-/*//HTTPS - LOCAL DEVELOPMENT ONLY
+//HTTPS - LOCAL DEVELOPMENT ONLY
 var https = require("https");
 var fs = require('fs');
 var HTTPSoptions = {
 	key: fs.readFileSync('ssl/secure_taosdc_com.key', 'utf8'),
 	cert: fs.readFileSync('ssl/secure_taosdc_com.crt', 'utf8'),
-	ca: [
-		fs.readFileSync('ssl/AddTrustExternalCARoot.crt', 'utf8'),
-		fs.readFileSync('ssl/COMODORSAAddTrustCA.crt', 'utf8'),
-		fs.readFileSync('ssl/COMODORSADomainValidationSecureServerCA.crt', 'utf8')
-	]
+	ca: fs.readFileSync('ssl/ca_bundle_secure_taosdc_com.crt', 'utf8')
 }; 
 //END OF HTTPS
-*/
+
 /**
  * Variables
  */
 export var app = express();
-//var server = https.Server(app);
-var server = http.Server(app);
+var server = https.Server(app);
+//var server = http.Server(app);
 var PORT = process.env.PORT||443;
 //CloudElementsConfiguration.organizationSecret
 //var accountType = config.get("Core.accountType")
@@ -80,7 +75,7 @@ export function boot() {
 
 	app.get('/url', function(req, res){ // parameter 'siteAddress' is the SalesForce domain prefix.
 		let m_apiSalesForce = new apiSalesForce(_this.QContent);
-		m_apiSalesForce.getUrl(req.query.siteAddress).then((url) => {
+		m_apiSalesForce.getUrl(req.query.vendorParameter).then((url) => {
 					res.writeHead(200, {"Content-Type": "application/json"});
 					res.end('{url: ' + JSON.stringify(url) + '}');
 		}).catch(exception => {
@@ -112,15 +107,16 @@ export function boot() {
 		});
 	});
 
+/*
 http.createServer(app).listen(PORT, function(){
 		console.log('[Restful] listening with HTTPS on *:{port}'.replace("{port}", PORT));
 	});
+*/
 
-/*
 https.createServer(HTTPSoptions, app).listen(PORT, "10.0.0.7",function(){
 		console.log('[Restful] listening with HTTPS on *:{port}'.replace("{port}", PORT));
 	});	
-*/
+
 
 }
 

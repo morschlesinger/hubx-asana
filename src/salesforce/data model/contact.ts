@@ -19,16 +19,19 @@ export function transform(accountData, items) : Promise<Object[]> {
                     CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null,
                     LastActivityDate: null, LastCURequestDate: null, LastCUUpdateDate: null, LastViewedDate: null, LastReferencedDate: null,
                     EmailBouncedReason: null, EmailBouncedDate: null, IsEmailBounced: null, PhotoUrl: null, Jigsaw: null, JigsawContactId: null};
+                newItem["_id"] = accountData.identifier + "." + item.Id;
                 newItem.Id=item.Id;     // Contact ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
-                newItem.MasterRecordId=item.MasterRecordId;     // string
+                if (item.MasterRecordId) {
+                    newItem.MasterRecordId=accountData.identifier + "." + item.MasterRecordId;     // Parent Case ID, string
+                } else newItem.MasterRecordId=null;                
                 newItem.AccountId=item.AccountId;     // string
                 newItem.LastName=item.LastName;     // string
                 newItem.FirstName=item.FirstName;     // string
                 newItem.Salutation=item.Salutation;     // string
                 newItem.MiddleName=item.MiddleName;       // string
                 newItem.Suffix=item.Suffix;       // string
-                newItem.Name= item.FirstName + " " + item.MiddleName + " " + item.LastName;     // Full name, string
+                newItem.Name = item.Name; //item.FirstName + " " + item.MiddleName + " " + item.LastName;     // Full name, string
                 newItem.MailingStreet=item.MailingStreet;       // Mailing Street, string
                 newItem.MailingCity=item.MailingCity;     // Mailing City, string       
                 newItem.MailingState=item.MailingState;     // Mailing State/Province, string
@@ -40,15 +43,15 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.Phone=item.Phone;     // Business Phone, string
                 newItem.Fax=item.Fax;     // Business Fax, string
                 newItem.MobilePhone=item.MobilePhone;       // string
-                newItem.ReportsToId=item.ReportsToId;     // Reports To ID, string
+                newItem.ReportsToId=accountData.identifier + "." + item.ReportsToId;     // Reports To ID, string
                 newItem.Email=item.Email;       // string
                 newItem.Title=item.Title;     // string
                 newItem.Department=item.Department;       // string
-                newItem.OwnerId=item.OwnerId;       // string
+                newItem.OwnerId=accountData.identifier + "." + item.OwnerId;       // string
                 newItem.CreatedDate=item.CreatedDate;       // date
-                newItem.CreatedById=item.CreatedById;     // string
+                newItem.CreatedById=accountData.identifier + "." + item.CreatedById;     // string
                 newItem.LastModifiedDate=item.LastModifiedDate;       // date
-                newItem.LastModifiedById=item.LastModifiedById;       // string
+                newItem.LastModifiedById=accountData.identifier + "." + item.LastModifiedById;       // string
                 newItem.SystemModstamp=item.SystemModstamp;     // date
                 newItem.LastActivityDate=item.LastActivityDate;     // date
                 newItem.LastCURequestDate=item.LastCURequestDate;     // Last Stay-In-Touch Request Date, date

@@ -1,14 +1,14 @@
 var config = require("config");
 var CloudElementsConfiguration = config.get("CloudElements");
 var request = require("request");
-var SalesforceConfiguration = config.get("Salesforce");
+var SalesforceConfiguration = config.get("SalesForce");
 var utils = require("../utils/utils");
 
-module.exports.getSalesforceUrl = function(SalesforceDomainPrefix) {
+export function getSalesForceUrl (SalesforceDomainPrefix) {
     return new Promise((resolve, reject) => {
         let request = require('request');
         var options = {
-            url: CloudElementsConfiguration.apiBaseURL + utils.strReplaceAll(CloudElementsConfiguration.GetOAuthURLpath,"%s",CloudElementsConfiguration.elementKey) + "?apiKey=" + SalesforceConfiguration.apiKey + "&apiSecret=" + SalesforceConfiguration.apiSecret + "&siteAddress=" + SalesforceDomainPrefix + "&callbackUrl=" + SalesforceConfiguration.callbackUrl + "&state=" + SalesforceDomainPrefix,
+            url: CloudElementsConfiguration.apiBaseURL + utils.strReplaceAll(CloudElementsConfiguration.GetOAuthURLpath,"%s",CloudElementsConfiguration.elementKey) + "?apiKey=" + SalesforceConfiguration.apiKey + "&apiSecret=" + SalesforceConfiguration.apiSecret + "&callbackUrl=" + SalesforceConfiguration.callbackUrl + "&state=" + SalesforceDomainPrefix,
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -35,7 +35,7 @@ module.exports.getSalesforceUrl = function(SalesforceDomainPrefix) {
     });
 };
 
-module.exports.SetInstanceName = function (elementToken, instanceId, newName) {
+export function SetInstanceName (elementToken, instanceId, newName) {
     return new Promise((resolve, reject) => {
         let request = require('request');
         let options = {
@@ -65,7 +65,7 @@ module.exports.SetInstanceName = function (elementToken, instanceId, newName) {
     });        
 }
 
-module.exports.deleteCEInstance = function (elementToken, instanceId) {
+export function deleteCEInstance (elementToken, instanceId) {
     return new Promise((resolve, reject) => {
         let request = require('request');
         let options = {
@@ -93,7 +93,7 @@ module.exports.deleteCEInstance = function (elementToken, instanceId) {
     });
 }
 
-module.exports.createInstance = function (SalesforceDomainPrefix, userCode) {
+export function createInstance (SalesforceDomainPrefix, userCode) {
     return new Promise((resolve, reject) => {
         var request = require('request');        
         var createInstanceData = {"element": {
@@ -107,14 +107,14 @@ module.exports.createInstance = function (SalesforceDomainPrefix, userCode) {
                 "oauth.api.secret": SalesforceConfiguration.apiSecret,
                 "oauth.callback.url": SalesforceConfiguration.callbackUrl,
                 "salesforce.subdomain": SalesforceDomainPrefix,
-                "event.notification.enabled": "true", //change this to enable webhooks/polling
+                "event.notification.enabled": "false", //change this to enable webhooks/polling
                 "event.vendor.type": "polling", //or "polling", event.notification.enabled = true
                 "event.notification.type": "webhook", //only value supported
                 "event.notification.callback.url": CloudElementsConfiguration.webhooksUrl,
                 "event.notification.signature.key": CloudElementsConfiguration.webhooksSignatureKey,
                 "filter.response.nulls": "false",
                 "event.poller.refresh_interval": 1,
-                "event.poller.configuration": "{\"agents\":{\"url\":\"/hubs/helpdesk/agents\",\"idField\":\"id\",\"pageSize\":100,\"datesConfiguration\":{\"updatedDateField\":\"updated_at\",\"updatedDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\":\"created_at\",\"createdDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"articles\":{\"url\":\"/hubs/helpdesk/resources/articles?where=category%20IS%20NOT%20NULL\",\"idField\":\"id\",\"pageSize\":100,\"datesConfiguration\":{\"updatedDateField\":\"updated_at\",\"updatedDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\":\"created_at\",\"createdDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"categories\":{\"url\":\"/hubs/helpdesk/resources/categories\",\"idField\":\"id\",\"pageSize\":100,\"datesConfiguration\":{\"updatedDateField\":\"updated_at\",\"updatedDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\":\"created_at\",\"createdDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"sections\":{\"url\":\"/hubs/helpdesk/resources/sections\",\"idField\":\"id\",\"pageSize\":100,\"datesConfiguration\":{\"updatedDateField\":\"updated_at\",\"updatedDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\":\"created_at\",\"createdDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"contacts\": {\"url\": \"/hubs/helpdesk/contacts\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"userFields\": {\"url\": \"/hubs/helpdesk/fields/user-field\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"incident-types\": {\"url\": \"/hubs/helpdesk/incident-types\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"incidents\": {\"url\": \"/hubs/helpdesk/incidents\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"priorities\": {\"url\": \"/hubs/helpdesk/priorities\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"statuses\": {\"url\": \"/hubs/helpdesk/statuses\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"users\": {\"url\": \"/hubs/helpdesk/users\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}}}"
+                "event.poller.configuration": "{\"agents\":{\"url\":\"/hubs/crm/agents\",\"idField\":\"id\",\"pageSize\":100,\"datesConfiguration\":{\"updatedDateField\":\"updated_at\",\"updatedDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\":\"created_at\",\"createdDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"articles\":{\"url\":\"/hubs/crm/resources/articles?where=category%20IS%20NOT%20NULL\",\"idField\":\"id\",\"pageSize\":100,\"datesConfiguration\":{\"updatedDateField\":\"updated_at\",\"updatedDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\":\"created_at\",\"createdDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"categories\":{\"url\":\"/hubs/crm/resources/categories\",\"idField\":\"id\",\"pageSize\":100,\"datesConfiguration\":{\"updatedDateField\":\"updated_at\",\"updatedDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\":\"created_at\",\"createdDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"sections\":{\"url\":\"/hubs/crm/resources/sections\",\"idField\":\"id\",\"pageSize\":100,\"datesConfiguration\":{\"updatedDateField\":\"updated_at\",\"updatedDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\":\"created_at\",\"createdDateFormat\":\"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"contacts\": {\"url\": \"/hubs/crm/contacts\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"userFields\": {\"url\": \"/hubs/crm/fields/user-field\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"incident-types\": {\"url\": \"/hubs/crm/incident-types\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"incidents\": {\"url\": \"/hubs/crm/incidents\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"priorities\": {\"url\": \"/hubs/crm/priorities\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"statuses\": {\"url\": \"/hubs/crm/statuses\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}},\"users\": {\"url\": \"/hubs/crm/users\",\"idField\": \"id\",\"pageSize\": 100,\"datesConfiguration\": {\"updatedDateField\": \"updated_at\",\"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\",\"createdDateField\": \"created_at\",\"createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ss'Z'\"}}}"
             },
             "tags": [
                     "test"],
@@ -140,14 +140,14 @@ module.exports.createInstance = function (SalesforceDomainPrefix, userCode) {
                     reject(error);
                 }
                 else {
-                    reject(new Error("apiZendesk-cloudElements--createInstance-Error statusCode=" + response.statusCode));
+                    reject(new Error("cloudElements--createInstance-Error statusCode=" + response.statusCode));
                 }                    
             };
         });
     });
 }
 
-module.exports.getUserOfElementByToken = function (elementToken) {
+export function getUserOfElementByToken (elementToken) {
     return new Promise((resolve, reject) => {
         var request = require('request');
         var options = {
@@ -168,18 +168,18 @@ module.exports.getUserOfElementByToken = function (elementToken) {
                     reject(error);
                 }
                 else {
-                    reject(new Error("apiZendesk-cloudElements--getUserIdWithElementToken-Error statusCode=" + response.statusCode));
+                    reject(new Error("cloudElements--getUserIdWithElementToken-Error statusCode=" + response.statusCode));
                 }                    
             };
         });
     });
 }
 
-module.exports.GetElementObjectPageWhere = function (elementToken, elementObjectName, page, where) {
+export function GetElementObjectPageWhere (elementToken, elementObjectName, page, where) {
     return new Promise((resolve, reject) => {
         let request = require('request');
         let options = {
-            url: CloudElementsConfiguration.apiBaseURL + '/hubs/helpdesk/' + elementObjectName + '?where=' + where + '&pageSize=' + CloudElementsConfiguration.defaultPageSize + '&page=' + page,
+            url: CloudElementsConfiguration.apiBaseURL + '/hubs/crm/' + elementObjectName + '?where=' + where + '&pageSize=' + CloudElementsConfiguration.defaultPageSize + '&page=' + page,
             headers: {
                 'Authorization': 'User ' + CloudElementsConfiguration.userSecret + ', Organization ' + CloudElementsConfiguration.organizationSecret + ', Element ' + elementToken,
                 'Content-Type': 'application/json',
@@ -197,18 +197,18 @@ module.exports.GetElementObjectPageWhere = function (elementToken, elementObject
                         reject(error);
                     }
                     else {
-                        reject(new Error("apiZendesk-cloudElements--GetElementObjectPage-Error statusCode=" + response.statusCode));
+                        reject(new Error("cloudElements--GetElementObjectPageWhere-Error, elementObjectName=" + elementObjectName + ", statusCode=" + response.statusCode));
                     } 
                 };
         });
     });
 }
 
-module.exports.GetElementObjectPage = function (elementToken, elementObjectName, page) {
+export function GetElementObjectPage (elementToken, elementObjectName, page) {
     return new Promise((resolve, reject) => {
         let request = require('request');
         let options = {
-            url: CloudElementsConfiguration.apiBaseURL + '/hubs/helpdesk/' + elementObjectName + '?pageSize=' + CloudElementsConfiguration.defaultPageSize + '&page=' + page,
+            url: CloudElementsConfiguration.apiBaseURL + '/hubs/crm/' + elementObjectName + '?pageSize=' + CloudElementsConfiguration.defaultPageSize + '&page=' + page,
             headers: {
                 'Authorization': 'User ' + CloudElementsConfiguration.userSecret + ', Organization ' + CloudElementsConfiguration.organizationSecret + ', Element ' + elementToken,
                 'Content-Type': 'application/json',
@@ -226,18 +226,18 @@ module.exports.GetElementObjectPage = function (elementToken, elementObjectName,
                         reject(error);
                     }
                     else {
-                        reject(new Error("apiZendesk-cloudElements--GetElementObjectPage-Error statusCode=" + response.statusCode));
+                        reject(new Error("cloudElements--GetElementObjectPage-Error, elementObjectName=" + elementObjectName + ", statusCode=" + response.statusCode));
                     } 
                 };
         });
     });
 }
 
-module.exports.GetElementObject = function (elementToken, elementObjectName) {
+export function GetElementObject (elementToken, elementObjectName) {
     return new Promise((resolve, reject) => {
         let request = require('request');
         let options = {
-            url: CloudElementsConfiguration.apiBaseURL + '/hubs/helpdesk/' + elementObjectName,
+            url: CloudElementsConfiguration.apiBaseURL + '/hubs/crm/' + elementObjectName,
             headers: {
                 'Authorization': 'User ' + CloudElementsConfiguration.userSecret + ', Organization ' + CloudElementsConfiguration.organizationSecret + ', Element ' + elementToken,
                 'Content-Type': 'application/json',
@@ -255,7 +255,7 @@ module.exports.GetElementObject = function (elementToken, elementObjectName) {
                         reject(error);
                     }
                     else {
-                        reject(new Error("apiZendesk-cloudElements--GetElementObject-Error statusCode=" + response.statusCode));
+                        reject(new Error("cloudElements--GetElementObject-Error statusCode=" + response.statusCode));
                     }
                 };
         });
@@ -263,7 +263,7 @@ module.exports.GetElementObject = function (elementToken, elementObjectName) {
 }
 
 //not used yet
-module.exports.getElementObjectsList = function (element) {
+export function getElementObjectsList (element) {
     let resArray: Array<String> = [];
 
     for (let iIndex = 0;iIndex<element.defaultTransformations.length ; iIndex++){
@@ -272,10 +272,10 @@ module.exports.getElementObjectsList = function (element) {
     return resArray;        
 }
 //not used yet
-module.exports.PostElementObject = function (elementToken, elementObjectName, elementToPost, returnCallback) {        
+export function PostElementObject (elementToken, elementObjectName, elementToPost, returnCallback) {        
     let request = require('request');
     let options = {
-        url: CloudElementsConfiguration.apiBaseURL + '/hubs/helpdesk/' + elementObjectName,
+        url: CloudElementsConfiguration.apiBaseURL + '/hubs/crm/' + elementObjectName,
         headers: {
             'Authorization': 'User ' + CloudElementsConfiguration.userSecret + ', Organization ' + CloudElementsConfiguration.organizationSecret + ', Element ' + elementToken,
             'Content-Type': 'application/json',
@@ -290,7 +290,7 @@ module.exports.PostElementObject = function (elementToken, elementObjectName, el
             }
             else
             {
-                console.log("************apiZendesk-cloudElements-GetElementObject - something wrong error " + response.statusCode + " options:" + options);
+                console.log("************cloudElements-GetElementObject - something wrong error " + response.statusCode + " options:" + options);
                 returnCallback(error,null);
             };
     });

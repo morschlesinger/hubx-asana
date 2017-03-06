@@ -13,8 +13,8 @@ function Enum(obj) {
     }
     return Object.freeze(EnumLookup);
 }
-const enumBMDOMapTo = Enum({ 0: "ZENDESK_USER", 1: "ZENDESK_CATEGORY", 2: "ZENDESK_GROUP", 3: "ZENDESK_SECTION", 4: "ZENDESK_TICKET_RATING", 5: "ZENDESK_TICKET_COMMENT", 6: "ZENDESK_TICKET_AUDIT", 7: "ZENDESK_TICKET_AUDIT_EVENT", 8: "ZENDESK_TICKET", 9: "ZENDESK_ARTICLE" });
-const enumBMDOMapFrom = Enum({ "ZENDESK_USER": 0, "ZENDESK_CATEGORY": 1, "ZENDESK_GROUP": 2, "ZENDESK_SECTION": 3, "ZENDESK_TICKET_RATING": 4, "ZENDESK_TICKET_COMMENT": 5, "ZENDESK_TICKET_AUDIT": 6, "ZENDESK_TICKET_AUDIT_EVENT": 7, "ZENDESK_TICKET": 8, "ZENDESK_ARTICLE": 9 });
+const enumBMDOMapTo = Enum({ 0: "SALESFORCE_USER", 1: "SALESFORCE_CATEGORY", 2: "SALESFORCE_GROUP", 3: "SALESFORCE_SECTION", 4: "SALESFORCE_TICKET_RATING", 5: "SALESFORCE_TICKET_COMMENT", 6: "SALESFORCE_TICKET_AUDIT", 7: "SALESFORCE_TICKET_AUDIT_EVENT", 8: "SALESFORCE_TICKET", 9: "SALESFORCE_ARTICLE" });
+const enumBMDOMapFrom = Enum({ "SALESFORCE_USER": 0, "SALESFORCE_CATEGORY": 1, "SALESFORCE_GROUP": 2, "SALESFORCE_SECTION": 3, "SALESFORCE_TICKET_RATING": 4, "SALESFORCE_TICKET_COMMENT": 5, "SALESFORCE_TICKET_AUDIT": 6, "SALESFORCE_TICKET_AUDIT_EVENT": 7, "SALESFORCE_TICKET": 8, "SALESFORCE_ARTICLE": 9 });
 class contentQueue {
     constructor() {
         console.log("contentQueue constructed");
@@ -31,6 +31,15 @@ class contentQueue {
         return result;
     }
     mapNameEntities(accountId, entityName, nameEntities) {
+        return new Promise((resolve, reject) => {
+            console.log("calling mapNameEntities, hubXConfiguration.accountType=" + hubXConfiguration.accountType + ", accountId=" + accountId + ", entityName= " + entityName + ", nameEntities=" + nameEntities);
+            hubx2.memory.mapNameEntities(hubXConfiguration.accountType, accountId, entityName, nameEntities).then((result) => {
+                console.log("mapped to memory, notifying Nerve Center..." + result);
+                resolve();
+            }).catch(reject);
+        });
+    }
+    omapNameEntities(accountId, entityName, nameEntities) {
         console.log("queuing " + nameEntities.length + " entities...");
         var wantedDelay;
         return new Promise((resolve, reject) => {

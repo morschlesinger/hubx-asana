@@ -67,7 +67,7 @@ export function transform(accountData, items): Promise<Object[]> {
 
 export function mapAll(QContent: contentQueue, accountData, currentPage): Promise<boolean> {
     return new Promise((resolve, reject) => {
-        cloudElements.GetElementObjectPageWhere(accountData.CEelementInstanceToken, "resources/" + C_DATAOBJECTNAME, currentPage, "category IS NOT NULL").then((elementsReturned: any) => {
+        cloudElements.GetElementObjectPage(accountData.CEelementInstanceToken, "/" + C_DATAOBJECTNAME, currentPage).then((elementsReturned: any) => {
             if (!elementsReturned || !elementsReturned.length) {
                 resolve(true);
             }
