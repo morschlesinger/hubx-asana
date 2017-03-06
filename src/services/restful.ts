@@ -78,7 +78,7 @@ export function boot() {
 		let m_apiSalesForce = new apiSalesForce(_this.QContent);
 		m_apiSalesForce.getUrl(req.query.vendorParameter).then((url) => {
 					res.writeHead(200, {"Content-Type": "application/json"});
-					res.end('{url: ' + JSON.stringify(url) + '}');
+					res.end('{"url": ' + JSON.stringify(url) + '}');
 		}).catch(exception => {
 				res.status(500).send(exception);
 		});

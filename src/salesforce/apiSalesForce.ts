@@ -707,10 +707,10 @@ export class apiSalesForce {
                                 }).catch(reject);
                             }).catch(reject);
                         }
-                    }                            
+                    }
                     cloudElements.SetInstanceName(accountData.CEelementInstanceToken, accountData.CEelementInstanceId, accountData.identifier).then(() => {
                         res.writeHead(200, {"Content-Type": "application/json"});
-                        res.end('{userIdentifier: ' + JSON.stringify(userIdentifier) + '}');
+                        res.end('{"userIdentifier": ' + JSON.stringify(userIdentifier) + '}');
                         _this.processMapEntitiesFromAccountData(accountData).then(() => {
                             console.log("Mapping Completed Successfully");
                             //Notify nerve center
