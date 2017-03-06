@@ -59,3 +59,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=solution.js.map

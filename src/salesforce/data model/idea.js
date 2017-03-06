@@ -67,3 +67,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=idea.js.map

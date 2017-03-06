@@ -98,3 +98,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=lead.js.map

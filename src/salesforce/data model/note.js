@@ -50,3 +50,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=note.js.map

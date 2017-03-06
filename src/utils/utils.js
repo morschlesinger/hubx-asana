@@ -56,3 +56,4 @@ function SetObjectPointersByArrayAndField(userIdentifier, parentObjectArray, chi
     });
 }
 exports.SetObjectPointersByArrayAndField = SetObjectPointersByArrayAndField;
+//# sourceMappingURL=utils.js.map
