@@ -8,16 +8,10 @@ var config = require("config");
 const apiSalesForce_1 = require("../salesforce/apiSalesForce");
 const contentQueue_1 = require("../../src/singletons/contentQueue/contentQueue");
 var QContent;
-var https = require("https");
-var fs = require('fs');
-var HTTPSoptions = {
-    key: fs.readFileSync('ssl/secure_taosdc_com.key', 'utf8'),
-    cert: fs.readFileSync('ssl/secure_taosdc_com.crt', 'utf8'),
-    ca: fs.readFileSync('ssl/ca_bundle_secure_taosdc_com.crt', 'utf8')
-};
+var http = require("http");
 exports.app = express();
-var server = https.Server(exports.app);
-var PORT = process.env.PORT || 443;
+var server = http.Server(exports.app);
+var PORT = process.env.PORT || 8080;
 function boot() {
     var _this = this;
     this.QContent = new contentQueue_1.contentQueue;
@@ -58,7 +52,7 @@ function boot() {
             res.end(ex);
         });
     });
-    https.createServer(HTTPSoptions, exports.app).listen(PORT, "10.0.0.7", function () {
+    http.createServer(exports.app).listen(PORT, function () {
         console.log('[Restful] listening with HTTPS on *:{port}'.replace("{port}", PORT));
     });
 }
@@ -78,4 +72,3 @@ module.exports = {
     boot: boot,
     app: exports.app,
 };
-//# sourceMappingURL=restful.js.map

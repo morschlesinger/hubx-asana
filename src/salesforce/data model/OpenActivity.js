@@ -78,4 +78,3 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
-//# sourceMappingURL=OpenActivity.js.map

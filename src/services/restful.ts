@@ -11,8 +11,9 @@ import {contentQueue} from "../../src/singletons/contentQueue/contentQueue";
 
 var QContent: contentQueue;
 
-//var http = require("http");
+var http = require("http");
 
+/*
 //HTTPS - LOCAL DEVELOPMENT ONLY
 var https = require("https");
 var fs = require('fs');
@@ -22,14 +23,14 @@ var HTTPSoptions = {
 	ca: fs.readFileSync('ssl/ca_bundle_secure_taosdc_com.crt', 'utf8')
 }; 
 //END OF HTTPS
-
+*/
 /**
  * Variables
  */
 export var app = express();
-var server = https.Server(app);
-//var server = http.Server(app);
-var PORT = process.env.PORT||443;
+//var server = https.Server(app);
+var server = http.Server(app);
+var PORT = process.env.PORT||8080;
 //CloudElementsConfiguration.organizationSecret
 //var accountType = config.get("Core.accountType")
 
@@ -107,16 +108,16 @@ export function boot() {
 		});
 	});
 
-/*
+
 http.createServer(app).listen(PORT, function(){
 		console.log('[Restful] listening with HTTPS on *:{port}'.replace("{port}", PORT));
 	});
-*/
 
+/*
 https.createServer(HTTPSoptions, app).listen(PORT, "10.0.0.7",function(){
 		console.log('[Restful] listening with HTTPS on *:{port}'.replace("{port}", PORT));
 	});	
-
+*/
 
 }
 

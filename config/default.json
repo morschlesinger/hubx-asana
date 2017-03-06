@@ -12,8 +12,8 @@
 		// ran - "userSecret": "S5XAP18QvLx6XY6NvBHS4hCksevaJitei9shnneWnoM=", // FFU process.env.CE_USER
 		"userSecret": "1YGQlBvYjsJjxx+dXW158FqfddAMBoQW+lIWLldoPFI=", // FFU process.env.CE_USER		
 		"defaultPageSize": 20,
-		//"webhooksUrl": "https://hubx-salesforce-staging.azurewebsites.net/webhooks",
-		"webhooksUrl": "https://secure.taosdc.com/webhooks",
+		"webhooksUrl": "https://hubx-salesforce-staging.azurewebsites.net/webhooks",
+		//"webhooksUrl": "https://secure.taosdc.com/webhooks",
 		"webhooksSignatureKey": "ThisIsTheSignatureKeyForHashingThePayload"
 	},
 	"SalesForce": {
@@ -22,7 +22,7 @@
 		"apiSecret": "2158717762596818145",
 		//"apiSecret": "a17b66039fa2e5581f6173fa9a568fc3fc9d321a0ca0f3c1c3d29fea2c884db4",
 		//"apiSecret": "a9877090fd46dcd31574a9345b974c2882533462b1583da29efe6529d50d8446",
-		//"callbackUrl": "https://hubx-salesforce-staging.azurewebsites.net/oauth"
-		"callbackUrl": "https://secure.taosdc.com/oauth"
+		"callbackUrl": "https://hubx-salesforce-staging.azurewebsites.net/oauth"
+		//"callbackUrl": "https://secure.taosdc.com/oauth"
 	}	
 }

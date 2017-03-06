@@ -89,4 +89,3 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
-//# sourceMappingURL=contact.js.map
