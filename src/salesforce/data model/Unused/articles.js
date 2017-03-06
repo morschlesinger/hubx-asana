@@ -16,10 +16,10 @@ function transform(accountData, items) {
                 newItem.title = item.title;
                 newItem.id = item.id;
                 newItem.updated_at = item.updated_at;
-                newItem.section_id = accountData.identifier + '.' + item.section_id;
+                newItem.section_id = accountData.identifier + ';' + item.section_id;
                 newItem.locale = item.locale;
                 newItem.vendorUrl = item.html_url;
-                newItem.author_id = accountData.identifier + '.' + item.author_id;
+                newItem.author_id = accountData.identifier + ';' + item.author_id;
                 newItem.source_locale = item.source_locale;
                 newItem.position = item.position;
                 newItem.promoted = item.promoted;

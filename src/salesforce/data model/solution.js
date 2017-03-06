@@ -14,7 +14,7 @@ function transform(accountData, items) {
                     IsPublishedInPublicKb: null, Status: null, IsReviewed: null, SolutionNote: null, OwnerId: null, CreatedDate: null,
                     CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, TimesUsed: null, LastViewedDate: null,
                     LastReferencedDate: null, IsHtml: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.SolutionNumber = item.SolutionNumber;
@@ -24,11 +24,11 @@ function transform(accountData, items) {
                 newItem.Status = item.Status;
                 newItem.IsReviewed = item.IsReviewed;
                 newItem.SolutionNote = item.SolutionNote;
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.TimesUsed = item.TimesUsed;
                 newItem.LastViewedDate = item.LastViewedDate;
@@ -59,3 +59,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=solution.js.map

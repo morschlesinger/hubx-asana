@@ -15,18 +15,18 @@ function transform(accountData, items) {
                     LastModifiedById: null, SystemModstamp: null, IsDeleted: null, Name: null, SerialNumber: null, InstallDate: null,
                     PurchaseDate: null, UsageEndDate: null, Status: null, Price: null, Quantity: null, Description: null, OwnerId: null,
                     LastViewedDate: null, LastReferenceDate: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
-                newItem.ContactId = accountData.identifier + "." + item.ContactId;
-                newItem.AccountId = accountData.identifier + "." + item.AccountId;
-                newItem.ParentId = accountData.identifier + "." + item.ParentId;
-                newItem.RootAssetId = accountData.identifier + "." + item.RootAssetId;
-                newItem.Product2Id = accountData.identifier + "." + item.Product2Id;
+                newItem.ContactId = accountData.identifier + ";" + item.ContactId;
+                newItem.AccountId = accountData.identifier + ";" + item.AccountId;
+                newItem.ParentId = accountData.identifier + ";" + item.ParentId;
+                newItem.RootAssetId = accountData.identifier + ";" + item.RootAssetId;
+                newItem.Product2Id = accountData.identifier + ";" + item.Product2Id;
                 newItem.IsCompetitorProduct = item.IsCompetitorProduct;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.Name = item.Name;
@@ -38,7 +38,7 @@ function transform(accountData, items) {
                 newItem.Price = item.Price;
                 newItem.Quantity = item.Quantity;
                 newItem.Description = item.Description;
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
                 newItem.LastViewedDate = item.LastViewedDate;
                 newItem.LastReferenceDate = item.LastReferenceDate;
                 newArray.push(newItem);
@@ -66,3 +66,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=asset.js.map

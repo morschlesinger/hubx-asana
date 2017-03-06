@@ -15,14 +15,14 @@ export function transform(accountData, items): Promise<Object[]> {
                 let newItem = {Id: null, OwnerId: null, FolderName: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, 
                     LastModifiedById: null, IsDeleted: null, Name: null, Description: null, DeveloperName: null, NamespacePrefix: null,
                     LastRunDate: null, SystemModstamp: null, Format: null, LastViewedDate: null, LastReferencedDate: null};
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;       // Report ID, string
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;     // string
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;     // string
                 newItem.FolderName = item.FolderName;       // string
                 newItem.CreatedDate = item.CreatedDate;       // date
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;       // string
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;       // string
                 newItem.LastModifiedDate = item.LastModifiedDate;     // date
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;       // string
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;       // string
                 newItem.IsDeleted = item.IsDeleted;       // Deleted, boolean
                 newItem.Name = item.Name;       // Report Name, string
                 newItem.Description = item.Description;       // string

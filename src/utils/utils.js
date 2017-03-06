@@ -7,7 +7,7 @@ exports.strReplaceAll = strReplaceAll;
 function byString(o, s) {
     s = s.replace(/\[(\w+)\]/g, '.$1');
     s = s.replace(/^\./, '');
-    var a = s.split('.');
+    var a = s.split(';');
     for (var i = 0, n = a.length; i < n; ++i) {
         var k = a[i];
         if (k in o) {
@@ -42,8 +42,8 @@ function SetObjectPointersByArrayAndField(userIdentifier, parentObjectArray, chi
             let newArray = [];
             childrenObjectArray.forEach(function (childItem) {
                 if (parentItem[parentIdFieldName] == childItem[childParentIdFieldName]) {
-                    newArray.push(userIdentifier + '.' + childItem[childIdFieldName]);
-                    childItem[childParentIdFieldName] = userIdentifier + '.' + childItem[childParentIdFieldName];
+                    newArray.push(userIdentifier + ';' + childItem[childIdFieldName]);
+                    childItem[childParentIdFieldName] = userIdentifier + ';' + childItem[childParentIdFieldName];
                 }
             });
             if (newArray.length > 0) {
@@ -56,3 +56,4 @@ function SetObjectPointersByArrayAndField(userIdentifier, parentObjectArray, chi
     });
 }
 exports.SetObjectPointersByArrayAndField = SetObjectPointersByArrayAndField;
+//# sourceMappingURL=utils.js.map

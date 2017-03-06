@@ -16,15 +16,15 @@ function transform(accountData, items) {
                     CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, CallDurationInSeconds: null,
                     CallType: null, CallDisposition: null, CallObject: null, ReminderDateTime: null, IsReminderSet: null, EndDateTime: null,
                     StartDateTime: null, PrimaryWhoId: null, PrimaryAccountId: null, ActivitySubtype: null, AlternateDetailId: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
-                newItem.AccountID = accountData.identifier + "." + item.AccountID;
-                newItem.WhoId = accountData.identifier + "." + item.WhoId;
-                newItem.WhatId = accountData.identifier + "." + item.WhatId;
+                newItem.AccountID = accountData.identifier + ";" + item.AccountID;
+                newItem.WhoId = accountData.identifier + ";" + item.WhoId;
+                newItem.WhatId = accountData.identifier + ";" + item.WhatId;
                 newItem.Subject = item.Subject;
                 newItem.IsTask = item.IsTask;
                 newItem.ActivityDate = item.ActivityDate;
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
                 newItem.Status = item.Status;
                 newItem.Priority = item.Priority;
                 newItem.IsHighPriority = item.IsHighPriority;
@@ -37,9 +37,9 @@ function transform(accountData, items) {
                 newItem.Description = item.Description;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.CallDurationInSeconds = item.CallDurationInSeconds;
                 newItem.CallType = item.CallType;
@@ -49,8 +49,8 @@ function transform(accountData, items) {
                 newItem.IsReminderSet = item.IsReminderSet;
                 newItem.EndDateTime = item.EndDateTime;
                 newItem.StartDateTime = item.StartDateTime;
-                newItem.PrimaryWhoId = accountData.identifier + "." + item.PrimaryWhoId;
-                newItem.PrimaryAccountId = accountData.identifier + "." + item.PrimaryAccountId;
+                newItem.PrimaryWhoId = accountData.identifier + ";" + item.PrimaryWhoId;
+                newItem.PrimaryAccountId = accountData.identifier + ";" + item.PrimaryAccountId;
                 newItem.ActivitySubtype = item.ActivitySubtype;
                 newItem.AlternateDetailId = item.AlternateDetailId;
                 newArray.push(newItem);
@@ -78,3 +78,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=OpenActivity.js.map

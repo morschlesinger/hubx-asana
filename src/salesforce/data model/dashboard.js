@@ -16,10 +16,10 @@ function transform(accountData, items) {
                     RunningUserId: null, TitleColor: null, TitleSize: null, TextColor: null, BackgroundStart: null, BackgroundEnd: null,
                     BackgroundDirection: null, Type: null, LastViewedDate: null, LastReferencedDate: null, DashboardResultRefreshedDate: null,
                     DashboardResultRunningUser: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
-                newItem.FolderId = accountData.identifier + "." + item.FolderId;
+                newItem.FolderId = accountData.identifier + ";" + item.FolderId;
                 newItem.FolderName = item.FolderName;
                 newItem.Title = item.Title;
                 newItem.DeveloperName = item.DeveloperName;
@@ -29,11 +29,11 @@ function transform(accountData, items) {
                 newItem.MiddleSize = item.MiddleSize;
                 newItem.RightSize = item.RightSize;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
-                newItem.RunningUserId = accountData.identifier + "." + item.RunningUserId;
+                newItem.RunningUserId = accountData.identifier + ";" + item.RunningUserId;
                 newItem.TitleColor = item.TitleColor;
                 newItem.TitleSize = item.TitleSize;
                 newItem.TextColor = item.TextColor;
@@ -70,3 +70,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=dashboard.js.map

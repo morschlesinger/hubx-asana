@@ -17,10 +17,10 @@ function transform(accountData, items) {
                     LastActivityDate: null, FiscalQuarter: null, FiscalYear: null, Fiscal: null, LastViewedDate: null, LastReferencedDate: null,
                     SyncedQuoteId: null, HasOpenActivity: null, HasOverdueTask: null, Budget_Confirmed__c: null, Discovery_Completed__c: null,
                     ROI_Analysis_Completed__c: null, Loss_Reason__c: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
-                newItem.AccountId = accountData.identifier + "." + item.AccountId;
+                newItem.AccountId = accountData.identifier + ";" + item.AccountId;
                 newItem.Name = item.Name;
                 newItem.Description = item.Description;
                 newItem.StageName = item.StageName;
@@ -34,14 +34,14 @@ function transform(accountData, items) {
                 newItem.IsWon = item.IsWon;
                 newItem.ForecastCategory = item.ForecastCategory;
                 newItem.ForecastCategoryName = item.ForecastCategoryName;
-                newItem.CampaignId = accountData.identifier + "." + item.CampaignId;
+                newItem.CampaignId = accountData.identifier + ";" + item.CampaignId;
                 newItem.HasOpportunityLineItem = item.HasOpportunityLineItem;
                 newItem.Pricebook2Id = item.Pricebook2Id;
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.LastActivityDate = item.LastActivityDate;
                 newItem.FiscalQuarter = item.FiscalQuarter;
@@ -81,3 +81,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=opportunity.js.map

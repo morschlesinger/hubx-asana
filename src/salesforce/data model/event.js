@@ -19,10 +19,10 @@ function transform(accountData, items) {
                     RecurrenceTimeZoneSidKey: null, RecurrenceType: null, RecurrenceInterval: null, RecurrenceDayOfWeekMask: null,
                     RecurrenceDayOfMonth: null, RecurrenceInstance: null, RecurrenceMonthOfYear: null, ReminderDateTime: null,
                     IsReminderSet: null, EventSubtype: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
-                newItem.WhoId = accountData.identifier + "." + item.WhoId;
-                newItem.WhatId = accountData.identifier + "." + item.WhatId;
+                newItem.WhoId = accountData.identifier + ";" + item.WhoId;
+                newItem.WhatId = accountData.identifier + ";" + item.WhatId;
                 newItem.WhoCount = item.WhoCount;
                 newItem.WhatCount = item.WhatCount;
                 newItem.Subject = item.Subject;
@@ -34,8 +34,8 @@ function transform(accountData, items) {
                 newItem.StartDateTime = item.StartDateTime;
                 newItem.EndDateTime = item.EndDateTime;
                 newItem.Description = item.Description;
-                newItem.AccountId = accountData.identifier + "." + item.AccountId;
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
+                newItem.AccountId = accountData.identifier + ";" + item.AccountId;
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
                 newItem.Type = item.Type;
                 newItem.IsPrivate = item.IsPrivate;
                 newItem.ShowAs = item.ShowAs;
@@ -44,9 +44,9 @@ function transform(accountData, items) {
                 newItem.IsGroupEvent = item.IsGroupEvent;
                 newItem.GroupEventType = item.GroupEventType;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.IsArchived = item.IsArchived;
                 newItem.RecurrenceActivityId = item.RecurrenceActivityId;
@@ -88,3 +88,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=event.js.map

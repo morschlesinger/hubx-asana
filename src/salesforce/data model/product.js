@@ -14,16 +14,16 @@ function transform(accountData, items) {
                     CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, Family: null,
                     ExternalDataSourceId: null, ExternalId: null, DisplayUrl: null, QuantityUnitOfMeasure: null, IsDeleted: null,
                     LastViewedDate: null, LastReferencedDate: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
                 newItem.Name = item.Name;
                 newItem.ProductCode = item.ProductCode;
                 newItem.Description = item.Description;
                 newItem.IsActive = item.IsActive;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.Family = item.Family;
                 newItem.ExternalDataSourceId = item.ExternalDataSourceId;
@@ -58,3 +58,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=product.js.map

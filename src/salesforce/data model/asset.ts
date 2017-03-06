@@ -17,18 +17,18 @@ export function transform(accountData, items): Promise<Object[]> {
                     LastModifiedById: null, SystemModstamp: null, IsDeleted: null, Name: null, SerialNumber: null, InstallDate: null,
                     PurchaseDate: null, UsageEndDate: null, Status: null, Price: null, Quantity: null, Description: null, OwnerId: null,
                     LastViewedDate: null, LastReferenceDate: null};
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;       // asset id, string
-                newItem.ContactId = accountData.identifier + "." + item.ContactId;     // string
-                newItem.AccountId = accountData.identifier + "." + item.AccountId;     // string
-                newItem.ParentId = accountData.identifier + "." + item.ParentId;       // string
-                newItem.RootAssetId = accountData.identifier + "." + item.RootAssetId; // string
-                newItem.Product2Id = accountData.identifier + "." + item.Product2Id;   // string               
+                newItem.ContactId = accountData.identifier + ";" + item.ContactId;     // string
+                newItem.AccountId = accountData.identifier + ";" + item.AccountId;     // string
+                newItem.ParentId = accountData.identifier + ";" + item.ParentId;       // string
+                newItem.RootAssetId = accountData.identifier + ";" + item.RootAssetId; // string
+                newItem.Product2Id = accountData.identifier + ";" + item.Product2Id;   // string               
                 newItem.IsCompetitorProduct = item.IsCompetitorProduct;     // boolean
                 newItem.CreatedDate = item.CreatedDate;     // date
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;     // string
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;     // string
                 newItem.LastModifiedDate = item.LastModifiedDate;       // date
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;       // string
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;       // string
                 newItem.SystemModstamp = item.SystemModstamp;       // date
                 newItem.IsDeleted = item.IsDeleted;     // boolean
                 newItem.Name = item.Name;       // string
@@ -40,7 +40,7 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.Price = item.Price;     // number
                 newItem.Quantity = item.Quantity;       // number
                 newItem.Description = item.Description;     // string
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;     // string
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;     // string
                 newItem.LastViewedDate = item.LastViewedDate;       // date
                 newItem.LastReferenceDate = item.LastReferenceDate;     // date
            /*     newItem.body = item.body;

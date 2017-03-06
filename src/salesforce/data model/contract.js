@@ -19,9 +19,9 @@ function transform(accountData, items) {
                     ActivatedDate: null, StatusCode: null, Description: null, IsDeleted: null, ContractNumber: null, LastApprovedDate: null,
                     CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null,
                     LastActivityDate: null, LastViewedDate: null, LastReferencedDate: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
-                newItem.AccountId = accountData.identifier + "." + item.AccountId;
+                newItem.AccountId = accountData.identifier + ";" + item.AccountId;
                 newItem.Pricebook2Id = item.Pricebook2Id;
                 newItem.OwnerExpirationNotice = item.OwnerExpirationNotice;
                 newItem.StartDate = item.StartDate;
@@ -43,15 +43,15 @@ function transform(accountData, items) {
                 newItem.ShippingLongitude = item.ShippingLongitude;
                 newItem.ShippingGeocodeAccuracy = item.ShippingGeocodeAccuracy;
                 newItem.ContractTerm = item.ContractTerm;
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
                 newItem.Status = item.Status;
-                newItem.CompanySignedId = accountData.identifier + "." + item.CompanySignedId;
+                newItem.CompanySignedId = accountData.identifier + ";" + item.CompanySignedId;
                 newItem.CompanySignedDate = item.CompanySignedDate;
-                newItem.CustomerSignedId = accountData.identifier + "." + item.CustomerSignedId;
+                newItem.CustomerSignedId = accountData.identifier + ";" + item.CustomerSignedId;
                 newItem.CustomerSignedTitle = item.CustomerSignedTitle;
                 newItem.CustomerSignedDate = item.CustomerSignedDate;
                 newItem.SpecialTerms = item.SpecialTerms;
-                newItem.ActivatedById = accountData.identifier + "." + item.ActivatedById;
+                newItem.ActivatedById = accountData.identifier + ";" + item.ActivatedById;
                 newItem.ActivatedDate = item.ActivatedDate;
                 newItem.StatusCode = item.StatusCode;
                 newItem.Description = item.Description;
@@ -59,9 +59,9 @@ function transform(accountData, items) {
                 newItem.ContractNumber = item.ContractNumber;
                 newItem.LastApprovedDate = item.LastApprovedDate;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.LastActivityDate = item.LastActivityDate;
                 newItem.LastViewedDate = item.LastViewedDate;
@@ -91,3 +91,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=contract.js.map

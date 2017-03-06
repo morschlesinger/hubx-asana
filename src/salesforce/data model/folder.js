@@ -13,7 +13,7 @@ function transform(accountData, items) {
                 let newItem = { Id: null, Name: null, DeveloperName: null, AccessType: null, IsReadonly: null,
                     Type: null, NamespacePrefix: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null,
                     LastModifiedById: null, SystemModstamp: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
                 newItem.Name = item.Name;
                 newItem.DeveloperName = item.DeveloperName;
@@ -22,9 +22,9 @@ function transform(accountData, items) {
                 newItem.Type = item.Type;
                 newItem.NamespacePrefix = item.NamespacePrefix;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newArray.push(newItem);
             });
@@ -51,3 +51,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=folder.js.map

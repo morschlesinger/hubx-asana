@@ -55,7 +55,7 @@ function transform(accountData, items) {
                     FullPhotoUrl: null, SmallPhotoUrl: null, MediumPhotoUrl: null, DigestFrequency: null, DefaultGroupNotificationFrequency: null,
                     LastViewedDate: null, LastReferencedDate: null, BannerPhotoUrl: null, SmallBannerPhotoUrl: null, MediumBannerPhotoUrl: null,
                     IsProfilePhotoActive: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
                 newItem.Username = item.Username;
                 newItem.LastName = item.LastName;
@@ -102,13 +102,13 @@ function transform(accountData, items) {
                 newItem.UserType = item.UserType;
                 newItem.LanguageLocaleKey = item.LanguageLocaleKey;
                 newItem.EmployeeNumber = item.EmployeeNumber;
-                newItem.ManagerId = accountData.identifier + "." + item.ManagerId;
+                newItem.ManagerId = accountData.identifier + ";" + item.ManagerId;
                 newItem.LastLoginDate = item.LastLoginDate;
                 newItem.LastPasswordChangeDate = item.LastPasswordChangeDate;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.OfflineTrialExpirationDate = item.OfflineTrialExpirationDate;
                 newItem.OfflinePdaTrialExpirationDate = item.OfflinePdaTrialExpirationDate;
@@ -181,8 +181,8 @@ function transform(accountData, items) {
                 newItem.UserPreferencesGlobalNavGridMenuWTShown = item.UserPreferencesGlobalNavGridMenuWTShown;
                 newItem.UserPreferencesCreateLEXAppsWTShown = item.UserPreferencesCreateLEXAppsWTShown;
                 newItem.UserPreferencesFavoritesWTShown = item.UserPreferencesFavoritesWTShown;
-                newItem.ContactId = accountData.identifier + "." + item.ContactId;
-                newItem.AccountId = accountData.identifier + "." + item.AccountId;
+                newItem.ContactId = accountData.identifier + ";" + item.ContactId;
+                newItem.AccountId = accountData.identifier + ";" + item.AccountId;
                 newItem.CallCenterId = item.CallCenterId;
                 newItem.Extension = item.Extension;
                 newItem.FederationIdentifier = item.FederationIdentifier;
@@ -223,3 +223,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=user.js.map

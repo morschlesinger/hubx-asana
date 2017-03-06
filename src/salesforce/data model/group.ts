@@ -15,7 +15,7 @@ export function transform(accountData, items): Promise<Object[]> {
                 let newItem = {Id: null, Name: null, DeveloperName: null, RelatedId: null, Type: null, Email: null, OwnerId: null, 
                     DoesSendEmailToMembers: null, DoesIncludeBosses: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null,
                     LastModifiedById: null, SystemModstamp: null};
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;       // Group ID, string
                 if (!item.Name) {
                     if (item.DeveloperName) {
@@ -27,22 +27,22 @@ export function transform(accountData, items): Promise<Object[]> {
                 }
                 newItem.DeveloperName = item.DeveloperName;     // string
                 if (item.RelatedId) { // string
-                    newItem.RelatedId = accountData.identifier + "." + item.RelatedId;
+                    newItem.RelatedId = accountData.identifier + ";" + item.RelatedId;
                 } else newItem.RelatedId=null;
                 newItem.Type = item.Type;       // string
                 newItem.Email = item.Email;     // string
                 if (item.OwnerId) { // string
-                    newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
+                    newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
                 } else newItem.OwnerId=null;
                 newItem.DoesSendEmailToMembers = item.DoesSendEmailToMembers;       // Send Email to Members, boolean
                 newItem.DoesIncludeBosses = item.DoesIncludeBosses;     // Include Bosses, boolean
                 newItem.CreatedDate = item.CreatedDate;     // date
                 if (item.CreatedById) { // string
-                    newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                    newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 } else newItem.CreatedById=null;
                 newItem.LastModifiedDate = item.LastModifiedDate;       // date
                 if (item.LastModifiedById) { // string
-                    newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                    newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 } else newItem.LastModifiedById=null;
                 newItem.SystemModstamp = item.SystemModstamp;       // date
                 newArray.push(newItem);

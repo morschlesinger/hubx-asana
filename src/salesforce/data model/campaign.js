@@ -17,11 +17,11 @@ function transform(accountData, items) {
                     AmountAllOpportunities: null, AmountWonOpportunities: null, OwnerId: null, CreatedDate: null, CreatedById: null,
                     LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, LastActivityDate: null, LastViewedDate: null,
                     LastReferencedDate: null, CampaignMemberRecordTypeId: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.Name = item.Name;
-                newItem.ParentId = accountData.identifier + "." + item.ParentId;
+                newItem.ParentId = accountData.identifier + ";" + item.ParentId;
                 newItem.Type = item.Type;
                 newItem.Status = item.Status;
                 newItem.StartDate = item.StartDate;
@@ -40,16 +40,16 @@ function transform(accountData, items) {
                 newItem.NumberOfOpportunities = item.NumberOfOpportunities;
                 newItem.NumberOfWonOpportunities = item.NumberOfWonOpportunities;
                 newItem.AmountAllOpportunities = item.AmountWonOpportunities;
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.LastActivityDate = item.LastActivityDate;
                 newItem.LastViewedDate = item.LastViewedDate;
                 newItem.LastReferencedDate = item.LastReferencedDate;
-                newItem.CampaignMemberRecordTypeId = accountData.identifier + "." + item.CampaignMemberRecordTypeId;
+                newItem.CampaignMemberRecordTypeId = accountData.identifier + ";" + item.CampaignMemberRecordTypeId;
                 newArray.push(newItem);
             });
             resolve({ mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray });
@@ -75,3 +75,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=campaign.js.map

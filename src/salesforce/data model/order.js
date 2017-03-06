@@ -18,18 +18,18 @@ function transform(accountData, items) {
                     ShippingGeocodeAccuracy: null, ActivatedDate: null, ActivatedById: null, StatusCode: null, OrderNumber: null,
                     TotalAmount: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, IsDeleted: null,
                     SystemModstamp: null, LastViewedDate: null, LastReferencedDate: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
-                newItem.ContractId = accountData.identifier + "." + item.ContractId;
-                newItem.AccountId = accountData.identifier + "." + item.AccountId;
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
+                newItem.ContractId = accountData.identifier + ";" + item.ContractId;
+                newItem.AccountId = accountData.identifier + ";" + item.AccountId;
                 newItem.Pricebook2Id = item.Pricebook2Id;
                 newItem.EffectiveDate = item.EffectiveDate;
                 newItem.EndDate = item.EndDate;
                 newItem.Status = item.Status;
                 newItem.Description = item.Description;
-                newItem.CustomerAuthorizedById = accountData.identifier + "." + item.CustomerAuthorizedById;
-                newItem.CompanyAuthorizedById = accountData.identifier + "." + item.CompanyAuthorizedById;
+                newItem.CustomerAuthorizedById = accountData.identifier + ";" + item.CustomerAuthorizedById;
+                newItem.CompanyAuthorizedById = accountData.identifier + ";" + item.CompanyAuthorizedById;
                 newItem.Type = item.Type;
                 newItem.BillingStreet = item.BillingStreet;
                 newItem.BillingCity = item.BillingCity;
@@ -48,14 +48,14 @@ function transform(accountData, items) {
                 newItem.ShippingLongitude = item.ShippingLongitude;
                 newItem.ShippingGeocodeAccuracy = item.ShippingGeocodeAccuracy;
                 newItem.ActivatedDate = item.ActivatedDate;
-                newItem.ActivatedById = accountData.identifier + "." + item.ActivatedById;
+                newItem.ActivatedById = accountData.identifier + ";" + item.ActivatedById;
                 newItem.StatusCode = item.StatusCode;
                 newItem.OrderNumber = item.OrderNumber;
                 newItem.TotalAmount = item.TotalAmount;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.LastViewedDate = item.LastViewedDate;
@@ -85,3 +85,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=order.js.map

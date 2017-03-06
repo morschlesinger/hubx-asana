@@ -15,7 +15,7 @@ export function transform(accountData, items): Promise<Object[]> {
                 let newItem = {Id: null, Name: null, DeveloperName: null, AccessType: null, IsReadonly: null, 
                     Type: null, NamespacePrefix: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null,
                     LastModifiedById: null, SystemModstamp: null};
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;       // Folder id, string
                 newItem.Name = item.Name;     // string
                 newItem.DeveloperName = item.DeveloperName;     // Folder Unique Name, string
@@ -24,9 +24,9 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.Type = item.Type;   // string               
                 newItem.NamespacePrefix = item.NamespacePrefix;     // Namespace Prefix, string
                 newItem.CreatedDate = item.CreatedDate;     // date
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;     // string
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;     // string
                 newItem.LastModifiedDate = item.LastModifiedDate;       // date
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;       // string
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;       // string
                 newItem.SystemModstamp = item.SystemModstamp;       // date
            /*     newItem.body = item.body;
                 newItem.draft = item.draft;

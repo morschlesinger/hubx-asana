@@ -16,7 +16,7 @@ export function transform(accountData, items): Promise<Object[]> {
                     IsPublishedInPublicKb: null, Status: null, IsReviewed: null, SolutionNote: null, OwnerId: null, CreatedDate: null,
                     CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, TimesUsed: null, LastViewedDate: null, 
                     LastReferencedDate: null, IsHtml: null};
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;       // Solution ID, string
                 newItem.IsDeleted = item.IsDeleted;     // Deleted, boolean
                 newItem.SolutionNumber = item.SolutionNumber;       // string
@@ -26,11 +26,11 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.Status = item.Status;       // string
                 newItem.IsReviewed = item.IsReviewed;       // Reviewed, boolean
                 newItem.SolutionNote = item.SolutionNote;       // Description, string
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;       // string
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;       // string
                 newItem.CreatedDate = item.CreatedDate;       // date
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;       // string
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;       // string
                 newItem.LastModifiedDate = item.LastModifiedDate;     // date
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;       // string
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;       // string
                 newItem.SystemModstamp = item.SystemModstamp;       // date
                 newItem.TimesUsed = item.TimesUsed;       // Num Related Cases, number
                 newItem.LastViewedDate = item.LastViewedDate;       // date

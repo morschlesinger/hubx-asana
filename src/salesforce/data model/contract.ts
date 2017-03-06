@@ -21,9 +21,9 @@ export function transform(accountData, items) : Promise<Object[]> {
                     ActivatedDate: null, StatusCode: null, Description: null, IsDeleted: null, ContractNumber: null, LastApprovedDate: null, 
                     CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, 
                     LastActivityDate: null, LastViewedDate: null, LastReferencedDate: null};
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id=item.Id;     // Contract ID, string
-                newItem.AccountId=accountData.identifier + "." + item.AccountId;       // string
+                newItem.AccountId=accountData.identifier + ";" + item.AccountId;       // string
                 newItem.Pricebook2Id=item.Pricebook2Id;     // Price Book ID, string
                 newItem.OwnerExpirationNotice=item.OwnerExpirationNotice;     // string
                 newItem.StartDate=item.StartDate;     // date
@@ -45,15 +45,15 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.ShippingLongitude=item.ShippingLongitude;       // number
                 newItem.ShippingGeocodeAccuracy=item.ShippingGeocodeAccuracy;       // string
                 newItem.ContractTerm=item.ContractTerm;       // number
-                newItem.OwnerId=accountData.identifier + "." + item.OwnerId;       // string
+                newItem.OwnerId=accountData.identifier + ";" + item.OwnerId;       // string
                 newItem.Status=item.Status;     // string
-                newItem.CompanySignedId=accountData.identifier + "." + item.CompanySignedId;     // Company Signed by ID, string
+                newItem.CompanySignedId=accountData.identifier + ";" + item.CompanySignedId;     // Company Signed by ID, string
                 newItem.CompanySignedDate=item.CompanySignedDate;       // date
-                newItem.CustomerSignedId=accountData.identifier + "." + item.CustomerSignedId;       // Customer Signed By ID, string
+                newItem.CustomerSignedId=accountData.identifier + ";" + item.CustomerSignedId;       // Customer Signed By ID, string
                 newItem.CustomerSignedTitle=item.CustomerSignedTitle;       //string
                 newItem.CustomerSignedDate=item.CustomerSignedDate;       // date
                 newItem.SpecialTerms=item.SpecialTerms;       // string
-                newItem.ActivatedById=accountData.identifier + "." + item.ActivatedById;     // string
+                newItem.ActivatedById=accountData.identifier + ";" + item.ActivatedById;     // string
                 newItem.ActivatedDate=item.ActivatedDate;     // date
                 newItem.StatusCode=item.StatusCode;     // Status Category, string
                 newItem.Description=item.Description;     // string
@@ -61,9 +61,9 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.ContractNumber=item.ContractNumber;       // string
                 newItem.LastApprovedDate=item.LastApprovedDate;     // date
                 newItem.CreatedDate=item.CreatedDate;       // date
-                newItem.CreatedById=accountData.identifier + "." + item.CreatedById;       // string
+                newItem.CreatedById=accountData.identifier + ";" + item.CreatedById;       // string
                 newItem.LastModifiedDate=item.LastModifiedDate;     // date
-                newItem.LastModifiedById=accountData.identifier + "." + item.LastModifiedById;     // string
+                newItem.LastModifiedById=accountData.identifier + ";" + item.LastModifiedById;     // string
                 newItem.SystemModstamp=item.SystemModstamp;       // date
                 newItem.LastActivityDate=item.LastActivityDate;       // date
                 newItem.LastViewedDate=item.LastViewedDate;       // date

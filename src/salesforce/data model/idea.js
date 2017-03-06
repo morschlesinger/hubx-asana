@@ -15,15 +15,15 @@ function transform(accountData, items) {
                     CommunityId: null, Body: null, NumComments: null, VoteScore: null, VoteTotal: null, Categories: null, Status: null,
                     LastCommentDate: null, LastCommentId: null, ParentIdeaId: null, IsHtml: null, IsMerged: null, CreatorFullPhotoUrl: null,
                     CreatorSmallPhotoUrl: null, CreatorName: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.Title = item.Title;
                 newItem.RecordTypeId = item.RecordTypeId;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.LastViewedDate = item.LastViewedDate;
                 newItem.LastReferencedDate = item.LastReferencedDate;
@@ -35,8 +35,8 @@ function transform(accountData, items) {
                 newItem.Categories = item.Categories;
                 newItem.Status = item.Status;
                 newItem.LastCommentDate = item.LastCommentDate;
-                newItem.LastCommentId = accountData.identifier + "." + item.LastCommentId;
-                newItem.ParentIdeaId = accountData.identifier + "." + item.ParentIdeaId;
+                newItem.LastCommentId = accountData.identifier + ";" + item.LastCommentId;
+                newItem.ParentIdeaId = accountData.identifier + ";" + item.ParentIdeaId;
                 newItem.IsHtml = item.IsHtml;
                 newItem.IsMerged = item.IsMerged;
                 newItem.CreatorFullPhotoUrl = item.CreatorFullPhotoUrl;
@@ -67,3 +67,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=idea.js.map

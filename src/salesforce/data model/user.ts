@@ -57,7 +57,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                     FullPhotoUrl: null, SmallPhotoUrl: null, MediumPhotoUrl: null, DigestFrequency: null, DefaultGroupNotificationFrequency: null,
                     LastViewedDate: null, LastReferencedDate: null, BannerPhotoUrl: null, SmallBannerPhotoUrl: null, MediumBannerPhotoUrl: null,
                     IsProfilePhotoActive: null};
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id=item.Id;     // User ID, string
                 newItem.Username=item.Username;       // string
                 newItem.LastName=item.LastName;       // string
@@ -104,13 +104,13 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.UserType=item.UserType;       // string
                 newItem.LanguageLocaleKey=item.LanguageLocaleKey;       // Language, string
                 newItem.EmployeeNumber=item.EmployeeNumber;       // string
-                newItem.ManagerId=accountData.identifier + "." + item.ManagerId;       // string
+                newItem.ManagerId=accountData.identifier + ";" + item.ManagerId;       // string
                 newItem.LastLoginDate=item.LastLoginDate;       // Last Login, Date
                 newItem.LastPasswordChangeDate=item.LastPasswordChangeDate;       // Last Password Change or Reset, date
                 newItem.CreatedDate=item.CreatedDate;       // date
-                newItem.CreatedById=accountData.identifier + "." + item.CreatedById;       // string
+                newItem.CreatedById=accountData.identifier + ";" + item.CreatedById;       // string
                 newItem.LastModifiedDate=item.LastModifiedDate;       // date
-                newItem.LastModifiedById=accountData.identifier + "." + item.LastModifiedById;       // string
+                newItem.LastModifiedById=accountData.identifier + ";" + item.LastModifiedById;       // string
                 newItem.SystemModstamp=item.SystemModstamp;       // date
                 newItem.OfflineTrialExpirationDate=item.OfflineTrialExpirationDate;       // Offline Edition Trial Expiration Date, date
                 newItem.OfflinePdaTrialExpirationDate=item.OfflinePdaTrialExpirationDate;       // Sales Anywhere Trial Expiration Date, date
@@ -183,8 +183,8 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.UserPreferencesGlobalNavGridMenuWTShown=item.UserPreferencesGlobalNavGridMenuWTShown;  // GlobalNavGridMenuWTShown, boolean
                 newItem.UserPreferencesCreateLEXAppsWTShown=item.UserPreferencesCreateLEXAppsWTShown; // CreateLEXAppsWTShown, boolean
                 newItem.UserPreferencesFavoritesWTShown=item.UserPreferencesFavoritesWTShown;       // FavoritesWTShown, boolean
-                newItem.ContactId=accountData.identifier + "." + item.ContactId;       // string
-                newItem.AccountId=accountData.identifier + "." + item.AccountId;       // string
+                newItem.ContactId=accountData.identifier + ";" + item.ContactId;       // string
+                newItem.AccountId=accountData.identifier + ";" + item.AccountId;       // string
                 newItem.CallCenterId=item.CallCenterId;       // string
                 newItem.Extension=item.Extension;       // string
                 newItem.FederationIdentifier=item.FederationIdentifier;       // SAML Federation ID, string

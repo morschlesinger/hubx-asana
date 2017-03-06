@@ -126,7 +126,7 @@ class contentQueue {
                         let resultDifferenceItem;
                         for (resultDifferenceItem in resultDifference) {
                             if (Object.keys(resultDifference[resultDifferenceItem]).length > 0) {
-                                contentQueue.NerveCenter.notifyOne(nerveCenter_1.EVENT_TYPES.ENTITY_UPDATED, EntitiesGroup.QentityName, accountEntities.QaccountId, accountEntities.QaccountId + "." + resultDifferenceItem, resultDifference[resultDifferenceItem]);
+                                contentQueue.NerveCenter.notifyOne(nerveCenter_1.EVENT_TYPES.ENTITY_UPDATED, EntitiesGroup.QentityName, accountEntities.QaccountId, accountEntities.QaccountId + ";" + resultDifferenceItem, resultDifference[resultDifferenceItem]);
                             }
                         }
                     }).catch(exception => {
@@ -146,3 +146,4 @@ class contentQueue {
     ;
 }
 exports.contentQueue = contentQueue;
+//# sourceMappingURL=contentQueue.js.map

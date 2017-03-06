@@ -18,14 +18,14 @@ export function transform(accountData, items) : Promise<Object[]> {
                     ClosedDate: null, IsEscalated: null, OwnerId: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, 
                     LastModifiedById: null, SystemModstamp: null, ContactPhone: null, ContactMobile: null, ContactEmail: null, 
                     ContactFax: null, LastViewedDate: null, LastReferencedDate: null};
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id=item.Id;     // Case ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
                 newItem.CaseNumber=item.CaseNumber;     // string
-                newItem.ContactId=accountData.identifier + "." + item.ContactId;     // string
-                newItem.AccountId=accountData.identifier + "." + item.AccountId;     // string
+                newItem.ContactId=accountData.identifier + ";" + item.ContactId;     // string
+                newItem.AccountId=accountData.identifier + ";" + item.AccountId;     // string
                 if (item.ParentId) {
-                    newItem.ParentId=accountData.identifier + "." + item.ParentId;     // Parent Case ID, string
+                    newItem.ParentId=accountData.identifier + ";" + item.ParentId;     // Parent Case ID, string
                 } else newItem.ParentId=null;
                 newItem.SuppliedName=item.SuppliedName;       // string
                 newItem.SuppliedEmail=item.SuppliedEmail;       // string
@@ -41,11 +41,11 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.IsClosed=item.IsClosed;     // boolean
                 newItem.ClosedDate=item.ClosedDate;       // date
                 newItem.IsEscalated=item.IsEscalated;     // boolean
-                newItem.OwnerId=accountData.identifier + "." + item.OwnerId;       // string
+                newItem.OwnerId=accountData.identifier + ";" + item.OwnerId;       // string
                 newItem.CreatedDate=item.CreatedDate;       // date
-                newItem.CreatedById=accountData.identifier + "." + item.CreatedById;       // string
+                newItem.CreatedById=accountData.identifier + ";" + item.CreatedById;       // string
                 newItem.LastModifiedDate=item.LastModifiedDate;       // date
-                newItem.LastModifiedById=accountData.identifier + "." + item.LastModifiedById;     // string
+                newItem.LastModifiedById=accountData.identifier + ";" + item.LastModifiedById;     // string
                 newItem.SystemModstamp=item.SystemModstamp;     // date
                 newItem.ContactPhone=item.ContactPhone;       // string
                 newItem.ContactMobile=item.ContactMobile;       // string

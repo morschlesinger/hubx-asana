@@ -14,9 +14,9 @@ function transform(accountData, items) {
                     Type: null, IsPublic: null, BodyLength: null, Body: null, Url: null, Description: null, Keywords: null, IsInternalUseOnly: null,
                     AuthorId: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null,
                     IsBodySearchable: null, LastViewedDate: null, LastReferencedDate: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
-                newItem.FolderId = accountData.identifier + "." + item.FolderId;
+                newItem.FolderId = accountData.identifier + ";" + item.FolderId;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.Name = item.Name;
                 newItem.DeveloperName = item.DeveloperName;
@@ -30,11 +30,11 @@ function transform(accountData, items) {
                 newItem.Description = item.Description;
                 newItem.Keywords = item.Keywords;
                 newItem.IsInternalUseOnly = item.IsInternalUseOnly;
-                newItem.AuthorId = accountData.identifier + "." + item.AuthorId;
+                newItem.AuthorId = accountData.identifier + ";" + item.AuthorId;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.IsBodySearchable = item.IsBodySearchable;
                 newItem.LastViewedDate = item.LastViewedDate;
@@ -64,3 +64,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=document.js.map

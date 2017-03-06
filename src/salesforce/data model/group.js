@@ -13,7 +13,7 @@ function transform(accountData, items) {
                 let newItem = { Id: null, Name: null, DeveloperName: null, RelatedId: null, Type: null, Email: null, OwnerId: null,
                     DoesSendEmailToMembers: null, DoesIncludeBosses: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null,
                     LastModifiedById: null, SystemModstamp: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
                 if (!item.Name) {
                     if (item.DeveloperName) {
@@ -25,14 +25,14 @@ function transform(accountData, items) {
                 }
                 newItem.DeveloperName = item.DeveloperName;
                 if (item.RelatedId) {
-                    newItem.RelatedId = accountData.identifier + "." + item.RelatedId;
+                    newItem.RelatedId = accountData.identifier + ";" + item.RelatedId;
                 }
                 else
                     newItem.RelatedId = null;
                 newItem.Type = item.Type;
                 newItem.Email = item.Email;
                 if (item.OwnerId) {
-                    newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
+                    newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
                 }
                 else
                     newItem.OwnerId = null;
@@ -40,13 +40,13 @@ function transform(accountData, items) {
                 newItem.DoesIncludeBosses = item.DoesIncludeBosses;
                 newItem.CreatedDate = item.CreatedDate;
                 if (item.CreatedById) {
-                    newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                    newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 }
                 else
                     newItem.CreatedById = null;
                 newItem.LastModifiedDate = item.LastModifiedDate;
                 if (item.LastModifiedById) {
-                    newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                    newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 }
                 else
                     newItem.LastModifiedById = null;
@@ -76,3 +76,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=group.js.map

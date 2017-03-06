@@ -51,7 +51,7 @@ export class contentQueue {
 /*                        let resultDifferenceItem;
                         for (resultDifferenceItem in resultDifference) {
                             if (Object.keys(resultDifference[resultDifferenceItem]).length>0) {
-                                contentQueue.NerveCenter.notifyOne(EVENT_TYPES.ENTITY_UPDATED, EntitiesGroup.QentityName, accountEntities.QaccountId, accountEntities.QaccountId + "." + resultDifferenceItem , resultDifference[resultDifferenceItem])
+                                contentQueue.NerveCenter.notifyOne(EVENT_TYPES.ENTITY_UPDATED, EntitiesGroup.QentityName, accountEntities.QaccountId, accountEntities.QaccountId + ";" + resultDifferenceItem , resultDifference[resultDifferenceItem])
                             }
                         }
                         //returnCallback(null,true);                    
@@ -152,7 +152,7 @@ export class contentQueue {
                         let resultDifferenceItem;
                         for (resultDifferenceItem in resultDifference) {
                             if (Object.keys(resultDifference[resultDifferenceItem]).length>0) {
-                                contentQueue.NerveCenter.notifyOne(EVENT_TYPES.ENTITY_UPDATED, EntitiesGroup.QentityName, accountEntities.QaccountId, accountEntities.QaccountId + "." + resultDifferenceItem , resultDifference[resultDifferenceItem])
+                                contentQueue.NerveCenter.notifyOne(EVENT_TYPES.ENTITY_UPDATED, EntitiesGroup.QentityName, accountEntities.QaccountId, accountEntities.QaccountId + ";" + resultDifferenceItem , resultDifference[resultDifferenceItem])
                             }
                         }
                         //returnCallback(null,true);                    

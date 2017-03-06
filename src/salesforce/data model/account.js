@@ -19,11 +19,11 @@ function transform(accountData, items) {
                     SystemModstamp: null, LastActivityDate: null, LastViewedDate: null, LastReferenceDate: null, Jigsaw: null,
                     JigsawCompanyID: null, AccountSource: null, DunsNumber: null, Tradestyle: null, NaicsCode: null, NaicsDesc: null,
                     YearStarted: null, SicDesc: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
                 if (item.MasterRecordId) {
-                    newItem.MasterRecordId = accountData.identifier + "." + item.MasterRecordId;
+                    newItem.MasterRecordId = accountData.identifier + ";" + item.MasterRecordId;
                 }
                 else
                     newItem.MasterRecordId = null;
@@ -52,11 +52,11 @@ function transform(accountData, items) {
                 newItem.Industry = item.Industry;
                 newItem.NumberOfEmployees = item.NumberOfEmployees;
                 newItem.Description = item.Description;
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.LastActivityDate = item.LastActivityDate;
                 newItem.LastViewedDate = item.LastViewedDate;
@@ -95,3 +95,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=account.js.map

@@ -18,10 +18,10 @@ function transform(accountData, items) {
                     RecurrenceEndDateOnly: null, RecurrenceTimeZoneSidKey: null, RecurrenceType: null, RecurrenceInterval: null,
                     RecurrenceDayOfWeekMask: null, RecurrenceDayOfMonth: null, RecurrenceInstance: null, RecurrenceMonthOfYear: null,
                     RecurrenceRegeneratedType: null, TaskSubtype: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
-                newItem.WhoId = accountData.identifier + "." + item.WhoId;
-                newItem.WhatId = accountData.identifier + "." + item.WhatId;
+                newItem.WhoId = accountData.identifier + ";" + item.WhoId;
+                newItem.WhatId = accountData.identifier + ";" + item.WhatId;
                 newItem.WhoCount = item.WhoCount;
                 newItem.WhatCount = item.WhatCount;
                 newItem.Subject = item.Subject;
@@ -29,15 +29,15 @@ function transform(accountData, items) {
                 newItem.Status = item.Status;
                 newItem.Priority = item.Priority;
                 newItem.IsHighPriority = item.IsHighPriority;
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
                 newItem.Description = item.Description;
                 newItem.IsDeleted = item.IsDeleted;
-                newItem.AccountId = accountData.identifier + "." + item.AccountId;
+                newItem.AccountId = accountData.identifier + ";" + item.AccountId;
                 newItem.IsClosed = item.IsClosed;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.IsArchived = item.IsArchived;
                 newItem.CallDurationInSeconds = item.CallDurationInSeconds;
@@ -46,7 +46,7 @@ function transform(accountData, items) {
                 newItem.CallObject = item.CallObject;
                 newItem.ReminderDateTime = item.ReminderDateTime;
                 newItem.IsReminderSet = item.IsReminderSet;
-                newItem.RecurrenceActivityId = accountData.identifier + "." + item.RecurrenceActivityId;
+                newItem.RecurrenceActivityId = accountData.identifier + ";" + item.RecurrenceActivityId;
                 newItem.IsRecurrence = item.IsRecurrence;
                 newItem.RecurrenceStartDateOnly = item.RecurrenceStartDateOnly;
                 newItem.RecurrenceEndDateOnly = item.RecurrenceEndDateOnly;
@@ -85,3 +85,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=task.js.map

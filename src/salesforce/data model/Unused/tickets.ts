@@ -25,11 +25,11 @@ export function transform(accountData, items): Promise<Object[]> {
             let ticketSatisfactionRatingsToMap = [];
             let newItem = {assignee_id: null, collaborator_ids:[], created_at: null, description: '', due_at: null, has_incidents: null, id: '', priority: '', comment: '', recipient: null, status: '', subject: null, submitter_id: null, tags: null, satisfaction_ratings: [], type: '', updated_at: null, vendorUrl: ''};
             if (item.assignee_id)
-                    newItem.assignee_id=accountData.identifier + '.' + item.assignee_id;                    
+                    newItem.assignee_id=accountData.identifier + ';' + item.assignee_id;                    
             if (item.collaborator_ids)
                 if (item.collaborator_ids.length>0) {
                     item.collaborator_ids.forEach(function (theitem) {
-                        newItem.collaborator_ids.push(accountData.identifier + '.' + theitem);
+                        newItem.collaborator_ids.push(accountData.identifier + ';' + theitem);
                     });
                 }                    
             newItem.created_at=item.created_at;
@@ -43,7 +43,7 @@ export function transform(accountData, items): Promise<Object[]> {
             newItem.status=item.status;
             newItem.subject=item.subject;
             if (item.submitter_id)
-                newItem.submitter_id=accountData.identifier + '.' + item.submitter_id;
+                newItem.submitter_id=accountData.identifier + ';' + item.submitter_id;
             if (item.tags) {
                 if (item.tags.length>0) {
                     newItem.tags=item.tags.join("|");
@@ -55,7 +55,7 @@ export function transform(accountData, items): Promise<Object[]> {
                         ticketSatisfactionRatingsToMap.push(rating)
                     });
                     allSatisfactionRatingsToMap=allSatisfactionRatingsToMap.concat(ticketSatisfactionRatingsToMap);
-                    newItem.satisfaction_ratings= utils.getPointersStringArray(ticketSatisfactionRatingsToMap,"id",accountData.identifier + '.');
+                    newItem.satisfaction_ratings= utils.getPointersStringArray(ticketSatisfactionRatingsToMap,"id",accountData.identifier + ';');
                 } else newItem.satisfaction_ratings= null;
             } else newItem.satisfaction_ratings= null;
             newItem.type=item.type;

@@ -19,7 +19,7 @@ export function transform(accountData, items) {
                 newItem.type = item.type;
                 newItem.public=item.public;
                 if (!(item.author_id==-1)) {
-                    newItem.author_id=accountData.identifier + '.' + item.author_id;
+                    newItem.author_id=accountData.identifier + ';' + item.author_id;
                 } else newItem.author_id=null;
                 newItem.created_at=item.created_at;
                 newItem.vendorUrl='https://' + accountData.siteAddress + '.salesforce.com/tickets/' + item.ticket_id;

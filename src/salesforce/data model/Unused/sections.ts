@@ -18,7 +18,7 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.description = item.description;
                 newItem.id = item.id;
                 newItem.updated_at = item.updated_at;
-                newItem.category_id = accountData.identifier + '.' + item.category_id;
+                newItem.category_id = accountData.identifier + ';' + item.category_id;
                 newItem.locale = item.locale;
                 newItem.vendorUrl=item.html_url;
                 newItem.source_locale = item.source_locale;

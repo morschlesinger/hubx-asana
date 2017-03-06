@@ -19,11 +19,11 @@ function transform(accountData, items) {
                     LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, LastActivityDate: null, LastViewedDate: null,
                     LastReferencedDate: null, Jigsaw: null, JigsawContactId: null, CompanyDunsNumber: null, EmailBouncedReason: null,
                     EmailBouncedDate: null };
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
                 if (item.MasterRecordId) {
-                    newItem.MasterRecordId = accountData.identifier + "." + item.MasterRecordId;
+                    newItem.MasterRecordId = accountData.identifier + ";" + item.MasterRecordId;
                 }
                 else
                     newItem.MasterRecordId = null;
@@ -53,7 +53,7 @@ function transform(accountData, items) {
                 newItem.Industry = item.Industry;
                 newItem.Rating = item.Rating;
                 newItem.NumberOfEmployees = item.NumberOfEmployees;
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
                 newItem.IsConverted = item.IsConverted;
                 newItem.ConvertedDate = item.ConvertedDate;
                 newItem.ConvertedAccountId = item.ConvertedAccountId;
@@ -61,9 +61,9 @@ function transform(accountData, items) {
                 newItem.ConvertedOpportunityId = item.ConvertedOpportunityId;
                 newItem.IsUnreadByOwner = item.IsUnreadByOwner;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.LastActivityDate = item.LastActivityDate;
                 newItem.LastViewedDate = item.LastViewedDate;
@@ -98,3 +98,4 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
+//# sourceMappingURL=lead.js.map

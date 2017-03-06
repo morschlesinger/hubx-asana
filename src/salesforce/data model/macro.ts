@@ -14,15 +14,15 @@ export function transform(accountData, items): Promise<Object[]> {
             items.forEach(function (item) {                    
                 let newItem = {Id: null, OwnerId: null, IsDeleted: null, Name: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, 
                     LastModifiedById: null, SystemModstamp: null, LastViewedDate: null, LastReferencedDate: null, Description: null};
-                newItem["_id"] = accountData.identifier + "." + item.Id;
+                newItem["_id"] = accountData.identifier + ";" + item.Id;
                 newItem.Id = item.Id;       // Macro ID, string
-                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;     // string
+                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;     // string
                 newItem.IsDeleted = item.IsDeleted;       // boolean
                 newItem.Name = item.Name; // Macro Name, string
                 newItem.CreatedDate = item.CreatedDate;       // date
-                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;       // string
+                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;       // string
                 newItem.LastModifiedDate = item.LastModifiedDate;     // date
-                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;       // string
+                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;       // string
                 newItem.SystemModstamp = item.SystemModstamp;     // date
                 newItem.LastViewedDate = item.LastViewedDate;       // date
                 newItem.LastReferencedDate = item.LastReferencedDate;     // date
