@@ -13,7 +13,7 @@ export function transform(accountData, items) : Promise<Object[]> {
         else {
             items.forEach(function (item) {
                 let newItem = {Id: null, IsDeleted: null, AccountId: null, Name: null, Description: null, StageName: null, Amount: null,
-                    Probability: null, CloseDate: null, Type: null, NextStep: null, LeadSource: null, IsClosed: null, IsWon: null,
+                    Probability: null, ProbabilityValue: null, CloseDate: null, Type: null, NextStep: null, LeadSource: null, IsClosed: null, IsWon: null,
                     ForecastCategory: null, ForecastCategoryName: null, CampaignId: null, HasOpportunityLineItem: null, Pricebook2Id: null,
                     OwnerId: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null,
                     LastActivityDate: null, FiscalQuarter: null, FiscalYear: null, Fiscal: null, LastViewedDate: null, LastReferencedDate: null,
@@ -27,7 +27,31 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.Description=item.Description;       // string
                 newItem.StageName=item.StageName;     // Stage, string       
                 newItem.Amount=item.Amount;     // number
-                newItem.Probability=item.Probability;     // Probability(%), number
+                
+                if (item.Probability) {
+                    if (item.Probability<10) {
+                        newItem.Probability="VeryLow"
+                    }
+                    else if (item.Probability<30) {
+                        newItem.Probability="Low"
+                    }
+                    else if (item.Probability==50) {
+                        newItem.Probability="Fifty-Fifty"
+                    }
+                    else if (item.Probability<70) {
+                        newItem.Probability="Medium"
+                    }
+                    else if (item.Probability<90) {
+                        newItem.Probability="High"
+                    }
+                    else if (item.Probability<100) {
+                        newItem.Probability="VeryHigh"
+                    }
+                    else if (item.Probability==100) {
+                        newItem.Probability="Certain"
+                    }
+                }
+                newItem.ProbabilityValue=item.Probability;     // Probability(%), number                
                 newItem.CloseDate=item.CloseDate;     // date
                 newItem.Type=item.Type;       // Opportunity Type, string
                 newItem.NextStep=item.NextStep;     // Next Step, string
