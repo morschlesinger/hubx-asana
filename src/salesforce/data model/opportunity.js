@@ -11,7 +11,7 @@ function transform(accountData, items) {
         else {
             items.forEach(function (item) {
                 let newItem = { Id: null, IsDeleted: null, AccountId: null, Name: null, Description: null, StageName: null, Amount: null,
-                    Probability: null, CloseDate: null, Type: null, NextStep: null, LeadSource: null, IsClosed: null, IsWon: null,
+                    Probability: null, ProbabilityValue: null, CloseDate: null, Type: null, NextStep: null, LeadSource: null, IsClosed: null, IsWon: null,
                     ForecastCategory: null, ForecastCategoryName: null, CampaignId: null, HasOpportunityLineItem: null, Pricebook2Id: null,
                     OwnerId: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null,
                     LastActivityDate: null, FiscalQuarter: null, FiscalYear: null, Fiscal: null, LastViewedDate: null, LastReferencedDate: null,
@@ -25,7 +25,30 @@ function transform(accountData, items) {
                 newItem.Description = item.Description;
                 newItem.StageName = item.StageName;
                 newItem.Amount = item.Amount;
-                newItem.Probability = item.Probability;
+                if (item.Probability) {
+                    if (item.Probability < 10) {
+                        newItem.Probability = "VeryLow";
+                    }
+                    else if (item.Probability < 30) {
+                        newItem.Probability = "Low";
+                    }
+                    else if (item.Probability == 50) {
+                        newItem.Probability = "Fifty-Fifty";
+                    }
+                    else if (item.Probability < 70) {
+                        newItem.Probability = "Medium";
+                    }
+                    else if (item.Probability < 90) {
+                        newItem.Probability = "High";
+                    }
+                    else if (item.Probability < 100) {
+                        newItem.Probability = "VeryHigh";
+                    }
+                    else if (item.Probability == 100) {
+                        newItem.Probability = "Certain";
+                    }
+                }
+                newItem.ProbabilityValue = item.Probability;
                 newItem.CloseDate = item.CloseDate;
                 newItem.Type = item.Type;
                 newItem.NextStep = item.NextStep;
@@ -81,4 +104,3 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
-//# sourceMappingURL=opportunity.js.map

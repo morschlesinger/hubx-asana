@@ -72,4 +72,3 @@ module.exports = {
     boot: boot,
     app: exports.app,
 };
-//# sourceMappingURL=restful.js.map

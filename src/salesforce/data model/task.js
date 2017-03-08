@@ -85,4 +85,3 @@ function mapAll(QContent, accountData, currentPage) {
     });
 }
 exports.mapAll = mapAll;
-//# sourceMappingURL=task.js.map
