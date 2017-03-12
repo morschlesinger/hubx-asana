@@ -3,6 +3,8 @@ const C_DATAOBJECTENTITYNAME = "SALESFORCE_ACCOUNT";
 var cloudElements = require("../../cloudElements/cloudElements");
 import {contentQueue} from "../../singletons/contentQueue/contentQueue";
 import {EVENT_TYPES} from "../../services/nerveCenter";
+import * as utils from "../../utils/utils"
+
 
 export function transform(accountData, items) : Promise<Object[]> {
     return new Promise ((resolve, reject) => {
@@ -21,7 +23,8 @@ export function transform(accountData, items) : Promise<Object[]> {
                     SystemModstamp: null, LastActivityDate: null, LastViewedDate: null, LastReferenceDate: null, Jigsaw: null, 
                     JigsawCompanyID: null, AccountSource: null, DunsNumber: null, Tradestyle: null, NaicsCode: null, NaicsDesc: null,
                     YearStarted: null, SicDesc: null};
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier,item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id=item.Id;     // Account ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
                 if (item.MasterRecordId) {

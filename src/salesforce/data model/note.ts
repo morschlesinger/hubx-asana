@@ -3,6 +3,7 @@ const C_DATAOBJECTENTITYNAME = "SALESFORCE_NOTE";
 var cloudElements = require("../../cloudElements/cloudElements");
 import {contentQueue} from "../../singletons/contentQueue/contentQueue";
 import {EVENT_TYPES} from "../../services/nerveCenter";
+import * as utils from "../../utils/utils"
 
 export function transform(accountData, items): Promise<Object[]> {
     return new Promise((resolve, reject) => {
@@ -14,7 +15,8 @@ export function transform(accountData, items): Promise<Object[]> {
             items.forEach(function (item) {                    
                 let newItem = {Id: null, IsDeleted: null, ParentId: null, Title: null, IsPrivate: null, Body: null, OwnerId: null,
                     CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null};
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier,item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;       // Note ID, string
                 newItem.IsDeleted = item.IsDeleted;     // boolean
                 newItem.ParentId = accountData.identifier + ";" + item.ParentId;       // string

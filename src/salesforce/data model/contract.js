@@ -2,6 +2,7 @@
 const C_DATAOBJECTNAME = "contract";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_CONTRACT";
 var cloudElements = require("../../cloudElements/cloudElements");
+const utils = require("../../utils/utils");
 function transform(accountData, items) {
     return new Promise((resolve, reject) => {
         var newArray = [];
@@ -19,7 +20,8 @@ function transform(accountData, items) {
                     ActivatedDate: null, StatusCode: null, Description: null, IsDeleted: null, ContractNumber: null, LastApprovedDate: null,
                     CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null,
                     LastActivityDate: null, LastViewedDate: null, LastReferencedDate: null };
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
                 newItem.AccountId = accountData.identifier + ";" + item.AccountId;
                 newItem.Pricebook2Id = item.Pricebook2Id;

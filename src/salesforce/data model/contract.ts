@@ -3,6 +3,7 @@ const C_DATAOBJECTENTITYNAME = "SALESFORCE_CONTRACT";
 var cloudElements = require("../../cloudElements/cloudElements");
 import {contentQueue} from "../../singletons/contentQueue/contentQueue";
 import {EVENT_TYPES} from "../../services/nerveCenter";
+import * as utils from "../../utils/utils"
 
 export function transform(accountData, items) : Promise<Object[]> {
     return new Promise ((resolve, reject) => {
@@ -21,7 +22,8 @@ export function transform(accountData, items) : Promise<Object[]> {
                     ActivatedDate: null, StatusCode: null, Description: null, IsDeleted: null, ContractNumber: null, LastApprovedDate: null, 
                     CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, 
                     LastActivityDate: null, LastViewedDate: null, LastReferencedDate: null};
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier,item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id=item.Id;     // Contract ID, string
                 newItem.AccountId=accountData.identifier + ";" + item.AccountId;       // string
                 newItem.Pricebook2Id=item.Pricebook2Id;     // Price Book ID, string

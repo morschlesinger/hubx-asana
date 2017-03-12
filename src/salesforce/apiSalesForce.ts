@@ -5,7 +5,7 @@ var SalesForceConfiguration = config.get("SalesForce");
 var hubXConfiguration = config.get("Core");
 var hubx2 = require("@startx/hubx-core")(hubXConfiguration);
 var request = require("request");
-var utils = require("../utils/utils");
+import * as utils from "../utils/utils"
 import * as cloudElements from "../cloudElements/cloudElements";
 import {EVENT_TYPES,nerveCenter} from "../services/nerveCenter";
 //import {users} from "./data model/users";

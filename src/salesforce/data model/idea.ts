@@ -3,6 +3,7 @@ const C_DATAOBJECTENTITYNAME = "SALESFORCE_IDEA";
 var cloudElements = require("../../cloudElements/cloudElements");
 import {contentQueue} from "../../singletons/contentQueue/contentQueue";
 import {EVENT_TYPES} from "../../services/nerveCenter";
+import * as utils from "../../utils/utils"
 
 export function transform(accountData, items): Promise<Object[]> {
     return new Promise((resolve, reject) => {
@@ -17,7 +18,8 @@ export function transform(accountData, items): Promise<Object[]> {
                     CommunityId: null, Body: null, NumComments: null, VoteScore: null, VoteTotal: null, Categories: null, Status: null,
                     LastCommentDate: null, LastCommentId: null, ParentIdeaId: null, IsHtml: null, IsMerged: null, CreatorFullPhotoUrl: null,
                     CreatorSmallPhotoUrl: null, CreatorName: null};
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier,item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;       // Idea id, string
                 newItem.IsDeleted = item.IsDeleted;     // Deleted, boolean
                 newItem.Title = item.Title;     // string

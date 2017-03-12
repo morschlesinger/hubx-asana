@@ -2,6 +2,7 @@
 const C_DATAOBJECTNAME = "group";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_GROUP";
 var cloudElements = require("../../cloudElements/cloudElements");
+const utils = require("../../utils/utils");
 function transform(accountData, items) {
     return new Promise((resolve, reject) => {
         var newArray = [];
@@ -13,7 +14,8 @@ function transform(accountData, items) {
                 let newItem = { Id: null, Name: null, DeveloperName: null, RelatedId: null, Type: null, Email: null, OwnerId: null,
                     DoesSendEmailToMembers: null, DoesIncludeBosses: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null,
                     LastModifiedById: null, SystemModstamp: null };
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
                 if (!item.Name) {
                     if (item.DeveloperName) {

@@ -2,6 +2,7 @@
 const C_DATAOBJECTNAME = "report";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_REPORT";
 var cloudElements = require("../../cloudElements/cloudElements");
+const utils = require("../../utils/utils");
 function transform(accountData, items) {
     return new Promise((resolve, reject) => {
         var newArray = [];
@@ -13,7 +14,8 @@ function transform(accountData, items) {
                 let newItem = { Id: null, OwnerId: null, FolderName: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null,
                     LastModifiedById: null, IsDeleted: null, Name: null, Description: null, DeveloperName: null, NamespacePrefix: null,
                     LastRunDate: null, SystemModstamp: null, Format: null, LastViewedDate: null, LastReferencedDate: null };
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
                 newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
                 newItem.FolderName = item.FolderName;

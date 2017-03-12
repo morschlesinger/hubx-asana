@@ -2,6 +2,7 @@
 const C_DATAOBJECTNAME = "user";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_USER";
 var cloudElements = require("../../cloudElements/cloudElements");
+const utils = require("../../utils/utils");
 function transform(accountData, items) {
     return new Promise((resolve, reject) => {
         var newArray = [];
@@ -55,7 +56,8 @@ function transform(accountData, items) {
                     FullPhotoUrl: null, SmallPhotoUrl: null, MediumPhotoUrl: null, DigestFrequency: null, DefaultGroupNotificationFrequency: null,
                     LastViewedDate: null, LastReferencedDate: null, BannerPhotoUrl: null, SmallBannerPhotoUrl: null, MediumBannerPhotoUrl: null,
                     IsProfilePhotoActive: null };
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
                 newItem.Username = item.Username;
                 newItem.LastName = item.LastName;

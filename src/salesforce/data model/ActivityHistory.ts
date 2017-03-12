@@ -3,6 +3,7 @@ const C_DATAOBJECTENTITYNAME = "SALESFORCE_ACTIVITYHISTORY";
 var cloudElements = require("../../cloudElements/cloudElements");
 import {contentQueue} from "../../singletons/contentQueue/contentQueue";
 import {EVENT_TYPES} from "../../services/nerveCenter";
+import * as utils from "../../utils/utils"
 
 export function transform(accountData, items): Promise<Object[]> {
     return new Promise((resolve, reject) => {
@@ -18,7 +19,8 @@ export function transform(accountData, items): Promise<Object[]> {
                     CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, CallDurationInSeconds: null,
                     CallType: null, CallDisposition: null, CallObject: null, ReminderDateTime: null, IsReminderSet: null, EndDateTime: null,
                     StartDateTime: null, PrimaryWhoId: null, PrimaryAccountId: null, ActivitySubtype: null, AlternateDetailId: null};
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier,item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;       // ActivityId, string
                 newItem.AccountID = accountData.identifier + ";" + item.AccountID;     // string
                 newItem.WhoId = accountData.identifier + ";" + item.WhoId;     // Name ID, string

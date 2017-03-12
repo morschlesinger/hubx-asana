@@ -2,6 +2,7 @@
 const C_DATAOBJECTNAME = "openactivity";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_OPENACTIVITY";
 var cloudElements = require("../../cloudElements/cloudElements");
+const utils = require("../../utils/utils");
 function transform(accountData, items) {
     return new Promise((resolve, reject) => {
         var newArray = [];
@@ -16,7 +17,8 @@ function transform(accountData, items) {
                     CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, CallDurationInSeconds: null,
                     CallType: null, CallDisposition: null, CallObject: null, ReminderDateTime: null, IsReminderSet: null, EndDateTime: null,
                     StartDateTime: null, PrimaryWhoId: null, PrimaryAccountId: null, ActivitySubtype: null, AlternateDetailId: null };
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
                 newItem.AccountID = accountData.identifier + ";" + item.AccountID;
                 newItem.WhoId = accountData.identifier + ";" + item.WhoId;

@@ -2,6 +2,7 @@
 const C_DATAOBJECTNAME = "contact";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_CONTACT";
 var cloudElements = require("../../cloudElements/cloudElements");
+const utils = require("../../utils/utils");
 function transform(accountData, items) {
     return new Promise((resolve, reject) => {
         var newArray = [];
@@ -17,7 +18,8 @@ function transform(accountData, items) {
                     CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null,
                     LastActivityDate: null, LastCURequestDate: null, LastCUUpdateDate: null, LastViewedDate: null, LastReferencedDate: null,
                     EmailBouncedReason: null, EmailBouncedDate: null, IsEmailBounced: null, PhotoUrl: null, Jigsaw: null, JigsawContactId: null };
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
                 if (item.MasterRecordId) {

@@ -3,6 +3,7 @@ const C_DATAOBJECTENTITYNAME = "SALESFORCE_TASK";
 var cloudElements = require("../../cloudElements/cloudElements");
 import {contentQueue} from "../../singletons/contentQueue/contentQueue";
 import {EVENT_TYPES} from "../../services/nerveCenter";
+import * as utils from "../../utils/utils"
 
 export function transform(accountData, items) : Promise<Object[]> {
     return new Promise ((resolve, reject) => {
@@ -20,7 +21,8 @@ export function transform(accountData, items) : Promise<Object[]> {
                     RecurrenceEndDateOnly: null, RecurrenceTimeZoneSidKey: null, RecurrenceType: null, RecurrenceInterval: null,
                     RecurrenceDayOfWeekMask: null, RecurrenceDayOfMonth: null, RecurrenceInstance: null, RecurrenceMonthOfYear: null,
                     RecurrenceRegeneratedType: null, TaskSubtype: null};
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier,item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id=item.Id;     // Activity ID, string
                 newItem.WhoId=accountData.identifier + ";" + item.WhoId;       // Name ID, string
                 newItem.WhatId=accountData.identifier + ";" + item.WhatId;     // Related to ID, string

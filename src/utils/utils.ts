@@ -1,6 +1,11 @@
-export function strReplaceAll (target: String, search: RegExp, replacement: string): String {
+export function strReplaceAll (target: String, search: any, replacement: string): String {
     return target.split(search).join(replacement);
 };
+
+export function getPrimaryKey(userIdentifier: String, objectId: String): String {
+    return strReplaceAll(userIdentifier,";","%3B") + ";" + strReplaceAll(objectId,";","%3B");
+}
+
 
 export function byString(o, s) {
     s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
@@ -48,3 +53,7 @@ export function SetObjectPointersByArrayAndField(userIdentifier, parentObjectArr
         resolve(parentObjectArray);
     });        
 }
+
+export function GetNowTimestampLong(): number {
+    return Math.floor(new Date().valueOf());
+};

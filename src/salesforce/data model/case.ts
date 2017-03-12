@@ -3,6 +3,7 @@ const C_DATAOBJECTENTITYNAME = "SALESFORCE_CASE";
 var cloudElements = require("../../cloudElements/cloudElements");
 import {contentQueue} from "../../singletons/contentQueue/contentQueue";
 import {EVENT_TYPES} from "../../services/nerveCenter";
+import * as utils from "../../utils/utils"
 
 export function transform(accountData, items) : Promise<Object[]> {
     return new Promise ((resolve, reject) => {
@@ -18,7 +19,8 @@ export function transform(accountData, items) : Promise<Object[]> {
                     ClosedDate: null, IsEscalated: null, OwnerId: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, 
                     LastModifiedById: null, SystemModstamp: null, ContactPhone: null, ContactMobile: null, ContactEmail: null, 
                     ContactFax: null, LastViewedDate: null, LastReferencedDate: null};
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier,item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id=item.Id;     // Case ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
                 newItem.CaseNumber=item.CaseNumber;     // string

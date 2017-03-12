@@ -3,6 +3,7 @@ const C_DATAOBJECTENTITYNAME = "SALESFORCE_DOCUMENT";
 var cloudElements = require("../../cloudElements/cloudElements");
 import {contentQueue} from "../../singletons/contentQueue/contentQueue";
 import {EVENT_TYPES} from "../../services/nerveCenter";
+import * as utils from "../../utils/utils"
 
 export function transform(accountData, items): Promise<Object[]> {
     return new Promise((resolve, reject) => {
@@ -16,7 +17,8 @@ export function transform(accountData, items): Promise<Object[]> {
                     Type: null, IsPublic: null, BodyLength: null, Body: null, Url: null, Description: null, Keywords: null, IsInternalUseOnly: null,
                     AuthorId: null, CreatedDate: null, CreatedById: null, LastModifiedDate: null, LastModifiedById: null, SystemModstamp: null, 
                     IsBodySearchable: null, LastViewedDate: null, LastReferencedDate: null};
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier,item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;       // Document ID, string
                 newItem.FolderId = accountData.identifier + ";" + item.FolderId;     // string
                 newItem.IsDeleted = item.IsDeleted;       // boolean

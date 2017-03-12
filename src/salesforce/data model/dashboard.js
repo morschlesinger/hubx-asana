@@ -2,6 +2,7 @@
 const C_DATAOBJECTNAME = "dashboard";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_DASHBOARD";
 var cloudElements = require("../../cloudElements/cloudElements");
+const utils = require("../../utils/utils");
 function transform(accountData, items) {
     return new Promise((resolve, reject) => {
         var newArray = [];
@@ -16,7 +17,8 @@ function transform(accountData, items) {
                     RunningUserId: null, TitleColor: null, TitleSize: null, TextColor: null, BackgroundStart: null, BackgroundEnd: null,
                     BackgroundDirection: null, Type: null, LastViewedDate: null, LastReferencedDate: null, DashboardResultRefreshedDate: null,
                     DashboardResultRunningUser: null };
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.FolderId = accountData.identifier + ";" + item.FolderId;

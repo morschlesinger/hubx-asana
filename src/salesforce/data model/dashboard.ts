@@ -3,6 +3,7 @@ const C_DATAOBJECTENTITYNAME = "SALESFORCE_DASHBOARD";
 var cloudElements = require("../../cloudElements/cloudElements");
 import {contentQueue} from "../../singletons/contentQueue/contentQueue";
 import {EVENT_TYPES} from "../../services/nerveCenter";
+import * as utils from "../../utils/utils"
 
 export function transform(accountData, items): Promise<Object[]> {
     return new Promise((resolve, reject) => {
@@ -18,7 +19,8 @@ export function transform(accountData, items): Promise<Object[]> {
                     RunningUserId: null, TitleColor: null, TitleSize: null, TextColor: null, BackgroundStart: null, BackgroundEnd: null, 
                     BackgroundDirection: null, Type: null, LastViewedDate: null, LastReferencedDate: null, DashboardResultRefreshedDate: null,
                     DashboardResultRunningUser: null};
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier,item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;       // Dashboard ID, string
                 newItem.IsDeleted = item.IsDeleted;     // boolean
                 newItem.FolderId = accountData.identifier + ";" + item.FolderId;     // string

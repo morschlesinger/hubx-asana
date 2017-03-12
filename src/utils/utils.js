@@ -4,6 +4,10 @@ function strReplaceAll(target, search, replacement) {
 }
 exports.strReplaceAll = strReplaceAll;
 ;
+function getPrimaryKey(userIdentifier, objectId) {
+    return strReplaceAll(userIdentifier, ";", "%3B") + ";" + strReplaceAll(objectId, ";", "%3B");
+}
+exports.getPrimaryKey = getPrimaryKey;
 function byString(o, s) {
     s = s.replace(/\[(\w+)\]/g, '.$1');
     s = s.replace(/^\./, '');
@@ -56,3 +60,8 @@ function SetObjectPointersByArrayAndField(userIdentifier, parentObjectArray, chi
     });
 }
 exports.SetObjectPointersByArrayAndField = SetObjectPointersByArrayAndField;
+function GetNowTimestampLong() {
+    return Math.floor(new Date().valueOf());
+}
+exports.GetNowTimestampLong = GetNowTimestampLong;
+;

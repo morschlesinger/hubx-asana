@@ -3,7 +3,7 @@ var config = require("config");
 var CloudElementsConfiguration = config.get("CloudElements");
 var request = require("request");
 var SalesforceConfiguration = config.get("SalesForce");
-var utils = require("../utils/utils");
+const utils = require("../utils/utils");
 function getSalesForceUrl(SalesforceDomainPrefix) {
     return new Promise((resolve, reject) => {
         let request = require('request');

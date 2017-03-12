@@ -3,6 +3,7 @@ const C_DATAOBJECTENTITYNAME = "SALESFORCE_USER";
 var cloudElements = require("../../cloudElements/cloudElements");
 import {contentQueue} from "../../singletons/contentQueue/contentQueue";
 import {EVENT_TYPES} from "../../services/nerveCenter";
+import * as utils from "../../utils/utils"
 
 export function transform(accountData, items) : Promise<Object[]> {
     return new Promise ((resolve, reject) => {
@@ -57,7 +58,8 @@ export function transform(accountData, items) : Promise<Object[]> {
                     FullPhotoUrl: null, SmallPhotoUrl: null, MediumPhotoUrl: null, DigestFrequency: null, DefaultGroupNotificationFrequency: null,
                     LastViewedDate: null, LastReferencedDate: null, BannerPhotoUrl: null, SmallBannerPhotoUrl: null, MediumBannerPhotoUrl: null,
                     IsProfilePhotoActive: null};
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier,item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id=item.Id;     // User ID, string
                 newItem.Username=item.Username;       // string
                 newItem.LastName=item.LastName;       // string

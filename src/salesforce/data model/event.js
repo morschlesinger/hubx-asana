@@ -2,6 +2,7 @@
 const C_DATAOBJECTNAME = "event";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_EVENT";
 var cloudElements = require("../../cloudElements/cloudElements");
+const utils = require("../../utils/utils");
 function transform(accountData, items) {
     return new Promise((resolve, reject) => {
         var newArray = [];
@@ -19,7 +20,8 @@ function transform(accountData, items) {
                     RecurrenceTimeZoneSidKey: null, RecurrenceType: null, RecurrenceInterval: null, RecurrenceDayOfWeekMask: null,
                     RecurrenceDayOfMonth: null, RecurrenceInstance: null, RecurrenceMonthOfYear: null, ReminderDateTime: null,
                     IsReminderSet: null, EventSubtype: null };
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
                 newItem.WhoId = accountData.identifier + ";" + item.WhoId;
                 newItem.WhatId = accountData.identifier + ";" + item.WhatId;

@@ -2,6 +2,7 @@
 const C_DATAOBJECTNAME = "idea";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_IDEA";
 var cloudElements = require("../../cloudElements/cloudElements");
+const utils = require("../../utils/utils");
 function transform(accountData, items) {
     return new Promise((resolve, reject) => {
         var newArray = [];
@@ -15,7 +16,8 @@ function transform(accountData, items) {
                     CommunityId: null, Body: null, NumComments: null, VoteScore: null, VoteTotal: null, Categories: null, Status: null,
                     LastCommentDate: null, LastCommentId: null, ParentIdeaId: null, IsHtml: null, IsMerged: null, CreatorFullPhotoUrl: null,
                     CreatorSmallPhotoUrl: null, CreatorName: null };
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.Title = item.Title;

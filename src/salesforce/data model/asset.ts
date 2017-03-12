@@ -3,7 +3,7 @@ const C_DATAOBJECTENTITYNAME = "SALESFORCE_ASSET";
 var cloudElements = require("../../cloudElements/cloudElements");
 import {contentQueue} from "../../singletons/contentQueue/contentQueue";
 import {EVENT_TYPES} from "../../services/nerveCenter";
-
+import * as utils from "../../utils/utils"
 export function transform(accountData, items): Promise<Object[]> {
     return new Promise((resolve, reject) => {
         var newArray = [];
@@ -17,7 +17,8 @@ export function transform(accountData, items): Promise<Object[]> {
                     LastModifiedById: null, SystemModstamp: null, IsDeleted: null, Name: null, SerialNumber: null, InstallDate: null,
                     PurchaseDate: null, UsageEndDate: null, Status: null, Price: null, Quantity: null, Description: null, OwnerId: null,
                     LastViewedDate: null, LastReferenceDate: null};
-                newItem["_id"] = accountData.identifier + ";" + item.Id;
+                newItem["_id"] = utils.getPrimaryKey(accountData.identifier,item.Id);
+                newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;       // asset id, string
                 newItem.ContactId = accountData.identifier + ";" + item.ContactId;     // string
                 newItem.AccountId = accountData.identifier + ";" + item.AccountId;     // string
