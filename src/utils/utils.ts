@@ -6,7 +6,6 @@ export function getPrimaryKey(userIdentifier: String, objectId: String): String 
     return strReplaceAll(userIdentifier,";","%3B") + ";" + strReplaceAll(objectId,";","%3B");
 }
 
-
 export function byString(o, s) {
     s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
     s = s.replace(/^\./, '');           // strip a leading dot

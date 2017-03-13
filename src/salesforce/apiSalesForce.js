@@ -581,6 +581,19 @@ class apiSalesForce {
                 let userIdentifier = accountData.userId;
                 hubx2.memory.createAccount(hubXConfiguration.accountType, userIdentifier, "oAuth2", accountData, accountData.organizationId).then((accountResult) => {
                     accountData.identifier = accountResult.account.identifier;
+                    let accessToken = { identifier: userIdentifier,
+                        accountType: hubXConfiguration.accountType,
+                        protocol: "oAuth2",
+                        vendorParameter: SalesForceDomainPrefix,
+                        apiKey: result.configuration['oauth.api.key'],
+                        apiSecret: result.configuration['oauth.api.secret'],
+                        accessToken: result.configuration['oauth.user.token'],
+                        refreshToken: result.configuration['oauth.user.refresh_token'],
+                        scopes: result.configuration['oauth.scope'],
+                        authorizationUrl: result.configuration['sfdc.revoke.url'],
+                        tokensUrl: result.configuration['oauth.token.url'],
+                        tokenRefreshUrl: result.configuration['oauth.token.url'],
+                        tokenExpiresAt: new Date((result.configuration['oauth.user.refresh_time']) * 1000) };
                     if (!accountResult.created) {
                         let previousData = JSON.parse(accountResult.account.data);
                         if (!(accountData.CEelementInstanceId == previousData.CEelementInstanceId)) {
@@ -595,8 +608,12 @@ class apiSalesForce {
                     cloudElements.SetInstanceName(accountData.CEelementInstanceToken, accountData.CEelementInstanceId, accountData.identifier).then(() => {
                         res.writeHead(200, { "Content-Type": "application/json" });
                         res.end('{"userIdentifier": ' + JSON.stringify(userIdentifier) + '}');
-                        _this.processMapEntitiesFromAccountData(accountData).then(() => {
-                            console.log("Mapping Completed Successfully");
+                        hubx2.memory.keepAccessToken(hubXConfiguration.accountType, String(userIdentifier), accessToken, true).then((newToken) => {
+                            console.log("newToken=" + newToken);
+                            console.dir(newToken);
+                            _this.processMapEntitiesFromAccountData(accountData).then(() => {
+                                console.log("Mapping Completed Successfully");
+                            }).catch(reject);
                         }).catch(reject);
                     }).catch(reject);
                 }).catch(reject);
