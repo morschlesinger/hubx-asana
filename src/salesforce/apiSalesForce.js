@@ -608,6 +608,8 @@ class apiSalesForce {
                     cloudElements.SetInstanceName(accountData.CEelementInstanceToken, accountData.CEelementInstanceId, accountData.identifier).then(() => {
                         res.writeHead(200, { "Content-Type": "application/json" });
                         res.end('{"userIdentifier": ' + JSON.stringify(userIdentifier) + '}');
+                        console.log("accessToken=" + accessToken);
+                        console.dir(accessToken);
                         hubx2.memory.keepAccessToken(hubXConfiguration.accountType, String(userIdentifier), accessToken, true).then((newToken) => {
                             console.log("newToken=" + newToken);
                             console.dir(newToken);
