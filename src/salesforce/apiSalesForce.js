@@ -593,7 +593,7 @@ class apiSalesForce {
                         authorizationUrl: result.configuration['sfdc.revoke.url'],
                         tokensUrl: result.configuration['oauth.token.url'],
                         tokenRefreshUrl: result.configuration['oauth.token.url'],
-                        tokenExpiresAt: new Date(result.configuration['oauth.user.refresh_time']) };
+                        tokenExpiresAt: new Date(Number(result.configuration['oauth.user.refresh_time'])) };
                     if (!accountResult.created) {
                         let previousData = JSON.parse(accountResult.account.data);
                         if (!(accountData.CEelementInstanceId == previousData.CEelementInstanceId)) {
