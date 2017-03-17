@@ -2,14 +2,15 @@ export function strReplaceAll (target: String, search: any, replacement: string)
     return target.split(search).join(replacement);
 };
 
-export function getPrimaryKey(userIdentifier: String, objectId: String): String {
-    return strReplaceAll(userIdentifier,";","%3B") + ";" + strReplaceAll(objectId,";","%3B");
+export function getPrimaryKey(userIdentifier: number, objectId: String): String {
+    return String(userIdentifier) + '.' + objectId;
+    //return strReplaceAll(userIdentifier,";","%3B") + ";" + strReplaceAll(objectId,";","%3B");
 }
 
 export function byString(o, s) {
     s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
     s = s.replace(/^\./, '');           // strip a leading dot
-    var a = s.split(';');
+    var a = s.split('.');
     for (var i = 0, n = a.length; i < n; ++i) {
         var k = a[i];
         if (k in o) {
@@ -39,8 +40,8 @@ export function SetObjectPointersByArrayAndField(userIdentifier, parentObjectArr
             let newArray = [];
             childrenObjectArray.forEach(function (childItem) {
                 if (parentItem[parentIdFieldName] == childItem[childParentIdFieldName]) {
-                    newArray.push(userIdentifier + ';' + childItem[childIdFieldName]);
-                    childItem[childParentIdFieldName]=userIdentifier + ';' + childItem[childParentIdFieldName];
+                    newArray.push(userIdentifier + '.' + childItem[childIdFieldName]);
+                    childItem[childParentIdFieldName]=userIdentifier + '.' + childItem[childParentIdFieldName];
                 }
             });
             if (newArray.length>0) {

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const C_DATAOBJECTNAME = "dashboard";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_DASHBOARD";
 var cloudElements = require("../../cloudElements/cloudElements");
@@ -21,7 +22,7 @@ function transform(accountData, items) {
                 newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
-                newItem.FolderId = accountData.identifier + ";" + item.FolderId;
+                newItem.FolderId = accountData.identifier + "." + item.FolderId;
                 newItem.FolderName = item.FolderName;
                 newItem.Title = item.Title;
                 newItem.DeveloperName = item.DeveloperName;
@@ -31,11 +32,11 @@ function transform(accountData, items) {
                 newItem.MiddleSize = item.MiddleSize;
                 newItem.RightSize = item.RightSize;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
-                newItem.RunningUserId = accountData.identifier + ";" + item.RunningUserId;
+                newItem.RunningUserId = accountData.identifier + "." + item.RunningUserId;
                 newItem.TitleColor = item.TitleColor;
                 newItem.TitleSize = item.TitleSize;
                 newItem.TextColor = item.TextColor;

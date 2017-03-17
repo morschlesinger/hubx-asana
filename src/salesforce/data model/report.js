@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const C_DATAOBJECTNAME = "report";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_REPORT";
 var cloudElements = require("../../cloudElements/cloudElements");
@@ -17,12 +18,12 @@ function transform(accountData, items) {
                 newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
                 newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
-                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
                 newItem.FolderName = item.FolderName;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.Name = item.Name;
                 newItem.Description = item.Description;

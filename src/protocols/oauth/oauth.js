@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ClientOAuth2 = require('client-oauth2');
 var config = require('../../singletons/config/config');
 class oAuth {

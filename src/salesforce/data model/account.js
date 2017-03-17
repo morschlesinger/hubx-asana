@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const C_DATAOBJECTNAME = "Account";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_ACCOUNT";
 var cloudElements = require("../../cloudElements/cloudElements");
@@ -25,7 +26,7 @@ function transform(accountData, items) {
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
                 if (item.MasterRecordId) {
-                    newItem.MasterRecordId = accountData.identifier + ";" + item.MasterRecordId;
+                    newItem.MasterRecordId = accountData.identifier + "." + item.MasterRecordId;
                 }
                 else
                     newItem.MasterRecordId = null;
@@ -54,11 +55,11 @@ function transform(accountData, items) {
                 newItem.Industry = item.Industry;
                 newItem.NumberOfEmployees = item.NumberOfEmployees;
                 newItem.Description = item.Description;
-                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.LastActivityDate = item.LastActivityDate;
                 newItem.LastViewedDate = item.LastViewedDate;

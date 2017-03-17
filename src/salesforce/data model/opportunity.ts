@@ -24,7 +24,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id=item.Id;     // Opportunity ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
-                newItem.AccountId=accountData.identifier + ";" + item.AccountId;     // string
+                newItem.AccountId=accountData.identifier + "." + item.AccountId;     // string
                 newItem.Name=item.Name;     // string
                 newItem.Description=item.Description;       // string
                 newItem.StageName=item.StageName;     // Stage, string       
@@ -62,14 +62,14 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.IsWon=item.IsWon;     // Won, boolean
                 newItem.ForecastCategory=item.ForecastCategory;       // string
                 newItem.ForecastCategoryName=item.ForecastCategoryName;     // string
-                newItem.CampaignId=accountData.identifier + ";" + item.CampaignId;       // string
+                newItem.CampaignId=accountData.identifier + "." + item.CampaignId;       // string
                 newItem.HasOpportunityLineItem=item.HasOpportunityLineItem;     // Has Line Item,boolean
                 newItem.Pricebook2Id=item.Pricebook2Id;       // Price Book ID, string
-                newItem.OwnerId=accountData.identifier + ";" + item.OwnerId;       // string
+                newItem.OwnerId=accountData.identifier + "." + item.OwnerId;       // string
                 newItem.CreatedDate=item.CreatedDate;       // date
-                newItem.CreatedById=accountData.identifier + ";" + item.CreatedById;     // string
+                newItem.CreatedById=accountData.identifier + "." + item.CreatedById;     // string
                 newItem.LastModifiedDate=item.LastModifiedDate;       // date
-                newItem.LastModifiedById=accountData.identifier + ";" + item.LastModifiedById;       // string
+                newItem.LastModifiedById=accountData.identifier + "." + item.LastModifiedById;       // string
                 newItem.SystemModstamp=item.SystemModstamp;     // date
                 newItem.LastActivityDate=item.LastActivityDate;     // date
                 newItem.FiscalQuarter=item.FiscalQuarter;     // Fiscal Quarter, number

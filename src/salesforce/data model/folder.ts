@@ -26,9 +26,9 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.Type = item.Type;   // string               
                 newItem.NamespacePrefix = item.NamespacePrefix;     // Namespace Prefix, string
                 newItem.CreatedDate = item.CreatedDate;     // date
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;     // string
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;     // string
                 newItem.LastModifiedDate = item.LastModifiedDate;       // date
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;       // string
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;       // string
                 newItem.SystemModstamp = item.SystemModstamp;       // date
            /*     newItem.body = item.body;
                 newItem.draft = item.draft;

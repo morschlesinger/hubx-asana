@@ -25,7 +25,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.Id=item.Id;     // Campaign ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
                 newItem.Name=item.Name;     // string
-                newItem.ParentId=accountData.identifier + ";" + item.ParentId;     // Parent Campaign ID, string
+                newItem.ParentId=accountData.identifier + "." + item.ParentId;     // Parent Campaign ID, string
                 newItem.Type=item.Type;     // string
                 newItem.Status=item.Status;     // string
                 newItem.StartDate=item.StartDate;       // date
@@ -44,16 +44,16 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.NumberOfOpportunities=item.NumberOfOpportunities;       // Opportunities in Campaign, number
                 newItem.NumberOfWonOpportunities=item.NumberOfWonOpportunities;     // Won Opportunities in Campaign, number
                 newItem.AmountAllOpportunities=item.AmountWonOpportunities;     // Value Won Opportunities in Campaign, number
-                newItem.OwnerId=accountData.identifier + ";" + item.OwnerId;       // string
+                newItem.OwnerId=accountData.identifier + "." + item.OwnerId;       // string
                 newItem.CreatedDate=item.CreatedDate;       // date
-                newItem.CreatedById=accountData.identifier + ";" + item.CreatedById;       // string
+                newItem.CreatedById=accountData.identifier + "." + item.CreatedById;       // string
                 newItem.LastModifiedDate=item.LastModifiedDate;     // date
-                newItem.LastModifiedById=accountData.identifier + ";" + item.LastModifiedById;     // string
+                newItem.LastModifiedById=accountData.identifier + "." + item.LastModifiedById;     // string
                 newItem.SystemModstamp=item.SystemModstamp;     // date
                 newItem.LastActivityDate=item.LastActivityDate;     // date
                 newItem.LastViewedDate=item.LastViewedDate;     // date
                 newItem.LastReferencedDate=item.LastReferencedDate;     // Last Referenced Date, date
-                newItem.CampaignMemberRecordTypeId=accountData.identifier + ";" + item.CampaignMemberRecordTypeId;     // Record Type ID, string
+                newItem.CampaignMemberRecordTypeId=accountData.identifier + "." + item.CampaignMemberRecordTypeId;     // Record Type ID, string
                 newArray.push(newItem);
             });
             resolve({mainEntityName: C_DATAOBJECTNAME, [C_DATAOBJECTNAME]: newArray});

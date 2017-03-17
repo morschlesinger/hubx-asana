@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const C_DATAOBJECTNAME = "user";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_USER";
 var cloudElements = require("../../cloudElements/cloudElements");
@@ -104,13 +105,13 @@ function transform(accountData, items) {
                 newItem.UserType = item.UserType;
                 newItem.LanguageLocaleKey = item.LanguageLocaleKey;
                 newItem.EmployeeNumber = item.EmployeeNumber;
-                newItem.ManagerId = accountData.identifier + ";" + item.ManagerId;
+                newItem.ManagerId = accountData.identifier + "." + item.ManagerId;
                 newItem.LastLoginDate = item.LastLoginDate;
                 newItem.LastPasswordChangeDate = item.LastPasswordChangeDate;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.OfflineTrialExpirationDate = item.OfflineTrialExpirationDate;
                 newItem.OfflinePdaTrialExpirationDate = item.OfflinePdaTrialExpirationDate;
@@ -183,8 +184,8 @@ function transform(accountData, items) {
                 newItem.UserPreferencesGlobalNavGridMenuWTShown = item.UserPreferencesGlobalNavGridMenuWTShown;
                 newItem.UserPreferencesCreateLEXAppsWTShown = item.UserPreferencesCreateLEXAppsWTShown;
                 newItem.UserPreferencesFavoritesWTShown = item.UserPreferencesFavoritesWTShown;
-                newItem.ContactId = accountData.identifier + ";" + item.ContactId;
-                newItem.AccountId = accountData.identifier + ";" + item.AccountId;
+                newItem.ContactId = accountData.identifier + "." + item.ContactId;
+                newItem.AccountId = accountData.identifier + "." + item.AccountId;
                 newItem.CallCenterId = item.CallCenterId;
                 newItem.Extension = item.Extension;
                 newItem.FederationIdentifier = item.FederationIdentifier;

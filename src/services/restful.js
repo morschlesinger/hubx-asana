@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var connect = require("connect");
 var express = require("express");
 var url = require("url");

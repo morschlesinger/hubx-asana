@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const C_DATAOBJECTNAME = "activityhistory";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_ACTIVITYHISTORY";
 var cloudElements = require("../../cloudElements/cloudElements");
@@ -20,13 +21,13 @@ function transform(accountData, items) {
                 newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
                 newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
-                newItem.AccountID = accountData.identifier + ";" + item.AccountID;
-                newItem.WhoId = accountData.identifier + ";" + item.WhoId;
-                newItem.WhatId = accountData.identifier + ";" + item.WhatId;
+                newItem.AccountID = accountData.identifier + "." + item.AccountID;
+                newItem.WhoId = accountData.identifier + "." + item.WhoId;
+                newItem.WhatId = accountData.identifier + "." + item.WhatId;
                 newItem.Subject = item.Subject;
                 newItem.IsTask = item.IsTask;
                 newItem.ActivityDate = item.ActivityDate;
-                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
                 newItem.Status = item.Status;
                 newItem.Priority = item.Priority;
                 newItem.IsHighPriority = item.IsHighPriority;
@@ -39,9 +40,9 @@ function transform(accountData, items) {
                 newItem.Description = item.Description;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.CallDurationInSeconds = item.CallDurationInSeconds;
                 newItem.CallType = item.CallType;
@@ -51,8 +52,8 @@ function transform(accountData, items) {
                 newItem.IsReminderSet = item.IsReminderSet;
                 newItem.EndDateTime = item.EndDateTime;
                 newItem.StartDateTime = item.StartDateTime;
-                newItem.PrimaryWhoId = accountData.identifier + ";" + item.PrimaryWhoId;
-                newItem.PrimaryAccountId = accountData.identifier + ";" + item.PrimaryAccountId;
+                newItem.PrimaryWhoId = accountData.identifier + "." + item.PrimaryWhoId;
+                newItem.PrimaryAccountId = accountData.identifier + "." + item.PrimaryAccountId;
                 newItem.ActivitySubtype = item.ActivitySubtype;
                 newItem.AlternateDetailId = item.AlternateDetailId;
                 newArray.push(newItem);

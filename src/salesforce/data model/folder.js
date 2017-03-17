@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const C_DATAOBJECTNAME = "folder";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_FOLDER";
 var cloudElements = require("../../cloudElements/cloudElements");
@@ -24,9 +25,9 @@ function transform(accountData, items) {
                 newItem.Type = item.Type;
                 newItem.NamespacePrefix = item.NamespacePrefix;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newArray.push(newItem);
             });

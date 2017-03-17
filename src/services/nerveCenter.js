@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var EVENT_TYPES;
 (function (EVENT_TYPES) {
     EVENT_TYPES[EVENT_TYPES["ENTITY_CREATED"] = 0] = "ENTITY_CREATED";

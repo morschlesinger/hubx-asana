@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const C_DATAOBJECTNAME = "asset";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_ASSET";
 var cloudElements = require("../../cloudElements/cloudElements");
@@ -19,16 +20,16 @@ function transform(accountData, items) {
                 newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
                 newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
-                newItem.ContactId = accountData.identifier + ";" + item.ContactId;
-                newItem.AccountId = accountData.identifier + ";" + item.AccountId;
-                newItem.ParentId = accountData.identifier + ";" + item.ParentId;
-                newItem.RootAssetId = accountData.identifier + ";" + item.RootAssetId;
-                newItem.Product2Id = accountData.identifier + ";" + item.Product2Id;
+                newItem.ContactId = accountData.identifier + "." + item.ContactId;
+                newItem.AccountId = accountData.identifier + "." + item.AccountId;
+                newItem.ParentId = accountData.identifier + "." + item.ParentId;
+                newItem.RootAssetId = accountData.identifier + "." + item.RootAssetId;
+                newItem.Product2Id = accountData.identifier + "." + item.Product2Id;
                 newItem.IsCompetitorProduct = item.IsCompetitorProduct;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.Name = item.Name;
@@ -40,7 +41,7 @@ function transform(accountData, items) {
                 newItem.Price = item.Price;
                 newItem.Quantity = item.Quantity;
                 newItem.Description = item.Description;
-                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
                 newItem.LastViewedDate = item.LastViewedDate;
                 newItem.LastReferenceDate = item.LastReferenceDate;
                 newArray.push(newItem);

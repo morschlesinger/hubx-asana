@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const C_DATAOBJECTNAME = "contract";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_CONTRACT";
 var cloudElements = require("../../cloudElements/cloudElements");
@@ -23,7 +24,7 @@ function transform(accountData, items) {
                 newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
                 newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
-                newItem.AccountId = accountData.identifier + ";" + item.AccountId;
+                newItem.AccountId = accountData.identifier + "." + item.AccountId;
                 newItem.Pricebook2Id = item.Pricebook2Id;
                 newItem.OwnerExpirationNotice = item.OwnerExpirationNotice;
                 newItem.StartDate = item.StartDate;
@@ -45,15 +46,15 @@ function transform(accountData, items) {
                 newItem.ShippingLongitude = item.ShippingLongitude;
                 newItem.ShippingGeocodeAccuracy = item.ShippingGeocodeAccuracy;
                 newItem.ContractTerm = item.ContractTerm;
-                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
                 newItem.Status = item.Status;
-                newItem.CompanySignedId = accountData.identifier + ";" + item.CompanySignedId;
+                newItem.CompanySignedId = accountData.identifier + "." + item.CompanySignedId;
                 newItem.CompanySignedDate = item.CompanySignedDate;
-                newItem.CustomerSignedId = accountData.identifier + ";" + item.CustomerSignedId;
+                newItem.CustomerSignedId = accountData.identifier + "." + item.CustomerSignedId;
                 newItem.CustomerSignedTitle = item.CustomerSignedTitle;
                 newItem.CustomerSignedDate = item.CustomerSignedDate;
                 newItem.SpecialTerms = item.SpecialTerms;
-                newItem.ActivatedById = accountData.identifier + ";" + item.ActivatedById;
+                newItem.ActivatedById = accountData.identifier + "." + item.ActivatedById;
                 newItem.ActivatedDate = item.ActivatedDate;
                 newItem.StatusCode = item.StatusCode;
                 newItem.Description = item.Description;
@@ -61,9 +62,9 @@ function transform(accountData, items) {
                 newItem.ContractNumber = item.ContractNumber;
                 newItem.LastApprovedDate = item.LastApprovedDate;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.LastActivityDate = item.LastActivityDate;
                 newItem.LastViewedDate = item.LastViewedDate;

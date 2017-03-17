@@ -28,11 +28,11 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.Status = item.Status;       // string
                 newItem.IsReviewed = item.IsReviewed;       // Reviewed, boolean
                 newItem.SolutionNote = item.SolutionNote;       // Description, string
-                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;       // string
+                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;       // string
                 newItem.CreatedDate = item.CreatedDate;       // date
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;       // string
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;       // string
                 newItem.LastModifiedDate = item.LastModifiedDate;     // date
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;       // string
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;       // string
                 newItem.SystemModstamp = item.SystemModstamp;       // date
                 newItem.TimesUsed = item.TimesUsed;       // Num Related Cases, number
                 newItem.LastViewedDate = item.LastViewedDate;       // date

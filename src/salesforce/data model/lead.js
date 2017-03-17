@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const C_DATAOBJECTNAME = "lead";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_LEAD";
 var cloudElements = require("../../cloudElements/cloudElements");
@@ -25,7 +26,7 @@ function transform(accountData, items) {
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
                 if (item.MasterRecordId) {
-                    newItem.MasterRecordId = accountData.identifier + ";" + item.MasterRecordId;
+                    newItem.MasterRecordId = accountData.identifier + "." + item.MasterRecordId;
                 }
                 else
                     newItem.MasterRecordId = null;
@@ -55,7 +56,7 @@ function transform(accountData, items) {
                 newItem.Industry = item.Industry;
                 newItem.Rating = item.Rating;
                 newItem.NumberOfEmployees = item.NumberOfEmployees;
-                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
                 newItem.IsConverted = item.IsConverted;
                 newItem.ConvertedDate = item.ConvertedDate;
                 newItem.ConvertedAccountId = item.ConvertedAccountId;
@@ -63,9 +64,9 @@ function transform(accountData, items) {
                 newItem.ConvertedOpportunityId = item.ConvertedOpportunityId;
                 newItem.IsUnreadByOwner = item.IsUnreadByOwner;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.LastActivityDate = item.LastActivityDate;
                 newItem.LastViewedDate = item.LastViewedDate;

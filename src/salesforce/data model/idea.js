@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const C_DATAOBJECTNAME = "idea";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_IDEA";
 var cloudElements = require("../../cloudElements/cloudElements");
@@ -23,9 +24,9 @@ function transform(accountData, items) {
                 newItem.Title = item.Title;
                 newItem.RecordTypeId = item.RecordTypeId;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.LastViewedDate = item.LastViewedDate;
                 newItem.LastReferencedDate = item.LastReferencedDate;
@@ -37,8 +38,8 @@ function transform(accountData, items) {
                 newItem.Categories = item.Categories;
                 newItem.Status = item.Status;
                 newItem.LastCommentDate = item.LastCommentDate;
-                newItem.LastCommentId = accountData.identifier + ";" + item.LastCommentId;
-                newItem.ParentIdeaId = accountData.identifier + ";" + item.ParentIdeaId;
+                newItem.LastCommentId = accountData.identifier + "." + item.LastCommentId;
+                newItem.ParentIdeaId = accountData.identifier + "." + item.ParentIdeaId;
                 newItem.IsHtml = item.IsHtml;
                 newItem.IsMerged = item.IsMerged;
                 newItem.CreatorFullPhotoUrl = item.CreatorFullPhotoUrl;

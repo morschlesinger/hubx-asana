@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var config = require("config");
 var qs = require("querystring");
 var CloudElementsConfiguration = config.get("CloudElements");
@@ -574,48 +575,55 @@ class apiSalesForce {
             cloudElements.createInstance(SalesForceDomainPrefix, req.query.code).then((result) => {
                 let elementToken = result.token;
                 let instanceElement = result.element;
-                let accountData = { CEelementInstanceId: result.id, CEelementInstanceToken: result.token, identifier: '', siteAddress: '', organizationId: '', email: '', userId: '', apiKey: result.configuration['oauth.api.key'], apiSecret: result.configuration['oauth.api.secret'], authorizationUrl: result.configuration['oauth.authorization.url'], callbackUrl: result.configuration['oauth.callback.url'], scope: result.configuration['oauth.scope'], userToken: result.configuration['oauth.user.token'], tokenUrl: result.configuration['oauth.token.url'], userRefreshInterval: result.configuration['oauth.user.refresh_interval'], userRefreshTime: result.configuration['oauth.user.refresh_time'], userRefreshToken: result.configuration['oauth.user.refresh_token'] };
-                var userId = result.configuration['sfdc.user.id.url'];
-                accountData.userId = userId.substr(userId.lastIndexOf("/") + 1);
-                accountData.siteAddress = result.configuration['base.url'];
-                let userIdentifier = accountData.userId;
-                hubx2.memory.createAccount(hubXConfiguration.accountType, userIdentifier, "oAuth2", accountData, accountData.organizationId).then((accountResult) => {
-                    accountData.identifier = accountResult.account.identifier;
-                    let accessToken = { identifier: userIdentifier,
-                        accountType: hubXConfiguration.accountType,
-                        protocol: "oAuth2",
-                        vendorParameter: SalesForceDomainPrefix,
-                        apiKey: result.configuration['oauth.api.key'],
-                        apiSecret: result.configuration['oauth.api.secret'],
-                        accessToken: result.configuration['oauth.user.token'],
-                        refreshToken: result.configuration['oauth.user.refresh_token'],
-                        scopes: result.configuration['oauth.scope'],
-                        authorizationUrl: result.configuration['sfdc.revoke.url'],
-                        tokensUrl: result.configuration['oauth.token.url'],
-                        tokenRefreshUrl: result.configuration['oauth.token.url'],
-                        tokenExpiresAt: new Date(Number(result.configuration['oauth.user.refresh_time'])) };
+                let accountData = { userId: 1, CEelementInstanceId: result.id, CEelementInstanceToken: result.token, identifier: null, vendorParameter: '', organizationId: '', email: '', vendorId: '' };
+                var vendorId = result.configuration['sfdc.user.id.url'];
+                accountData.vendorId = vendorId.substr(vendorId.lastIndexOf("/") + 1);
+                accountData.vendorParameter = result.configuration['base.url'];
+                let accessToken = { vendorId: accountData.vendorId,
+                    accountType: hubXConfiguration.accountType,
+                    protocol: "oAuth2",
+                    vendorParameter: accountData.vendorParameter,
+                    apiKey: result.configuration['oauth.api.key'],
+                    apiSecret: result.configuration['oauth.api.secret'],
+                    accessToken: result.configuration['oauth.user.token'],
+                    refreshToken: result.configuration['oauth.user.refresh_token'],
+                    scopes: result.configuration['oauth.scope'],
+                    authorizationUrl: result.configuration['sfdc.revoke.url'],
+                    tokensUrl: result.configuration['sfdc.token.url'],
+                    tokenRefreshUrl: result.configuration['sfdc.token.url'],
+                    tokenExpiresAt: new Date(Number(result.configuration['oauth.user.refresh_time'])),
+                    CEInstanceId: accountData.CEelementInstanceId };
+                hubx2.memory.createAccount(accountData.vendorId, hubXConfiguration.accountType, '', "oAuth2", accountData, accountData.userId, 0, accountData.organizationId).then((accountResult) => {
+                    accountData.identifier = accountResult.identifier;
+                    let accountIdentifier = Number(accountData.identifier);
                     if (!accountResult.created) {
-                        let previousData = JSON.parse(accountResult.account.data);
+                        let previousData = JSON.parse(accountResult.data);
                         if (!(accountData.CEelementInstanceId == previousData.CEelementInstanceId)) {
-                            hubx2.memory.updateAccount(userIdentifier, hubXConfiguration.accountType, { data: accountData }).then(() => {
-                                console.log("account updated with new instance");
-                                cloudElements.deleteCEInstance(previousData.CEelementInstanceToken, previousData.CEelementInstanceId).then(() => {
-                                    console.log("old instance deleted");
+                            hubx2.memory.updateAccessToken(accountResult.accessTokenId, accessToken, false).then((newToken) => {
+                                console.log("access token updated");
+                                hubx2.memory.updateAccount(accountIdentifier, hubXConfiguration.accountType, { data: accountData }).then(() => {
+                                    console.log("account updated with new instance");
+                                    cloudElements.deleteCEInstance(previousData.CEelementInstanceId).then(() => {
+                                        console.log("old instance deleted");
+                                    }).catch(reject);
                                 }).catch(reject);
                             }).catch(reject);
                         }
                     }
+                    else {
+                        hubx2.memory.keepAccessToken(hubXConfiguration.accountType, accountIdentifier, accessToken, false).then((result) => {
+                            console.log("keepAccessToken - token saved - newToken=" + result.accessToken);
+                            console.dir(result.accessToken);
+                            hubx2.memory.updateAccount(accountIdentifier, hubXConfiguration.accountType, { accessTokenId: result.accessToken.id }).then(() => {
+                                console.log("account updated with new access token id");
+                            }).catch(reject);
+                        }).catch(reject);
+                    }
                     cloudElements.SetInstanceName(accountData.CEelementInstanceToken, accountData.CEelementInstanceId, accountData.identifier).then(() => {
                         res.writeHead(200, { "Content-Type": "application/json" });
-                        res.end('{"userIdentifier": ' + JSON.stringify(userIdentifier) + '}');
-                        console.log("accessToken=" + accessToken);
-                        console.dir(accessToken);
-                        hubx2.memory.keepAccessToken(hubXConfiguration.accountType, String(userIdentifier), accessToken, true).then((newToken) => {
-                            console.log("newToken=" + newToken);
-                            console.dir(newToken);
-                            _this.processMapEntitiesFromAccountData(accountData).then(() => {
-                                console.log("Mapping Completed Successfully");
-                            }).catch(reject);
+                        res.end('{"userId": ' + JSON.stringify(accountData.userId) + ', "accountIdentifier": ' + JSON.stringify(accountData.identifier) + '}');
+                        _this.processMapEntitiesFromAccountData(accountData).then(() => {
+                            console.log("Mapping Completed Successfully");
                         }).catch(reject);
                     }).catch(reject);
                 }).catch(reject);

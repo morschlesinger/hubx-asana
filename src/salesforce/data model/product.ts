@@ -25,9 +25,9 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.Description=item.Description;     // Product Description, string
                 newItem.IsActive=item.IsActive;     // Active, boolean
                 newItem.CreatedDate=item.CreatedDate;       // Created Date, date
-                newItem.CreatedById=accountData.identifier + ";" + item.CreatedById;       // string
+                newItem.CreatedById=accountData.identifier + "." + item.CreatedById;       // string
                 newItem.LastModifiedDate=item.LastModifiedDate;     // date
-                newItem.LastModifiedById=accountData.identifier + ";" + item.LastModifiedById;     // string
+                newItem.LastModifiedById=accountData.identifier + "." + item.LastModifiedById;     // string
                 newItem.SystemModstamp=item.SystemModstamp;     // date
                 newItem.Family=item.Family;       // Product Family, string
                 newItem.ExternalDataSourceId=item.ExternalDataSourceId;       // External Data Source ID, string

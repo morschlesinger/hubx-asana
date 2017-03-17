@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const C_DATAOBJECTNAME = "case";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_CASE";
 var cloudElements = require("../../cloudElements/cloudElements");
@@ -22,10 +23,10 @@ function transform(accountData, items) {
                 newItem.Id = item.Id;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.CaseNumber = item.CaseNumber;
-                newItem.ContactId = accountData.identifier + ";" + item.ContactId;
-                newItem.AccountId = accountData.identifier + ";" + item.AccountId;
+                newItem.ContactId = accountData.identifier + "." + item.ContactId;
+                newItem.AccountId = accountData.identifier + "." + item.AccountId;
                 if (item.ParentId) {
-                    newItem.ParentId = accountData.identifier + ";" + item.ParentId;
+                    newItem.ParentId = accountData.identifier + "." + item.ParentId;
                 }
                 else
                     newItem.ParentId = null;
@@ -43,11 +44,11 @@ function transform(accountData, items) {
                 newItem.IsClosed = item.IsClosed;
                 newItem.ClosedDate = item.ClosedDate;
                 newItem.IsEscalated = item.IsEscalated;
-                newItem.OwnerId = accountData.identifier + ";" + item.OwnerId;
+                newItem.OwnerId = accountData.identifier + "." + item.OwnerId;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.ContactPhone = item.ContactPhone;
                 newItem.ContactMobile = item.ContactMobile;

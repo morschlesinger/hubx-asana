@@ -11,7 +11,7 @@
 		"organizationSecret": "b63edbeee503bd28ad71942a45682c1c", // FFU process.env.CE_ORGANIZATION		
 		// ran - "userSecret": "S5XAP18QvLx6XY6NvBHS4hCksevaJitei9shnneWnoM=", // FFU process.env.CE_USER
 		"userSecret": "1YGQlBvYjsJjxx+dXW158FqfddAMBoQW+lIWLldoPFI=", // FFU process.env.CE_USER		
-		"defaultPageSize": 20,
+		"defaultPageSize": 10,
 		"webhooksUrl": "https://hubx-salesforce-staging.azurewebsites.net/webhooks",
 		//"webhooksUrl": "https://secure.taosdc.com/webhooks",
 		"webhooksSignatureKey": "ThisIsTheSignatureKeyForHashingThePayload"

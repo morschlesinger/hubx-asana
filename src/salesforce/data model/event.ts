@@ -25,8 +25,8 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem["_id"] = utils.getPrimaryKey(accountData.identifier,item.Id);
                 newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id=item.Id;     // Activity ID, string
-                newItem.WhoId=accountData.identifier + ";" + item.WhoId;       // Name ID, string
-                newItem.WhatId=accountData.identifier + ";" + item.WhatId;     // Related to ID, string
+                newItem.WhoId=accountData.identifier + "." + item.WhoId;       // Name ID, string
+                newItem.WhatId=accountData.identifier + "." + item.WhatId;     // Related to ID, string
                 newItem.WhoCount=item.WhoCount;     // Relation Count, number
                 newItem.WhatCount=item.WhatCount;     // Related to Count, number
                 newItem.Subject=item.Subject;     // unknown
@@ -38,8 +38,8 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.StartDateTime=item.StartDateTime;       // date
                 newItem.EndDateTime=item.EndDateTime;     // date      
                 newItem.Description=item.Description;     // string
-                newItem.AccountId=accountData.identifier + ";" + item.AccountId;     // string
-                newItem.OwnerId=accountData.identifier + ";" + item.OwnerId;     // Assigned to ID, string
+                newItem.AccountId=accountData.identifier + "." + item.AccountId;     // string
+                newItem.OwnerId=accountData.identifier + "." + item.OwnerId;     // Assigned to ID, string
                 newItem.Type=item.Type;       // string
                 newItem.IsPrivate=item.IsPrivate;     // Private, boolean
                 newItem.ShowAs=item.ShowAs;       // Show Time As, string
@@ -48,9 +48,9 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.IsGroupEvent=item.IsGroupEvent;       // boolean
                 newItem.GroupEventType=item.GroupEventType;       // string
                 newItem.CreatedDate=item.CreatedDate;       // date
-                newItem.CreatedById=accountData.identifier + ";" + item.CreatedById;     // string
+                newItem.CreatedById=accountData.identifier + "." + item.CreatedById;     // string
                 newItem.LastModifiedDate=item.LastModifiedDate;     // date
-                newItem.LastModifiedById=accountData.identifier + ";" + item.LastModifiedById;       // string
+                newItem.LastModifiedById=accountData.identifier + "." + item.LastModifiedById;       // string
                 newItem.SystemModstamp=item.SystemModstamp;       // date
                 newItem.IsArchived=item.IsArchived;       // Archived, boolean
                 newItem.RecurrenceActivityId=item.RecurrenceActivityId;       // string

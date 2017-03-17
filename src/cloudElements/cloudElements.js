@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var config = require("config");
 var CloudElementsConfiguration = config.get("CloudElements");
 var request = require("request");
@@ -64,13 +65,13 @@ function SetInstanceName(elementToken, instanceId, newName) {
     });
 }
 exports.SetInstanceName = SetInstanceName;
-function deleteCEInstance(elementToken, instanceId) {
+function deleteCEInstance(instanceId) {
     return new Promise((resolve, reject) => {
         let request = require('request');
         let options = {
             url: CloudElementsConfiguration.apiBaseURL + '/instances/' + instanceId,
             headers: {
-                'Authorization': 'User ' + CloudElementsConfiguration.userSecret + ', Organization ' + CloudElementsConfiguration.organizationSecret + ', Element ' + elementToken,
+                'Authorization': 'User ' + CloudElementsConfiguration.userSecret + ', Organization ' + CloudElementsConfiguration.organizationSecret,
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
@@ -84,7 +85,7 @@ function deleteCEInstance(elementToken, instanceId) {
                     resolve();
                 }
                 else {
-                    console.log("************apiSalesforce-cloudElements--deleteCEInstance - something wrong error " + response.statusCode + " options:" + options);
+                    console.log("************apiZendesk-cloudElements--deleteCEInstance - something wrong error " + response.statusCode + " options:" + options);
                     reject(error);
                 }
             }

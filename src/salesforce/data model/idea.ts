@@ -25,9 +25,9 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.Title = item.Title;     // string
                 newItem.RecordTypeId = item.RecordTypeId;       // Record Type ID, string
                 newItem.CreatedDate = item.CreatedDate; // CreatedDate, date
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;   // Created By ID, string               
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;   // Created By ID, string               
                 newItem.LastModifiedDate = item.LastModifiedDate;     // date
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;     // string
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;     // string
                 newItem.SystemModstamp = item.SystemModstamp;     // date
                 newItem.LastViewedDate = item.LastViewedDate;       // date
                 newItem.LastReferencedDate = item.LastReferencedDate;       // date
@@ -39,8 +39,8 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.Categories = item.Categories;       // unknown
                 newItem.Status = item.Status;       // string
                 newItem.LastCommentDate = item.LastCommentDate;       // Last Idea Comment Date, date
-                newItem.LastCommentId = accountData.identifier + ";" + item.LastCommentId;       // string
-                newItem.ParentIdeaId = accountData.identifier + ";" + item.ParentIdeaId;       // Idea ID, string
+                newItem.LastCommentId = accountData.identifier + "." + item.LastCommentId;       // string
+                newItem.ParentIdeaId = accountData.identifier + "." + item.ParentIdeaId;       // Idea ID, string
                 newItem.IsHtml = item.IsHtml;       // boolean
                 newItem.IsMerged = item.IsMerged;       // boolean
                 newItem.CreatorFullPhotoUrl = item.CreatorFullPhotoUrl;       // URL of Creator's Profile Photo, string

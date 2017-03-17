@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const C_DATAOBJECTNAME = "document";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_DOCUMENT";
 var cloudElements = require("../../cloudElements/cloudElements");
@@ -18,7 +19,7 @@ function transform(accountData, items) {
                 newItem["_id"] = utils.getPrimaryKey(accountData.identifier, item.Id);
                 newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;
-                newItem.FolderId = accountData.identifier + ";" + item.FolderId;
+                newItem.FolderId = accountData.identifier + "." + item.FolderId;
                 newItem.IsDeleted = item.IsDeleted;
                 newItem.Name = item.Name;
                 newItem.DeveloperName = item.DeveloperName;
@@ -32,11 +33,11 @@ function transform(accountData, items) {
                 newItem.Description = item.Description;
                 newItem.Keywords = item.Keywords;
                 newItem.IsInternalUseOnly = item.IsInternalUseOnly;
-                newItem.AuthorId = accountData.identifier + ";" + item.AuthorId;
+                newItem.AuthorId = accountData.identifier + "." + item.AuthorId;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.IsBodySearchable = item.IsBodySearchable;
                 newItem.LastViewedDate = item.LastViewedDate;

@@ -1,6 +1,6 @@
 {
   "name": "hubx-salesforce",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/AVAILOTECH/hubx-salesforce#readme",
   "dependencies": {
-    "@startx/hubx-core": "^0.3.6",
-    "@startx/probot-memory": "^1.1.2",
+    "@startx/hubx-core": "^0.4.6",
+    "@startx/probot-memory": "^1.2.5",
     "@types/express": "^4.0.34",
     "@types/node": "^6.0.55",
     "@types/should": "^8.1.30",

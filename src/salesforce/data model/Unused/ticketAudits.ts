@@ -24,31 +24,31 @@ export function transform(accountData, items): Promise<Object[]> {
                 if (item.events) {
                     if (item.events.length>0) {
                         item.events.forEach(function (auditEvent) {
-                            auditEvent.audit_id=accountData.identifier + ';' + item.id;
-                            auditEvent.ticket_id=accountData.identifier + ';' + item.ticket_id;
+                            auditEvent.audit_id=accountData.identifier + '.' + item.id;
+                            auditEvent.ticket_id=accountData.identifier + '.' + item.ticket_id;
                             auditEvent.type=item.type;
                             auditEvent.vendorUrl='https://' + accountData.siteAddress + '.salesforce.com/tickets/' + item.ticket_id + "/events";
                             if (auditEvent.author_id) {
                                 if (!(auditEvent.author_id==-1)) {
-                                    auditEvent.author_id=accountData.identifier + ';' + auditEvent.author_id;
+                                    auditEvent.author_id=accountData.identifier + '.' + auditEvent.author_id;
                                 }
                                 
                                 
                             if (auditEvent.recipients) 
                                 if (auditEvent.recipients.length) 
                                     auditEvent.recipients.forEach((recipient, index) => {
-                                        auditEvent.recipients[index] = accountData.identifier + ';' + auditEvent.recipients[index];
+                                        auditEvent.recipients[index] = accountData.identifier + '.' + auditEvent.recipients[index];
                                     });                                
                             ticketAuditEventsToMap.push(auditEvent)
                         });
                         finalTicketsAuditsEventsToMap=finalTicketsAuditsEventsToMap.concat(ticketAuditEventsToMap);
-                        newItem.events = utils.getPointersStringArray(ticketAuditEventsToMap, "id", accountData.identifier + ';');
+                        newItem.events = utils.getPointersStringArray(ticketAuditEventsToMap, "id", accountData.identifier + '.');
                     } else newItem.events= null;
                 } else newItem.events= null;
                 //newItem.type=item.type;
         
                 if (!(item.author_id==-1)) {
-                    newItem.author_id=accountData.identifier + ';' + item.author_id;
+                    newItem.author_id=accountData.identifier + '.' + item.author_id;
                 } else newItem.author_id=null;
 
                 newItem.created_at=item.created_at;

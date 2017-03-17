@@ -23,7 +23,7 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;       // Dashboard ID, string
                 newItem.IsDeleted = item.IsDeleted;     // boolean
-                newItem.FolderId = accountData.identifier + ";" + item.FolderId;     // string
+                newItem.FolderId = accountData.identifier + "." + item.FolderId;     // string
                 newItem.FolderName = item.FolderName;       // string
                 newItem.Title = item.Title; // string
                 newItem.DeveloperName = item.DeveloperName;   // Dashboard Unique Name, string               
@@ -33,11 +33,11 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.MiddleSize = item.MiddleSize;       // Middle Size, string
                 newItem.RightSize = item.RightSize;       // Right Size, string
                 newItem.CreatedDate = item.CreatedDate;       // date
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;     // string
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;     // string
                 newItem.LastModifiedDate = item.LastModifiedDate;       // date
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;       // string
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;       // string
                 newItem.SystemModstamp = item.SystemModstamp;     // date
-                newItem.RunningUserId = accountData.identifier + ";" + item.RunningUserId;       // Running User ID, string
+                newItem.RunningUserId = accountData.identifier + "." + item.RunningUserId;       // Running User ID, string
                 newItem.TitleColor = item.TitleColor;       // Title Color, number
                 newItem.TitleSize = item.TitleSize;       // Title Size, number
                 newItem.TextColor = item.TextColor;     // Text Color, number

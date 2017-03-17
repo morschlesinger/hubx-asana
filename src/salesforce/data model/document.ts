@@ -20,7 +20,7 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem["_id"] = utils.getPrimaryKey(accountData.identifier,item.Id);
                 newItem["_dbtime"] = utils.GetNowTimestampLong();
                 newItem.Id = item.Id;       // Document ID, string
-                newItem.FolderId = accountData.identifier + ";" + item.FolderId;     // string
+                newItem.FolderId = accountData.identifier + "." + item.FolderId;     // string
                 newItem.IsDeleted = item.IsDeleted;       // boolean
                 newItem.Name = item.Name; // Document Name, string
                 newItem.DeveloperName = item.DeveloperName;   // Document Unique Name, string               
@@ -34,11 +34,11 @@ export function transform(accountData, items): Promise<Object[]> {
                 newItem.Description = item.Description;       // string
                 newItem.Keywords = item.Keywords;       // string
                 newItem.IsInternalUseOnly = item.IsInternalUseOnly;     // Internal Use Only, boolean
-                newItem.AuthorId = accountData.identifier + ";" + item.AuthorId;       // string
+                newItem.AuthorId = accountData.identifier + "." + item.AuthorId;       // string
                 newItem.CreatedDate = item.CreatedDate;       // date
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;       // string
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;       // string
                 newItem.LastModifiedDate = item.LastModifiedDate;     // date
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;       // string
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;       // string
                 newItem.SystemModstamp = item.SystemModstamp;     // date
                 newItem.IsBodySearchable = item.IsBodySearchable;     // Document Content Searchable, boolean
                 newItem.LastViewedDate = item.LastViewedDate;       // date

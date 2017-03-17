@@ -27,7 +27,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.Id=item.Id;     // Lead ID, string
                 newItem.IsDeleted=item.IsDeleted;       // boolean
                 if (item.MasterRecordId) {
-                    newItem.MasterRecordId=accountData.identifier + ";" + item.MasterRecordId;     // Parent Case ID, string
+                    newItem.MasterRecordId=accountData.identifier + "." + item.MasterRecordId;     // Parent Case ID, string
                 } else newItem.MasterRecordId=null;                
                 newItem.LastName=item.LastName;     // string
                 newItem.FirstName=item.FirstName;     // string
@@ -55,7 +55,7 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.Industry=item.Industry;       // string
                 newItem.Rating=item.Rating;       // string
                 newItem.NumberOfEmployees=item.NumberOfEmployees;       // Number of Employees, number
-                newItem.OwnerId=accountData.identifier + ";" + item.OwnerId;       // string
+                newItem.OwnerId=accountData.identifier + "." + item.OwnerId;       // string
                 newItem.IsConverted=item.IsConverted;       // Converted, boolean
                 newItem.ConvertedDate=item.ConvertedDate;     // date
                 newItem.ConvertedAccountId=item.ConvertedAccountId;     // string
@@ -63,9 +63,9 @@ export function transform(accountData, items) : Promise<Object[]> {
                 newItem.ConvertedOpportunityId=item.ConvertedOpportunityId;     // string
                 newItem.IsUnreadByOwner=item.IsUnreadByOwner;     // Unread By Owner, boolean
                 newItem.CreatedDate=item.CreatedDate;       // date
-                newItem.CreatedById=accountData.identifier + ";" + item.CreatedById;     // string
+                newItem.CreatedById=accountData.identifier + "." + item.CreatedById;     // string
                 newItem.LastModifiedDate=item.LastModifiedDate;       // date
-                newItem.LastModifiedById=accountData.identifier + ";" + item.LastModifiedById;       // string
+                newItem.LastModifiedById=accountData.identifier + "." + item.LastModifiedById;       // string
                 newItem.SystemModstamp=item.SystemModstamp;     // date
                 newItem.LastActivityDate=item.LastActivityDate;     // date
                 newItem.LastViewedDate=item.LastViewedDate;       // date

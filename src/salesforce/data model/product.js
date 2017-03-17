@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const C_DATAOBJECTNAME = "product";
 const C_DATAOBJECTENTITYNAME = "SALESFORCE_PRODUCT";
 var cloudElements = require("../../cloudElements/cloudElements");
@@ -23,9 +24,9 @@ function transform(accountData, items) {
                 newItem.Description = item.Description;
                 newItem.IsActive = item.IsActive;
                 newItem.CreatedDate = item.CreatedDate;
-                newItem.CreatedById = accountData.identifier + ";" + item.CreatedById;
+                newItem.CreatedById = accountData.identifier + "." + item.CreatedById;
                 newItem.LastModifiedDate = item.LastModifiedDate;
-                newItem.LastModifiedById = accountData.identifier + ";" + item.LastModifiedById;
+                newItem.LastModifiedById = accountData.identifier + "." + item.LastModifiedById;
                 newItem.SystemModstamp = item.SystemModstamp;
                 newItem.Family = item.Family;
                 newItem.ExternalDataSourceId = item.ExternalDataSourceId;
